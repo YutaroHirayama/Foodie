@@ -1,7 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .review import reviews
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -17,7 +16,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     profile_pic = db.Column(db.String(1000))
 
-    restaurants_owned = db.relationship('Restaurant', back_populates='owner')
+    businesses_owned = db.relationship('Business', back_populates='owner')
     reviews = db.relationship('Review', back_populates='user', order_by='Review.created_at')
 
     @property
@@ -39,7 +38,7 @@ class User(db.Model, UserMixin):
             'lastName': self.last_name,
             'email': self.email,
             'profile_pic': self.profile_pic,
-            'restaurantsOwned': [restaurant.to_dict_no_ref() for restaurant in self.restaurants_owned],
+            'businessesOwned': [business.to_dict_no_ref() for business in self.businesses_owned],
             'reviews': [review.to_dict_no_ref() for review in self.reviews]
         }
 

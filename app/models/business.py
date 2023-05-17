@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
-class Restaurant(db.Model):
-    __tablename__ = 'restaurants'
+class Business(db.Model):
+    __tablename__ = 'businesses'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
@@ -22,8 +22,8 @@ class Restaurant(db.Model):
     website = db.Column(db.String)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
-    owner = db.relationship('User', back_populates='restaurants_owned')
-    reviews = db.relationship('Review', back_populates='restaurant', order_by='Review.created_at', cascade='all, delete')
+    owner = db.relationship('User', back_populates='businesses_owned')
+    reviews = db.relationship('Review', back_populates='business', order_by='Review.created_at', cascade='all, delete')
 
     def to_dict(self):
         return {
@@ -41,7 +41,8 @@ class Restaurant(db.Model):
             'category': self.category,
             'website': self.website,
             'ownerId': self.owner_id,
-            'owner': self.owner.to_dict_no_ref()
+            'owner': self.owner.to_dict_no_ref(),
+            'reviews': [review.to_dict_no_ref() for review in self.reviews]
         }
 
     def to_dict_no_ref(self):

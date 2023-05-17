@@ -1,9 +1,8 @@
-from app.models import db, Restaurant, environment, SCHEMA
+from app.models import db, Business, environment, SCHEMA
 from sqlalchemy.sql import text
 
-
-def seed_restaurants():
-    pizza1 = Restaurant(
+def seed_businesses():
+    pizza1 = Business(
         name='Serious Pie Downtown',
         phone_number='2068387388',
         address='2001 4th Ave',
@@ -18,9 +17,9 @@ def seed_restaurants():
         website='https://www.seriouspieseattle.com/location/serious-pie-downtown/',
         owner_id=1
     )
-    pizza2 = Restaurant(
+    pizza2 = Business(
         name="Rocco's",
-        phone_number='2063974210',
+        phone_number='2064665989',
         address='2312 2nd Ave Seattle',
         city='Seattle',
         state='Washington',
@@ -34,7 +33,7 @@ def seed_restaurants():
         owner_id=2
     )
 
-    burger1 = Restaurant(
+    burger1 = Business(
         name='8oz Burger & Co',
         phone_number='2063974210',
         address='2312 2nd Ave Seattle',
@@ -50,7 +49,7 @@ def seed_restaurants():
         owner_id=1
     )
 
-    burger2 = Restaurant(
+    burger2 = Business(
         name='Uneeda Burger',
         phone_number='2065472600',
         address='4302 Fremont Ave N',
@@ -66,17 +65,17 @@ def seed_restaurants():
         owner_id=2
     )
 
-    all_restaurants = [pizza1, pizza2, burger1, burger2]
-    add_restaurants = [db.session.add(restaurant) for restaurant in all_restaurants]
+    all_businesses = [pizza1, pizza2, burger1, burger2]
+    add_businesses = [db.session.add(business) for business in all_businesses]
     db.session.commit()
-    print('all restaurants added')
+    print('all businesses added')
 
 
 
-def undo_restaurants():
+def undo_businesses():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.restaurants RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.businesses RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM restaurants"))
+        db.session.execute(text("DELETE FROM businesses"))
 
     db.session.commit()
