@@ -11,8 +11,14 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    first_name = db.Column(db.String(40), nullable=False)
+    last_name = db.Column(db.String(40), nullable=False)
+    email = db.Column(db.String(255), nullable=False, unique=True)
+    profile_pic = db.Column(db.String(1000))
+
+    restaurants_owned = db.relationship('Restaurant', back_populates='owner')
+
 
     @property
     def password(self):
@@ -29,5 +35,8 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'firstName': self.first_name,
+            'lastName': self.last_name,
+            'email': self.email,
+            'profile_pic': self.profile_pic
         }
