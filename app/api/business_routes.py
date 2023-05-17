@@ -1,7 +1,8 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import Business
+from flask import Blueprint, jsonify, request
+from flask_login import login_required, current_user
+from app.models import Business, db
 from ..forms import BusinessForm
+from .auth_routes import validation_errors_to_error_messages
 
 business_routes = Blueprint('businesses', __name__)
 
@@ -33,3 +34,63 @@ def create_business():
     """
 
     form = BusinessForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        business = Business(
+            name = form.data['name'],
+            phone_number = form.data['phoneNumber'],
+            address = form.data['address'],
+            city = form.data['city'],
+            state = form.data['state'],
+            zipcode = form.data['zipcode'],
+            lat = form.data['lat'],
+            lng = form.data['lng'],
+            price = form.data['price'],
+            hours = form.data['hours'],
+            description = form.data['description'],
+            category = form.data['category'],
+            website = form.data['website'],
+            owner=current_user
+        )
+
+        db.session.add(business)
+        db.session.commit()
+        return business.to_dict()
+
+    # or 422
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@business_routes.route('/<int:id>', methods=['POST'])
+@login_required
+def update_channel(id):
+    """
+    This route updates the business details for the logged in user if the user is the owner
+    """
+
+    business_to_update = Business.query.get(id)
+
+    if current_user.id != business_to_update.owner_id:
+        return {'errors': ['Forbidden']}, 403
+
+    form = BusinessForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        business_to_update.name = form.data['name']
+        business_to_update.phone_number = form.data['phoneNumber']
+        business_to_update.address = form.data['address']
+        business_to_update.city = form.data['city']
+        business_to_update.state = form.data['state']
+        business_to_update.zipcode = form.data['zipcode']
+        business_to_update.lat = form.data['lat']
+        business_to_update.lng = form.data['lng']
+        business_to_update.price = form.data['price']
+        business_to_update.hours = form.data['hours']
+        business_to_update.description = form.data['description']
+        business_to_update.category = form.data['category']
+        business_to_update.website = form.data['website']
+
+        db.session.commit()
+        return business_to_update.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
