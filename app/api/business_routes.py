@@ -62,9 +62,9 @@ def create_business():
 
 @business_routes.route('/<int:id>', methods=['POST'])
 @login_required
-def update_channel(id):
+def update_business(id):
     """
-    This route updates the business details for the logged in user if the user is the owner
+    This route updates the business details if the user is the owner
     """
 
     business_to_update = Business.query.get(id)
@@ -94,3 +94,21 @@ def update_channel(id):
         return business_to_update.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@business_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_business(id):
+    """
+    This route deletes the business
+    """
+
+    business_to_delete = Business.query.get(id)
+
+    if current_user.id != business_to_delete.owner_id:
+        return {'errors': ['Forbidden']}, 403
+
+    db.session.delete(business_to_delete)
+
+    db.session.commit()
+
+    return {f'Successfully deleted {business_to_delete.name}'}
