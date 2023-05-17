@@ -7,6 +7,7 @@ class Restaurant(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
     phone_number = db.Column(db.String(20), nullable=False, unique=True)
     address = db.Column(db.String(100), nullable=False)
     city = db.Column(db.String(50), nullable=False)
@@ -15,7 +16,7 @@ class Restaurant(db.Model):
     lat = db.Column(db.Float)
     lng = db.Column(db.Float)
     price = db.Column(db.String, nullable=False)
-    hours = db.Column(db.String, nullable=False)
+    hours = db.Column(db.String)
     description = db.Column(db.String(1000))
     category = db.Column(db.String)
     website = db.Column(db.String)
