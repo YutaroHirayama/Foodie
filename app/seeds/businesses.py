@@ -1,6 +1,6 @@
 from app.models import db, Business, environment, SCHEMA
 from sqlalchemy.sql import text
-
+from businessImages import pizza1_1, pizza2_1, burger1_1, burger2_1
 def seed_businesses():
     pizza1 = Business(
         name='Serious Pie Downtown',
@@ -64,6 +64,11 @@ def seed_businesses():
         website='http://uneedaburger.com/',
         owner_id=2
     )
+
+    pizza1.businessImages.append(pizza1_1)
+    pizza2.businessImages.append(pizza2_1)
+    burger1.businessImages.append(burger1_1)
+    burger2.businessImages.append(burger2_1)
 
     all_businesses = [pizza1, pizza2, burger1, burger2]
     add_businesses = [db.session.add(business) for business in all_businesses]

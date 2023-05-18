@@ -13,7 +13,7 @@ def get_all_businesses():
     """
 
     businesses = Business.query.all()
-    return [business.to_dict for business in businesses]
+    return [business.to_dict() for business in businesses]
 
 @business_routes.route('/<int:id>')
 def get_one_business(id):

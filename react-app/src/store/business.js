@@ -36,7 +36,6 @@ export const getAllBusinessesThunk = () => async (dispatch) => {
 export const getOneBusinessThunk = (businessId) => async (dispatch) => {
   const res = await fetch(`/api/business/${businessId}`);
 
-
   if(res.ok) {
     const business = await res.json();
     console.log('inside get one business thunk res', business)
@@ -89,7 +88,7 @@ export default function businessReducer(state = initialState, action) {
   let newState = {};
   switch(action.type) {
     case GET_ALL_BUSINESSES: {
-      action.businesses.forEach((business) => {(newState.allBusinesses[business.id] = business)});
+      newState = {allBusinesses: [...action.businesses], currentBusiness: {...state.currentBusiness}}
       return newState;
     };
     case GET_ONE_BUSINESS: {

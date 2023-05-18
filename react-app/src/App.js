@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import LandingPage from './components/LandingPage/landingPage';
 import ProfilePage from './components/ProfilePage/profilePage';
 import BusinessPage from "./components/Business/businessPage";
+import ResultPage from "./components/Results/resultsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,9 @@ function App() {
             </Route>
             <Route path="/profile">
               <ProfilePage user={sessionUser}/>
+            </Route>
+            <Route path="/search">
+              <ResultPage user={sessionUser}/>
             </Route>
           </Switch>
         </>
