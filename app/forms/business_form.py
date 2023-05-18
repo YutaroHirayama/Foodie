@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DecimalField
+from wtforms import StringField, DecimalField, TextAreaField
 from wtforms.validators import DataRequired, ValidationError
 from app.models import Business
 
@@ -11,7 +11,7 @@ def phone_number_exists(form,field):
         raise ValidationError('Phone number is already in use.')
 class BusinessForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
-    phone_number = StringField('phoneNumber', validators=[DataRequired(), phone_number_exists])
+    phoneNumber = StringField('phoneNumber', validators=[DataRequired(), phone_number_exists])
     address = StringField('streetAddress', validators=[DataRequired()])
     city = StringField('city', validators=[DataRequired()])
     state = StringField('state', validators=[DataRequired()])
@@ -20,6 +20,6 @@ class BusinessForm(FlaskForm):
     lng = DecimalField('lng')
     price = StringField('price', validators=[DataRequired()])
     hours = StringField('hours')
-    description = StringField('description')
+    description = TextAreaField('description')
     category = StringField('category')
     website = StringField('website')

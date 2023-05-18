@@ -28,6 +28,7 @@ class Business(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
+            'name': self.name,
             'phoneNumber': self.phone_number,
             'address': self.address,
             'city': self.city,
@@ -42,13 +43,14 @@ class Business(db.Model):
             'website': self.website,
             'ownerId': self.owner_id,
             'owner': self.owner.to_dict_no_ref(),
-            'reviews': [review.to_dict_no_ref() for review in self.reviews]
+            'reviews': [review.to_dict_with_user() for review in self.reviews]
         }
 
     def to_dict_no_ref(self):
 
         return {
             'id': self.id,
+            'name': self.name,
             'phoneNumber': self.phone_number,
             'address': self.address,
             'city': self.city,

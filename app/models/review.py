@@ -37,3 +37,14 @@ class Review(db.Model):
             'rating': self.rating,
             'created_at': self.created_at
         }
+
+    def to_dict_with_user(self):
+        return {
+            'id': self.id,
+            'userId': self.user_id,
+            'restauranId': self.business_id,
+            'review': self.review,
+            'rating': self.rating,
+            'created_at': self.created_at,
+            'user': self.user.to_dict_no_ref()
+    }
