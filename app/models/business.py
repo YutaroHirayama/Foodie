@@ -44,7 +44,8 @@ class Business(db.Model):
             'website': self.website,
             'ownerId': self.owner_id,
             'owner': self.owner.to_dict_no_ref(),
-            'reviews': [review.to_dict_with_user() for review in self.reviews]
+            'reviews': [review.to_dict_with_user() for review in self.reviews],
+            'mainImage': [image.image_url for image in self.businessImages if image.main_image is True]
         }
 
     def to_dict_no_ref(self):

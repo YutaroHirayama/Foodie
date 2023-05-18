@@ -1,6 +1,7 @@
 from app.models import db, Business, environment, SCHEMA
 from sqlalchemy.sql import text
-from businessImages import pizza1_1, pizza2_1, burger1_1, burger2_1
+from .businessImages import pizza1_1, pizza2_1, burger1_1, burger2_1
+
 def seed_businesses():
     pizza1 = Business(
         name='Serious Pie Downtown',
