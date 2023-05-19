@@ -28,6 +28,7 @@ const EditBusinessModal = ({business}) => {
 
   const formSubmit = async (e) => {
     e.preventDefault();
+
     const updatedBusiness = {
       id: business.id,
       name,
@@ -54,7 +55,7 @@ const EditBusinessModal = ({business}) => {
   return (
     <div className='create-business-modal'>
       <form onSubmit={formSubmit}>
-        <h3>Create a New Business Page</h3>
+        <h3>Update Business</h3>
         <ul>
           {errors.map((error, idx) => (
             <li className='form-errors' key={idx}>{error}</li>
@@ -194,7 +195,7 @@ const EditBusinessModal = ({business}) => {
           </div>
         </div>
         <div className="create-business-submit">
-            <button className="create-business-submit-button">Create Page</button>
+            <button className="create-business-submit-button">Update</button>
         </div>
       </form>
     </div>

@@ -60,7 +60,7 @@ def create_business():
     # or 422
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-@business_routes.route('/<int:id>', methods=['POST'])
+@business_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_business(id):
     """
@@ -111,4 +111,4 @@ def delete_business(id):
 
     db.session.commit()
 
-    return {f'Successfully deleted {business_to_delete.name}'}
+    return business_to_delete.to_dict()

@@ -5,29 +5,33 @@
 // ACTIONS ------------------------------------------------------------------------
 
 const GET_ALL_BUSINESSES = 'businesses/GET_ALL_BUSINESSES';
-const GET_ONE_BUSINESS = 'business/GET_ONE_BUSINESS'
-const CREATE_BUSINESS = 'business/CREATE_BUSINESS'
-const EDIT_BUSINESS = 'business/EDIT_BUSINESS'
+const GET_ONE_BUSINESS = 'business/GET_ONE_BUSINESS';
+const CREATE_BUSINESS = 'business/CREATE_BUSINESS';
+const EDIT_BUSINESS = 'business/EDIT_BUSINESS';
+
+
 
 export const getAllBusinessesAction = (businesses) => ({
   type: GET_ALL_BUSINESSES,
   businesses
-})
+});
 
 export const getOneBusinessAction = (business) => ({
   type: GET_ONE_BUSINESS,
   business
-})
+});
 
 export const createBusinessAction = (business) => ({
   type: CREATE_BUSINESS,
   business
-})
+});
 
 export const editBusinessAction = (business) => ({
   type: EDIT_BUSINESS,
   business
-})
+});
+
+
 
 // THUNKS -------------------------------------------------------------------------
 
@@ -36,7 +40,7 @@ export const getAllBusinessesThunk = () => async (dispatch) => {
   const businesses = await res.json();
 
   dispatch(getAllBusinessesAction(businesses))
-}
+};
 
 export const getOneBusinessThunk = (businessId) => async (dispatch) => {
   const res = await fetch(`/api/business/${businessId}`);
@@ -50,10 +54,10 @@ export const getOneBusinessThunk = (businessId) => async (dispatch) => {
     const errors = await res.json();
     return errors;
   }
-}
+};
 
 export const createBusinessThunk = (business) => async (dispatch) => {
-  const {name, phoneNumber, address, city, state, zipcode, price, description, category, website} = business
+  const {name, phoneNumber, address, city, state, zipcode, price, description, category, website} = business;
   const res = await fetch(`/api/business`,
   {
     method: 'POST',
@@ -72,20 +76,20 @@ export const createBusinessThunk = (business) => async (dispatch) => {
       category,
       website
     })
-  })
+  });
 
   if(res.ok) {
     const newBusiness = await res.json();
-    dispatch(createBusinessAction(newBusiness))
+    dispatch(createBusinessAction(newBusiness));
     return newBusiness.id
   } else {
     const errors = await res.json();
     return errors;
-  }
-}
+  };
+};
 
 export const editBusinessThunk = (business) => async (dispatch) => {
-  const {name, phoneNumber, address, city, state, zipcode, price, description, category, website} = business
+  const {name, phoneNumber, address, city, state, zipcode, price, description, category, website} = business;
   const res = await fetch(`/api/business/${business.id}`,
   {
     method: 'PUT',
@@ -104,11 +108,11 @@ export const editBusinessThunk = (business) => async (dispatch) => {
       category,
       website
     })
-  })
+  });
 
   if(res.ok) {
     const updatedBusiness = await res.json();
-    dispatch(createBusinessAction(updatedBusiness))
+    dispatch(createBusinessAction(updatedBusiness));
     return updatedBusiness.id
   } else {
     const errors = await res.json();
@@ -128,7 +132,6 @@ export default function businessReducer(state = initialState, action) {
     };
     case GET_ONE_BUSINESS: {
       newState = { allBusinesses: {...state.allBusinesses}, currentBusiness: action.business}
-      console.log('inside new state')
       return newState;
     };
     case CREATE_BUSINESS: {

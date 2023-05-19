@@ -1,6 +1,7 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const DELETE_BUSINESS = 'business/DELETE_BUSINESS';
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -11,7 +12,12 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
-const initialState = { user: null };
+export const deleteBusinessAction = (businessId) => ({
+  type: DELETE_BUSINESS,
+  businessId
+})
+
+
 
 export const authenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/", {
@@ -94,12 +100,33 @@ export const signUp = (username, email, password) => async (dispatch) => {
 	}
 };
 
+export const deleteBusinessThunk = (businessId) => async (dispatch) => {
+  const res = await fetch(`/api/business/${businessId}`, {method: 'DELETE'})
+
+  if(res.ok) {
+    const deletedBusiness = res.json();
+    dispatch(deleteBusinessAction(deletedBusiness.id));
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+}
+
+const initialState = { user: null };
+
 export default function reducer(state = initialState, action) {
+	let newState = {}
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		case DELETE_BUSINESS: {
+			newState = { ...state, user: {...state.user}}
+			console.log('inside delete business, NEW STATE', newState)
+			newState.user.businessesOwned.filter(business => business.id != action.businessId)
+			return newState
+		}
 		default:
 			return state;
 	}

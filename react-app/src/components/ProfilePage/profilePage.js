@@ -2,10 +2,15 @@ import './profilePage.css';
 import OpenModalButton from '../OpenModalButton';
 import CreateBusinessModal from '../CreateBusinessModal/createBusinessModal';
 import BusinessCard from '../Results/businessCard';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import EditBusinessModal from '../EditBusinessModal/editBusinessModal';
+import DeleteBusinessModal from '../DeleteBusinessModal/deleteBusinessModal';
+import { useSelector, useDispatch } from "react-redux";
 
-const ProfilePage = ({user}) => {
+const ProfilePage = () => {
+  const user = useSelector(state => state.session.user)
 
+  if(!user) return null;
 
   return (
       <div className='profile-page'>
@@ -29,6 +34,18 @@ const ProfilePage = ({user}) => {
             {user.businessesOwned && user.businessesOwned.map((business, idx) => (
               <div className='owned-business-card'>
                 <BusinessCard key={idx} business={business} idx={idx+1} />
+                <div className='owned-business-button-container'>
+                  <OpenModalButton
+                    buttonText='Edit'
+                    className='owned-business-button'
+                    modalComponent={<EditBusinessModal business={business} />}
+                  />
+                  <OpenModalButton
+                    buttonText='Delete'
+                    className='owned-business-button'
+                    modalComponent={<DeleteBusinessModal business={business} />}
+                  />
+                </div>
               </div>
             ))}
           </div>
