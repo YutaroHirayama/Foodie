@@ -23,7 +23,7 @@ const ResultPage = () => {
           </div>
           <div className='results-grid'>
             {results && results.map((result, idx) => (
-              <BusinessCard business={result}/>
+              <BusinessCard key={idx} business={result} idx={idx+1}/>
             ))}
           </div>
           <>

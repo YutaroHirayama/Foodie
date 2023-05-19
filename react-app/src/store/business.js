@@ -7,7 +7,7 @@
 const GET_ALL_BUSINESSES = 'businesses/GET_ALL_BUSINESSES';
 const GET_ONE_BUSINESS = 'business/GET_ONE_BUSINESS'
 const CREATE_BUSINESS = 'business/CREATE_BUSINESS'
-
+const EDIT_BUSINESS = 'business/EDIT_BUSINESS'
 
 export const getAllBusinessesAction = (businesses) => ({
   type: GET_ALL_BUSINESSES,
@@ -21,6 +21,11 @@ export const getOneBusinessAction = (business) => ({
 
 export const createBusinessAction = (business) => ({
   type: CREATE_BUSINESS,
+  business
+})
+
+export const editBusinessAction = (business) => ({
+  type: EDIT_BUSINESS,
   business
 })
 
@@ -49,7 +54,6 @@ export const getOneBusinessThunk = (businessId) => async (dispatch) => {
 
 export const createBusinessThunk = (business) => async (dispatch) => {
   const {name, phoneNumber, address, city, state, zipcode, price, description, category, website} = business
-  console.log('business in thunk', business)
   const res = await fetch(`/api/business`,
   {
     method: 'POST',
@@ -80,6 +84,37 @@ export const createBusinessThunk = (business) => async (dispatch) => {
   }
 }
 
+export const editBusinessThunk = (business) => async (dispatch) => {
+  const {name, phoneNumber, address, city, state, zipcode, price, description, category, website} = business
+  const res = await fetch(`/api/business/${business.id}`,
+  {
+    method: 'PUT',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      phoneNumber,
+      address,
+      city,
+      state,
+      zipcode,
+      price,
+      description,
+      category,
+      website
+    })
+  })
+
+  if(res.ok) {
+    const updatedBusiness = await res.json();
+    dispatch(createBusinessAction(updatedBusiness))
+    return updatedBusiness.id
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+}
 
 
 // REDUCER ------------------------------------------------------------------------
@@ -98,7 +133,10 @@ export default function businessReducer(state = initialState, action) {
     };
     case CREATE_BUSINESS: {
       newState = { allBusinesses: {...state.allBusinesses, [action.business.id]: action.business}, currentBusiness: {...state.currentBusiness}}
-    }
+    };
+    case EDIT_BUSINESS: {
+      newState = { allBusinesses: {...state.allBusinesses, [action.business.id]: action.business}, currentBusiness: {...state.currentBusiness}}
+    };
     default:
       return state;
   }

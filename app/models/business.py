@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+import math
 
 class Business(db.Model):
     __tablename__ = 'businesses'
@@ -24,9 +25,20 @@ class Business(db.Model):
 
     owner = db.relationship('User', back_populates='businesses_owned')
     reviews = db.relationship('Review', back_populates='business', order_by='Review.created_at', cascade='all, delete')
-    businessImages = db.relationship('BusinessImage', back_populates='business')
+    businessImages = db.relationship('BusinessImage', back_populates='business', cascade='delete, all')
+
 
     def to_dict(self):
+
+        def round_up(num):
+            if (num - math.floor(num)) < 0.5:
+                return math.floor(num)
+            return math.ceil(num)
+        ratings = [review.rating for review in self.reviews]
+        if len(ratings) > 0:
+            averageRating = round_up((sum(ratings) / len(ratings)) * 2) / 2
+        else: averageRating = None
+
         return {
             'id': self.id,
             'name': self.name,
@@ -43,6 +55,7 @@ class Business(db.Model):
             'category': self.category,
             'website': self.website,
             'ownerId': self.owner_id,
+            'rating': averageRating,
             'owner': self.owner.to_dict_no_ref(),
             'reviews': [review.to_dict_with_user() for review in self.reviews],
             'mainImage': [image.image_url for image in self.businessImages if image.main_image is True]

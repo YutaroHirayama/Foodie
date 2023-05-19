@@ -17,6 +17,18 @@ def seed_reviews():
         rating=4,
         created_at=datetime.now()
     )
+    pizza1r3 = Review(
+        user_id=5,
+        business_id=1,
+        rating=5,
+        created_at=datetime.now()
+    )
+    pizza1r4 = Review(
+        user_id=6,
+        business_id=1,
+        rating=5,
+        created_at=datetime.now()
+    )
     pizza2r1 = Review(
         user_id=5,
         business_id=2,
@@ -28,6 +40,12 @@ def seed_reviews():
         user_id=6,
         business_id=2,
         review="I love coming to Rocco's. They have great food, especially the best pizza in town. It's my go to pizza spot. The only reason it's 4 stars for me is there is a bouncer that checks your ID. It seems a little intense to have someone at a restaurant checking you in, then escorting you in.  It doesn't say anywhere that it's 21 years and older to enter. So unsure of this tactic. To me, this appearance doesn't feel like VIP service, it feels intimidating just to get some food. I'll always come back though.",
+        rating=4,
+        created_at=datetime.now()
+    )
+    pizza2r3 = Review(
+        user_id=4,
+        business_id=2,
         rating=4,
         created_at=datetime.now()
     )
@@ -47,21 +65,21 @@ def seed_reviews():
     )
     burger2r1 = Review(
         user_id=4,
-        business_id=3,
+        business_id=4,
         review="I recently visited Uneedaburger and had an amazing experience. The staff was incredibly friendly and polite, making me feel welcome from the moment I walked in the door. The ambience of the restaurant is laid back and relaxed, creating a comfortable atmosphere to enjoy a meal and a drink. Speaking of the meal, the burgers were exceptional! They had a great selection of burgers that are all made with fresh ingredients, and I love how you can customize them to your liking. The quality of the ingredients really shines through in the taste of the burgers. To top it off, They had a decent selection of beers that perfectly complement the burgers. I would highly recommend checking out this restaurant if you're in the area and looking for a delicious and fresh meal. You won't be disappointed!",
         rating=5,
         created_at=datetime.now()
     )
     burger2r2 = Review(
         user_id=3,
-        business_id=3,
+        business_id=4,
         review="Tried Uneeda Burger for the first time after hearing so much hype about it. The service was good but we were disappointed with the food. Both burgers were so greasy that we unfortunately could not finish eating them. We also got the sweet potato fries which were okay and the onion rings which were hard and unseasoned",
         rating=2,
         created_at=datetime.now()
     )
 
 
-    all_reviews = [pizza1r1, pizza1r2, pizza2r1, pizza2r2, burger1r1, burger1r2, burger2r1, burger2r2]
+    all_reviews = [pizza1r1, pizza1r2, pizza1r3, pizza1r4, pizza2r1, pizza2r2, pizza2r3, burger1r1, burger1r2, burger2r1, burger2r2]
     add_reviews = [db.session.add(review) for review in all_reviews]
     db.session.commit()
     print('all reviews added')

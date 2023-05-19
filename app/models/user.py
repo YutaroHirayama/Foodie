@@ -38,7 +38,7 @@ class User(db.Model, UserMixin):
             'lastName': self.last_name,
             'email': self.email,
             'profilePic': self.profile_pic,
-            'businessesOwned': [business.to_dict_no_ref() for business in self.businesses_owned],
+            'businessesOwned': [business.to_dict() for business in self.businesses_owned],
             'reviews': [review.to_dict_no_ref() for review in self.reviews]
         }
 

@@ -1,13 +1,12 @@
 import './profilePage.css';
 import OpenModalButton from '../OpenModalButton';
 import CreateBusinessModal from '../CreateBusinessModal/createBusinessModal';
+import BusinessCard from '../Results/businessCard';
 import { Link } from 'react-router-dom'
 
 const ProfilePage = ({user}) => {
 
-  // if(!user) return (
-  //   <h1>Log in or Sign Up</h1>
-  // )
+
   return (
       <div className='profile-page'>
         <div className='profile-page-header'>
@@ -27,11 +26,11 @@ const ProfilePage = ({user}) => {
               />
           </div>
           <div className='profile-page-businesses-owned'>
-            {/* <Link>
-              <div className='profile-page-businesses-owned-card'>
-
+            {user.businessesOwned && user.businessesOwned.map((business, idx) => (
+              <div className='owned-business-card'>
+                <BusinessCard key={idx} business={business} idx={idx+1} />
               </div>
-            </Link> */}
+            ))}
           </div>
         </div>
       </div>

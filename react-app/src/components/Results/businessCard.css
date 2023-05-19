@@ -1,0 +1,51 @@
+a
+a:visited
+ {
+  text-decoration: none;
+}
+
+.business-card {
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid #ebebeb;
+  transition: box-shadow 0.3s;
+  padding: 20px;
+}
+.business-card:hover {
+  box-shadow: 0 0 5px 3px #ebebeb;
+}
+.business-card-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.business-card-details {
+  width: fill;
+  padding: 0 20px;
+}
+
+.business-card-name {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.business-card-name:hover {
+  text-decoration: underline;
+}
+
+.business-card-rating {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0px;
+}
+
+.business-review-count {
+  padding-left: 10px
+}
+
+.business-card-review {
+  padding-top: 10px
+}

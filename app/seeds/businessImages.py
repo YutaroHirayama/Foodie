@@ -18,3 +18,11 @@ burger2_1 = BusinessImage(
     image_url='https://s3-media0.fl.yelpcdn.com/bphoto/996fetM63qjy8Ec7flDOzA/o.jpg',
     main_image=True
   )
+
+def undo_businessImages():
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.businessImages RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM businessImages"))
+
+    db.session.commit()

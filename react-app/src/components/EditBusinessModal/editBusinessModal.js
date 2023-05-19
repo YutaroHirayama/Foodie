@@ -1,34 +1,35 @@
-import "./createBusinessModal.css";
+import "./editBusinessModal.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createBusinessThunk } from "../../store/business";
+import { editBusinessThunk } from "../../store/business";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
 
-const CreateBusinessModal = ({user}) => {
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zipcode, setZipcode] = useState("");
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
-  const [price, setPrice] = useState("");
-  const [hours, setHours] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [website, setWebsite] = useState("")
-
+const EditBusinessModal = ({business}) => {
+  const [name, setName] = useState(business.name);
+  const [phoneNumber, setPhoneNumber] = useState(business.phoneNumber);
+  const [address, setAddress] = useState(business.address);
+  const [city, setCity] = useState(business.city);
+  const [state, setState] = useState(business.state);
+  const [zipcode, setZipcode] = useState(business.zipcode);
+  const [lat, setLat] = useState(business.lat);
+  const [lng, setLng] = useState(business.lng);
+  const [price, setPrice] = useState(business.price);
+  const [hours, setHours] = useState(business.hours);
+  const [description, setDescription] = useState(business.description);
+  const [category, setCategory] = useState(business.category);
+  const [website, setWebsite] = useState(business.website)
 
   const [errors, setErrors] = useState([]);
+
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const history = useHistory();
 
   const formSubmit = async (e) => {
     e.preventDefault();
-    const newBusiness = {
+    const updatedBusiness = {
+      id: business.id,
       name,
       phoneNumber,
       address,
@@ -41,7 +42,7 @@ const CreateBusinessModal = ({user}) => {
       website
     };
 
-    const res = await dispatch(createBusinessThunk(newBusiness))
+    const res = await dispatch(editBusinessThunk(updatedBusiness))
     if(res?.errors) {
       setErrors(res.errors)
     } else {
@@ -200,4 +201,4 @@ const CreateBusinessModal = ({user}) => {
   )
 }
 
-export default CreateBusinessModal
+export default EditBusinessModal
