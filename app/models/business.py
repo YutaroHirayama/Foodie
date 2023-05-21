@@ -34,6 +34,7 @@ class Business(db.Model):
             if (num - math.floor(num)) < 0.5:
                 return math.floor(num)
             return math.ceil(num)
+
         ratings = [review.rating for review in self.reviews]
         if len(ratings) > 0:
             averageRating = round_up((sum(ratings) / len(ratings)) * 2) / 2

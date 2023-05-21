@@ -6,7 +6,7 @@ const BusinessCard = ({business, idx}) => {
   const starRes = (rating) => {
     const half = business.rating % Math.floor(business.rating)
     let stars = []
-    for (let i = 1; i <= business.rating; i++) {
+    for (let i = 1; i <= Math.floor(business.rating); i++) {
       stars.push(<i class="fa-solid fa-star"></i>)
     }
     if(half) stars.push(<i class="fa-solid fa-star-half-stroke"></i>)

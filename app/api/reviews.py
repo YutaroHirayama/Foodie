@@ -13,3 +13,4 @@ def get_reviews_by_business_id(businessId):
     """
 
     business = Business.query.get(businessId)
+    return

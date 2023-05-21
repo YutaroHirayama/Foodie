@@ -122,8 +122,8 @@ export default function reducer(state = initialState, action) {
 		case REMOVE_USER:
 			return { user: null };
 		case DELETE_BUSINESS: {
-			newState = { ...state, user: {...state.user}}
-			console.log('inside delete business, NEW STATE', newState)
+			newState = { ...state, user: {...state.user, businessesOwned: {...state.user.businessesOwned}}}
+
 			newState.user.businessesOwned.filter(business => business.id != action.businessId)
 			return newState
 		}

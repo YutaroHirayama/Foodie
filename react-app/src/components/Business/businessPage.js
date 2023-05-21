@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOneBusinessThunk } from '../../store/business';
 import { useEffect } from 'react';
 import Review from '../Review/review';
+import OpenModalButton from '../OpenModalButton';
+import ReviewModal from '../ReviewModal/reviewModal';
 
-const BusinessPage = () => {
+const BusinessPage = ({user}) => {
   const dispatch = useDispatch();
   const { businessId } = useParams();
   const business = useSelector(state => state.business?.currentBusiness)
@@ -34,7 +36,13 @@ const BusinessPage = () => {
           </div>
         </div>
         <div className='business-page-create-review'>
-          <button>Write a Review</button>
+          {user && (
+            <OpenModalButton
+                  buttonText='Write a Review'
+                  className='create-review-button'
+                  modalComponent={<CreateReviewModal business={business} user={user} />}
+                  />
+          )}
         </div>
         <div className='business-page-body'>
           <div className='business-page-scroll'>

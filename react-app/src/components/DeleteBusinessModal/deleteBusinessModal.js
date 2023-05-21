@@ -9,6 +9,7 @@ const DeleteBusinessModal = ({business}) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [errors, setErrors] = useState([]);
+  const history = useHistory();
 
 
   const deleteBusiness = async (e) => {
@@ -22,6 +23,7 @@ const DeleteBusinessModal = ({business}) => {
       closeModal()
     }
   }
+
   return (
     <div className='delete-modal'>
     <h2>Confirm Delete</h2>
