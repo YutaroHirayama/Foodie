@@ -12,3 +12,14 @@
   border-radius: 5px;
   object-fit: cover;
 }
+
+.profile-page-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-page-info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+}

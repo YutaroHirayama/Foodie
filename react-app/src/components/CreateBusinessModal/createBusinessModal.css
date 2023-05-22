@@ -1,0 +1,5 @@
+.create-business-image-input {
+  display: flex;
+  flex-direction: column;
+  width: 80%
+}

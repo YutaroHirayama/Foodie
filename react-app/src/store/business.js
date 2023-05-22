@@ -16,6 +16,7 @@ export const getAllBusinessesAction = (businesses) => ({
   businesses
 });
 
+
 export const getOneBusinessAction = (business) => ({
   type: GET_ONE_BUSINESS,
   business
@@ -60,7 +61,7 @@ export const getOneBusinessThunk = (businessId) => async (dispatch) => {
 };
 
 export const createBusinessThunk = (business) => async (dispatch) => {
-  const {name, phoneNumber, address, city, state, zipcode, price, description, category, website} = business;
+  const {name, phoneNumber, address, city, state, zipcode, price, description, category, website, image1, image2, image3} = business;
   const res = await fetch(`/api/business`,
   {
     method: 'POST',
@@ -77,7 +78,10 @@ export const createBusinessThunk = (business) => async (dispatch) => {
       price,
       description,
       category,
-      website
+      website,
+      image1,
+      image2,
+      image3
     })
   });
 

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Business, db
+from app.models import Business, BusinessImage, db
 from ..forms import BusinessForm
 from .auth_routes import validation_errors_to_error_messages
 
@@ -14,6 +14,15 @@ def get_all_businesses():
 
     businesses = Business.query.all()
     return [business.to_dict() for business in businesses]
+
+@business_routes.route('/user')
+def get_businesses_current_user():
+    """
+    This route gets businesses that are owned by the current user.
+    """
+
+    businessesOwned = Business.query.filter(Business.owner_id == current_user.id).order_by(Business.name)
+    return [business.to_dict_no_owner() for business in businessesOwned]
 
 @business_routes.route('/<int:id>')
 def get_one_business(id):
@@ -52,6 +61,25 @@ def create_business():
             website = form.data['website'],
             owner=current_user
         )
+
+        if form.data['image1']:
+            businessImage1 = BusinessImage(
+                image_url = form.data['image1'],
+                main_image=True
+            )
+            newBusiness.businessImages.append(businessImage1)
+        if form.data['image2']:
+            businessImage2 = BusinessImage(
+                image_url = form.data['image2'],
+                main_image=False
+            )
+            newBusiness.businessImages.append(businessImage2)
+        if form.data['image3']:
+            businessImage3 = BusinessImage(
+                image_url = form.data['image3'],
+                main_image=False
+            )
+            newBusiness.businessImages.append(businessImage3)
 
         db.session.add(newBusiness)
         db.session.commit()

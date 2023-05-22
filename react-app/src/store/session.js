@@ -1,7 +1,8 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
-const DELETE_BUSINESS = 'business/DELETE_BUSINESS';
+const GET_BUSINESSES = 'session/GET_BUSINESSES'
+const DELETE_BUSINESS = 'session/DELETE_BUSINESS';
 const GET_REVIEWS = 'session/GET_REVIEWS';
 const EDIT_REVIEW = 'session/EDIT_REVIEW';
 const DELETE_REVIEW = 'session/DELETE_REVIEW';
@@ -15,6 +16,11 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
+export const fetchBusinessesAction = (businesses) => ({
+	type: GET_BUSINESSES,
+	businesses
+})
+
 export const deleteBusinessAction = (businessId) => ({
   type: DELETE_BUSINESS,
   businessId
@@ -24,6 +30,7 @@ export const fetchReviewsAction = (reviews) => ({
 	type: GET_REVIEWS,
 	reviews
 })
+
 
 export const editReviewAction = (review) => ({
 	type: EDIT_REVIEW,
@@ -116,6 +123,19 @@ export const signUp = (username, email, password) => async (dispatch) => {
 	}
 };
 
+export const fetchBusinessesThunk = () => async (dispatch) => {
+	const res = await fetch('/api/business/user')
+
+	if(res.ok) {
+		const businesses = await res.json();
+		console.log('inside business thunk BUSINESSES', businesses)
+		dispatch(fetchBusinessesAction(businesses))
+	} else {
+		const errors = await res.json();
+    return errors;
+	}
+}
+
 export const deleteBusinessThunk = (businessId) => async (dispatch) => {
   const res = await fetch(`/api/business/${businessId}`, {method: 'DELETE'})
 
@@ -182,6 +202,10 @@ export default function reducer(state = initialState, action) {
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		case GET_BUSINESSES: {
+			const newState = { ...state, user: {...state.user, businessesOwned: action.businesses}}
+			return newState
+		}
 		case DELETE_BUSINESS: {
 
 			const newState = { ...state, user: {...state.user, businessesOwned: [...state.user.businessesOwned]}}

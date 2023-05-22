@@ -8,17 +8,19 @@ import DeleteBusinessModal from '../DeleteBusinessModal/deleteBusinessModal';
 import ReviewModal from '../ReviewModal/reviewModal';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { fetchReviewsThunk } from '../../store/session'
+import { fetchReviewsThunk, fetchBusinessesThunk} from '../../store/session'
 import Review from '../Review/review';
 import DeleteReviewModal from '../DeleteReviewModal/deleteReviewModal';
 
 const ProfilePage = () => {
   const user = useSelector(state => state.session.user)
   const reviews = useSelector(state => state.session.user?.reviews)
+  const businessesOwned = useSelector(state => state.session.user?.businessesOwned)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchReviewsThunk())
+    dispatch(fetchBusinessesThunk())
   },[dispatch])
 
   if(!user) return null;
@@ -31,10 +33,11 @@ const ProfilePage = () => {
           </div>
           <div className='profile-page-info'>
             <h2>{user.firstName} {user.lastName[0]}.</h2>
+            <div className='profile-page-review-count'>{user.reviews.length} Reviews</div>
           </div>
         </div>
         <div className='profile-page-businesses'>
-          <div className='profile-page-businesses-owned-header'>Manage your Businesses</div>
+          <h2 className='profile-page-businesses-owned-header'>Manage your Businesses</h2>
           <div className='profile-page-create-business'>
             <OpenModalButton
               buttonText='Create a Business Page'
@@ -44,7 +47,7 @@ const ProfilePage = () => {
           </div>
           <div className='profile-page-businesses-owned'>
 
-            {user.businessesOwned && user.businessesOwned.map((business, idx) => (
+            {businessesOwned && businessesOwned.map((business, idx) => (
               <div className='owned-business-card'>
                 <BusinessCard key={idx} business={business} idx={idx+1} />
                 <div className='owned-business-button-container'>
@@ -63,9 +66,10 @@ const ProfilePage = () => {
             ))}
           </div>
           <div className='profile-page-reviews'>
+            <h2>Manage your Reviews</h2>
               {reviews && reviews.map(review => (
                 <div className='owned-review-cards'>
-                  <div className='owned-review-business-name'>{review.business?.name}</div>
+                  <h3 className='owned-review-business-name'>{review.business?.name}</h3>
                   <Review key={review.id} review={review} />
                   <div className='owned-business-button-container'>
                       <OpenModalButton

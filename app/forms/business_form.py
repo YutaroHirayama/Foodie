@@ -24,3 +24,6 @@ class BusinessForm(FlaskForm):
     description = TextAreaField('description')
     category = StringField('category')
     website = StringField('website')
+    image1 = StringField('image1')
+    image2 = StringField('image2')
+    image3 = StringField('image3')
