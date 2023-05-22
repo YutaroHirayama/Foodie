@@ -8,7 +8,7 @@ const GET_ALL_BUSINESSES = 'businesses/GET_ALL_BUSINESSES';
 const GET_ONE_BUSINESS = 'business/GET_ONE_BUSINESS';
 const CREATE_BUSINESS = 'business/CREATE_BUSINESS';
 const EDIT_BUSINESS = 'business/EDIT_BUSINESS';
-
+const CREATE_REVIEW = 'review/CREATE_REVIEW';
 
 
 export const getAllBusinessesAction = (businesses) => ({
@@ -31,7 +31,10 @@ export const editBusinessAction = (business) => ({
   business
 });
 
-
+export const createReviewAction = (review) => ({
+  type: CREATE_REVIEW,
+  review
+})
 
 // THUNKS -------------------------------------------------------------------------
 
@@ -120,26 +123,55 @@ export const editBusinessThunk = (business) => async (dispatch) => {
   }
 }
 
+export const createReviewThunk = (review) => async (dispatch) => {
+  const {businessId, reviewText, rating} = review;
+  const res = await fetch(`/api/review/business/${businessId}`,
+  {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      reviewText,
+      rating
+    })
+  })
+
+  if(res.ok) {
+    const newReview = await res.json();
+    dispatch(createReviewAction(newReview));
+  } else {
+    const errors = await res.json();
+    return errors;
+  };
+}
+
 
 // REDUCER ------------------------------------------------------------------------
 const initialState = { allBusinesses: {}, currentBusiness: {}}
 export default function businessReducer(state = initialState, action) {
-  let newState = {};
   switch(action.type) {
     case GET_ALL_BUSINESSES: {
-      newState = {allBusinesses: [...action.businesses], currentBusiness: {...state.currentBusiness}}
+      const newState = {allBusinesses: [...action.businesses], currentBusiness: {...state.currentBusiness}}
       return newState;
     };
     case GET_ONE_BUSINESS: {
-      newState = { allBusinesses: {...state.allBusinesses}, currentBusiness: action.business}
+      const newState = { allBusinesses: {...state.allBusinesses}, currentBusiness: action.business}
       return newState;
     };
     case CREATE_BUSINESS: {
-      newState = { allBusinesses: {...state.allBusinesses, [action.business.id]: action.business}, currentBusiness: {...state.currentBusiness}}
+      const newState = { allBusinesses: {...state.allBusinesses, [action.business.id]: action.business}, currentBusiness: {...state.currentBusiness}}
+      return newState;
     };
     case EDIT_BUSINESS: {
-      newState = { allBusinesses: {...state.allBusinesses, [action.business.id]: action.business}, currentBusiness: {...state.currentBusiness}}
+      const newState = { allBusinesses: {...state.allBusinesses, [action.business.id]: action.business}, currentBusiness: {...state.currentBusiness}}
+      return newState;
     };
+    case CREATE_REVIEW: {
+      const newReviews = [action.review, ...state.currentBusiness.reviews]
+      const newState = { allBusinesses: {...state.allBusinesses}, currentBusiness: {...state.currentBusiness, reviews: newReviews}}
+      return newState;
+    }
     default:
       return state;
   }

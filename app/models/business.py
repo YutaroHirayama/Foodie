@@ -59,7 +59,8 @@ class Business(db.Model):
             'rating': averageRating,
             'owner': self.owner.to_dict_no_ref(),
             'reviews': [review.to_dict_with_user() for review in self.reviews],
-            'mainImage': [image.image_url for image in self.businessImages if image.main_image is True]
+            'mainImage': [image.image_url for image in self.businessImages if image.main_image is True],
+            'businessImages': [image.image_url for image in self.businessImages]
         }
 
     def to_dict_no_ref(self):

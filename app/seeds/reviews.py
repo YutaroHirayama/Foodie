@@ -1,6 +1,7 @@
 from app.models import db, Review, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import datetime
+from .reviewImages import review1_1, review1_2, review1_3, review2_1
 
 def seed_reviews():
     pizza1r1 = Review(
@@ -20,12 +21,14 @@ def seed_reviews():
     pizza1r3 = Review(
         user_id=5,
         business_id=1,
+        review='Super delicious and great service.',
         rating=5,
         created_at=datetime.now()
     )
     pizza1r4 = Review(
         user_id=6,
         business_id=1,
+        review='This place has the best pizza in town!',
         rating=5,
         created_at=datetime.now()
     )
@@ -46,6 +49,7 @@ def seed_reviews():
     pizza2r3 = Review(
         user_id=4,
         business_id=2,
+        review='My second favorite pizza spot in town.',
         rating=4,
         created_at=datetime.now()
     )
@@ -78,6 +82,10 @@ def seed_reviews():
         created_at=datetime.now()
     )
 
+    pizza1r1.reviewImages.append(review1_1)
+    pizza1r1.reviewImages.append(review1_2)
+    pizza1r1.reviewImages.append(review1_3)
+    pizza1r2.reviewImages.append(review2_1)
 
     all_reviews = [pizza1r1, pizza1r2, pizza1r3, pizza1r4, pizza2r1, pizza2r2, pizza2r3, burger1r1, burger1r2, burger2r1, burger2r2]
     add_reviews = [db.session.add(review) for review in all_reviews]

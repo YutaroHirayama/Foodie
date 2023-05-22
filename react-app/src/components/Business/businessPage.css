@@ -1,0 +1,51 @@
+.business-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative
+}
+
+.business-page-banner {
+  display: flex;
+  flex-direction: row;
+  height: 400px;
+  width: 80%;
+  position: absolute;
+  z-index: -1;
+}
+
+.business-page-header {
+  height: 400px;
+  display: flex;
+  align-items: flex-end
+}
+
+.business-page-header-details {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+.business-page-rating {
+  display: flex;
+  flex-direction: row;
+}
+
+.business-page-review-count {
+  margin-left: 15px;
+}
+
+.business-page-banner-image {
+  width: 100%;
+  object-fit: cover;
+}
+.business-page-details {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.business-page-body {
+  padding-top: 20px;
+}

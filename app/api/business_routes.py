@@ -60,14 +60,14 @@ def create_business():
     # or 422
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-@business_routes.route('/<int:id>', methods=['PUT'])
+@business_routes.route('/<int:businessId>', methods=['PUT'])
 @login_required
-def update_business(id):
+def update_business(businessId):
     """
     This route updates the business details if the user is the owner
     """
 
-    business_to_update = Business.query.get(id)
+    business_to_update = Business.query.get(businessId)
 
     if current_user.id != business_to_update.owner_id:
         return {'errors': ['Forbidden']}, 403
@@ -95,20 +95,19 @@ def update_business(id):
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-@business_routes.route('/<int:id>', methods=['DELETE'])
+@business_routes.route('/<int:businessId>', methods=['DELETE'])
 @login_required
-def delete_business(id):
+def delete_business(businessId):
     """
-    This route deletes the business
+    This route deletes a business of the logged in user.
     """
 
-    business_to_delete = Business.query.get(id)
+    business_to_delete = Business.query.get(businessId)
 
     if current_user.id != business_to_delete.owner_id:
         return {'errors': ['Forbidden']}, 403
 
     db.session.delete(business_to_delete)
-
     db.session.commit()
 
     return business_to_delete.to_dict()

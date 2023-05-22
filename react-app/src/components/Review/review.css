@@ -1,0 +1,17 @@
+.single-review {
+  display: flex;
+  flex-direction: column;
+  width: 100%
+}
+
+.single-review-reviewer {
+  display: flex;
+  flex-direction: row;
+}
+
+.single-review-profile-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
