@@ -15,3 +15,15 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+.single-review-images-container {
+  display: flex;
+  flex-direction: row;
+}
+.single-review-image {
+  width: 150px;
+  height: 100px;
+  border-radius: 5px;
+  object-fit: cover;
+  padding-right: 10px;
+}

@@ -4,22 +4,20 @@ import './review.css'
 const Review = ({review}) => {
 
   const starRes = (rating) => {
-    let stars = []
-    for (let i = 1; i <= rating; i++) {
-      stars.push(<i class="fa-solid fa-star"></i>)
+    let stars = [];
+    for (let i = 0; i < rating; i++) {
+      stars.push(<i className="fa-solid fa-star"></i>)
     }
     return stars
   }
 
-  const reviewImages = (images) => {
 
-  }
 
   return (
     <div className='single-review'>
       <div className='single-review-reviewer'>
-        <img className='single-review-profile-pic' src={review.user.profilePic} />
-        <div className='single-review-name'>{review.user.firstName} {review.user.lastName[0]}.</div>
+        <img className='single-review-profile-pic' src={review.user?.profilePic} />
+        <div className='single-review-name'>{review.user?.firstName} {review.user?.lastName[0]}.</div>
       </div>
       <div className='single-review-rating'>
         {starRes(review.rating)}
@@ -28,8 +26,11 @@ const Review = ({review}) => {
       <div className='single-review-text'>
         <p>{review.review}</p>
       </div>
-      <div className='single-review-photos'>
-        {/* {reviewImages(review.)} */}
+      <div className='single-review-images-container'>
+        {review.reviewImages && review.reviewImages.map(image => (
+          <img className='single-review-image' src={image} />
+        ))
+        }
       </div>
     </div>
   )

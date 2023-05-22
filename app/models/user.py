@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     profile_pic = db.Column(db.String(1000))
 
     businesses_owned = db.relationship('Business', back_populates='owner')
-    reviews = db.relationship('Review', back_populates='user', order_by='Review.created_at')
+    reviews = db.relationship('Review', back_populates='user', order_by='Review.created_at.desc()')
 
     @property
     def password(self):

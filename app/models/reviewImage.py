@@ -9,7 +9,6 @@ class ReviewImage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     review_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('reviews.id'), ondelete='CASCADE'), nullable=False)
     image_url = db.Column(db.String, nullable=False)
-    description = db.Column(db.String(200))
 
     review = db.relationship('Review', back_populates='reviewImages')
 
@@ -17,6 +16,5 @@ class ReviewImage(db.Model):
         return {
             'id': self.id,
             'ReviewId': self.review_id,
-            'imageUrl': self.image_url,
-            'description': self.description
+            'imageUrl': self.image_url
         }

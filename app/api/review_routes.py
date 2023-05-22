@@ -7,14 +7,13 @@ from datetime import datetime
 
 review_routes = Blueprint('review', __name__)
 
-# @review_routes.route('/business/<int:businessId>')
-# def get_reviews_by_business_id(businessId):
-#     """
-#     This route gets all the reviews for the business
-#     """
-
-#     business = Business.query.get(businessId)
-#     return
+@review_routes.route('/user')
+def get_reviews_current_user():
+    """
+    This route gets all the reviews of the current user.
+    """
+    reviews = Review.query.filter(Review.user_id == current_user.id).order_by(Review.created_at.desc())
+    return [review.to_dict() for review in reviews]
 
 
 @review_routes.route('/business/<int:businessId>', methods=['POST'])
@@ -57,7 +56,7 @@ def update_review(reviewId):
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        review_to_update.review = form.data['review']
+        review_to_update.review = form.data['reviewText']
         review_to_update.rating = form.data['rating']
 
         db.session.commit()
@@ -66,7 +65,7 @@ def update_review(reviewId):
     # or 422
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-@review_routes.route('/<int:reviewId>')
+@review_routes.route('/<int:reviewId>', methods=['DELETE'])
 def delete_review(reviewId):
     """
     This route deletes a review of the logged in user.
@@ -80,4 +79,4 @@ def delete_review(reviewId):
     db.session.delete(review_to_delete)
     db.session.commit()
 
-    return review_to_delete.to_dict()
+    return {'message': 'Successfully deleted review.'}

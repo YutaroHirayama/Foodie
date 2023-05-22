@@ -24,7 +24,7 @@ class Business(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
     owner = db.relationship('User', back_populates='businesses_owned')
-    reviews = db.relationship('Review', back_populates='business', order_by='Review.created_at', cascade='all, delete')
+    reviews = db.relationship('Review', back_populates='business', order_by='Review.created_at.desc()', cascade='all, delete')
     businessImages = db.relationship('BusinessImage', back_populates='business', cascade='delete, all')
 
 

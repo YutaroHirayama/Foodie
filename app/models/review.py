@@ -48,5 +48,6 @@ class Review(db.Model):
             'review': self.review,
             'rating': self.rating,
             'createdAt': self.created_at,
-            'user': self.user.to_dict_no_ref()
+            'user': self.user.to_dict_no_ref(),
+            'reviewImages': [image.image_url for image in self.reviewImages]
     }

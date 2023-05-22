@@ -20,9 +20,9 @@ const BusinessPage = ({user}) => {
     const half = rating % Math.floor(rating)
     let stars = []
     for (let i = 1; i <= Math.floor(rating); i++) {
-      stars.push(<i class="fa-solid fa-star"></i>)
+      stars.push(<i className="fa-solid fa-star"></i>)
     }
-    if(half) stars.push(<i class="fa-solid fa-star-half-stroke"></i>)
+    if(half) stars.push(<i className="fa-solid fa-star-half-stroke"></i>)
     console.log(stars)
     return stars
   }
@@ -43,7 +43,7 @@ const BusinessPage = ({user}) => {
 
       <div className='business-page'>
         <div className='business-page-banner'>
-          {businessBanner(business.businessImages)}
+          {business.businessImages && businessBanner(business.businessImages)}
         </div>
         <div className='business-page-details'>
           <div className='business-page-header'>
@@ -93,7 +93,10 @@ const BusinessPage = ({user}) => {
                 {business.reviews && business.reviews.map(review => <Review key={review.id} review={review}/>)}
               </div>
 
-              <div className='business-page-lock'></div>
+              <div className='business-page-lock'>
+
+              </div>
+
             </div>
           </div>
         </div>

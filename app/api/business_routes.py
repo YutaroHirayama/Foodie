@@ -110,4 +110,4 @@ def delete_business(businessId):
     db.session.delete(business_to_delete)
     db.session.commit()
 
-    return business_to_delete.to_dict()
+    return {'message': 'Successfully deleted business page.'}

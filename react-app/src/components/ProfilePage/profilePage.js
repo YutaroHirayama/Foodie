@@ -5,10 +5,21 @@ import BusinessCard from '../Results/businessCard';
 import { Link } from 'react-router-dom';
 import EditBusinessModal from '../EditBusinessModal/editBusinessModal';
 import DeleteBusinessModal from '../DeleteBusinessModal/deleteBusinessModal';
+import ReviewModal from '../ReviewModal/reviewModal';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { fetchReviewsThunk } from '../../store/session'
+import Review from '../Review/review';
+import DeleteReviewModal from '../DeleteReviewModal/deleteReviewModal';
 
 const ProfilePage = () => {
   const user = useSelector(state => state.session.user)
+  const reviews = useSelector(state => state.session.user?.reviews)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchReviewsThunk())
+  },[dispatch])
 
   if(!user) return null;
 
@@ -50,6 +61,29 @@ const ProfilePage = () => {
                 </div>
               </div>
             ))}
+          </div>
+          <div className='profile-page-reviews'>
+              {reviews && reviews.map(review => (
+                <div className='owned-review-cards'>
+                  <div className='owned-review-business-name'>{review.business?.name}</div>
+                  <Review key={review.id} review={review} />
+                  <div className='owned-business-button-container'>
+                      <OpenModalButton
+                        buttonText='Edit'
+                        className='owned-review-button'
+                        modalComponent={<ReviewModal review={review} business={review.business}/>}
+                      />
+                      <OpenModalButton
+                        buttonText='Delete'
+                        className='owned-review-button'
+                        modalComponent={<DeleteReviewModal reviewId={review.id}/>}
+                      />
+                  </div>
+                </div>
+              ))}
+
+
+
           </div>
         </div>
       </div>

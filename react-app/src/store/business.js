@@ -115,7 +115,7 @@ export const editBusinessThunk = (business) => async (dispatch) => {
 
   if(res.ok) {
     const updatedBusiness = await res.json();
-    dispatch(createBusinessAction(updatedBusiness));
+    dispatch(editBusinessAction(updatedBusiness));
     return updatedBusiness.id
   } else {
     const errors = await res.json();
