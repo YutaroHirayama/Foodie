@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Review, Business, db
+from app.models import Review, Business, ReviewImage, db
 from ..forms import ReviewForm
 from .auth_routes import validation_errors_to_error_messages
 from datetime import datetime
@@ -35,6 +35,24 @@ def create_review(businessId):
             created_at = datetime.now()
         )
 
+        if form.data['image1']:
+            reviewImage1 = ReviewImage(
+                image_url = form.data['image1']
+            )
+            newReview.reviewImages.append(reviewImage1)
+
+        if form.data['image2']:
+            reviewImage2 = ReviewImage(
+                image_url = form.data['image2']
+            )
+            newReview.reviewImages.append(reviewImage2)
+
+        if form.data['image3']:
+            reviewImage3 = ReviewImage(
+                image_url = form.data['image3']
+            )
+            newReview.reviewImages.append(reviewImage3)
+
         db.session.add(newReview)
         db.session.commit()
         return newReview.to_dict()
@@ -58,6 +76,39 @@ def update_review(reviewId):
     if form.validate_on_submit():
         review_to_update.review = form.data['reviewText']
         review_to_update.rating = form.data['rating']
+
+        if form.data['image1']:
+            if(len(review_to_update.reviewImages) > 0):
+                review_to_update.reviewImages[0].image_url = form.data['image1']
+            else:
+                reviewImage1 = ReviewImage(
+                image_url = form.data['image1']
+                )
+                review_to_update.reviewImages.append(reviewImage1)
+
+        else: db.session.delete(review_to_update.reviewImages[0])
+
+        if form.data['image2']:
+            if(len(review_to_update.reviewImages) > 1):
+                review_to_update.reviewImages[1].image_url = form.data['image2']
+            else:
+                reviewImage2 = ReviewImage(
+                image_url = form.data['image2']
+                )
+                review_to_update.reviewImages.append(reviewImage2)
+
+        else: db.session.delete(review_to_update.reviewImages[1])
+
+        if form.data['image3']:
+            if(len(review_to_update.reviewImages) > 2):
+                review_to_update.reviewImages[2].image_url = form.data['image3']
+            else:
+                reviewImage3 = ReviewImage(
+                image_url = form.data['image3']
+                )
+                review_to_update.reviewImages.append(reviewImage3)
+
+        else: db.session.delete(review_to_update.reviewImages[2])
 
         db.session.commit()
         return review_to_update.to_dict()

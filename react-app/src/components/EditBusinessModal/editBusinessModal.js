@@ -6,6 +6,10 @@ import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
 
 const EditBusinessModal = ({business}) => {
+  const dispatch = useDispatch();
+  const { closeModal } = useModal();
+  const history = useHistory();
+
   const [name, setName] = useState(business.name);
   const [phoneNumber, setPhoneNumber] = useState(business.phoneNumber);
   const [address, setAddress] = useState(business.address);
@@ -25,9 +29,7 @@ const EditBusinessModal = ({business}) => {
 
   const [errors, setErrors] = useState([]);
 
-  const dispatch = useDispatch();
-  const { closeModal } = useModal();
-  const history = useHistory();
+
 
   const formSubmit = async (e) => {
     e.preventDefault();
@@ -202,7 +204,7 @@ const EditBusinessModal = ({business}) => {
         </div>
         <div className='create-business-images-container'>
           <label>Upload images for your business here.</label>
-            <div className='create-business-image-input'>
+            <div className='create-business-image-input-container'>
               <input
                   className='create-business-image-input'
                   type='text'

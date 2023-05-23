@@ -199,7 +199,7 @@ const CreateBusinessModal = ({user}) => {
         </div>
         <div className='create-business-images-container'>
           <label>Upload images for your business here.</label>
-            <div className='create-business-image-input'>
+            <div className='create-business-image-input-container'>
               <input
                   className='create-business-image-input'
                   type='text'

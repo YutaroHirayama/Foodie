@@ -20,7 +20,7 @@ const BusinessCard = ({business, idx}) => {
         <div className='business-card-container'>
           <div className='business-card'>
             <div className='business-card-image-container'>
-              <img src={business.mainImage[0]} className='business-card-image'/>
+              <img src={business.businessImages[0]} className='business-card-image'/>
             </div>
             <div className='business-card-details'>
               <div className='business-card-header'>

@@ -64,21 +64,20 @@ def create_business():
 
         if form.data['image1']:
             businessImage1 = BusinessImage(
-                image_url = form.data['image1'],
-                main_image=True
-            )
+                image_url = form.data['image1']
+                )
             newBusiness.businessImages.append(businessImage1)
+
         if form.data['image2']:
             businessImage2 = BusinessImage(
-                image_url = form.data['image2'],
-                main_image=False
-            )
+                image_url = form.data['image2']
+                )
             newBusiness.businessImages.append(businessImage2)
+
         if form.data['image3']:
             businessImage3 = BusinessImage(
-                image_url = form.data['image3'],
-                main_image=False
-            )
+                image_url = form.data['image3']
+                )
             newBusiness.businessImages.append(businessImage3)
 
         db.session.add(newBusiness)
@@ -119,40 +118,40 @@ def update_business(businessId):
         business_to_update.website = form.data['website']
 
         if form.data['image1']:
-            if(len(business_to_update.businessImages) > 0):
+            if len(business_to_update.businessImages) > 0:
                 business_to_update.businessImages[0].image_url = form.data['image1']
             else:
                 businessImage1 = BusinessImage(
-                image_url = form.data['image1'],
-                main_image=True
-                )
+                    image_url = form.data['image1']
+                    )
                 business_to_update.businessImages.append(businessImage1)
 
-        else: db.session.delete(business_to_update.businessImages[0])
+        elif len(business_to_update.businessImages) > 0:
+                db.session.delete(business_to_update.businessImages[0])
 
         if form.data['image2']:
-            if(len(business_to_update.businessImages) > 1):
+            if len(business_to_update.businessImages) > 1:
                 business_to_update.businessImages[1].image_url = form.data['image2']
             else:
                 businessImage2 = BusinessImage(
-                image_url = form.data['image2'],
-                main_image=False
-                )
+                    image_url = form.data['image2']
+                    )
                 business_to_update.businessImages.append(businessImage2)
 
-        else: db.session.delete(business_to_update.businessImages[1])
+        elif len(business_to_update.businessImages) > 1:
+            db.session.delete(business_to_update.businessImages[1])
 
         if form.data['image3']:
             if(len(business_to_update.businessImages) > 2):
                 business_to_update.businessImages[2].image_url = form.data['image3']
             else:
                 businessImage3 = BusinessImage(
-                image_url = form.data['image3'],
-                main_image=False
-                )
+                    image_url = form.data['image3']
+                    )
                 business_to_update.businessImages.append(businessImage3)
 
-        else: db.session.delete(business_to_update.businessImages[2])
+        elif len(business_to_update.businessImages) > 2:
+            db.session.delete(business_to_update.businessImages[2])
 
         db.session.commit()
         return business_to_update.to_dict()
