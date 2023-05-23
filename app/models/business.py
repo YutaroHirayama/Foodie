@@ -101,6 +101,5 @@ class Business(db.Model):
             'website': self.website,
             'ownerId': self.owner_id,
             'reviews': [review.to_dict_with_user() for review in self.reviews],
-            'mainImage': [image.image_url for image in self.businessImages if image.main_image is True],
             'businessImages': [image.image_url for image in self.businessImages]
         }

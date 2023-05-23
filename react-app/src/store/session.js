@@ -161,7 +161,7 @@ export const fetchReviewsThunk = () => async (dispatch) => {
 }
 
 export const editReviewThunk = (review) => async (dispatch) => {
-	const {reviewId, reviewText, rating} = review;
+	const {reviewId, reviewText, rating, image1, image2, image3} = review;
 	const res = await fetch(`/api/review/${reviewId}`, {
     method: 'PUT',
     headers: {
@@ -169,7 +169,10 @@ export const editReviewThunk = (review) => async (dispatch) => {
     },
     body: JSON.stringify({
 			reviewText,
-			rating
+			rating,
+			image1,
+			image2,
+			image3
     })
   });
 

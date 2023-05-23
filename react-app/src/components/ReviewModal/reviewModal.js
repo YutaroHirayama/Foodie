@@ -33,7 +33,10 @@ const ReviewModal = ({business, user, review}) => {
       const updatedReview = {
         reviewId: review.id,
         reviewText,
-        rating: stars
+        rating: stars,
+        image1,
+        image2,
+        image3
       };
 
       const res = await dispatch(editReviewThunk(updatedReview))

@@ -78,37 +78,40 @@ def update_review(reviewId):
         review_to_update.rating = form.data['rating']
 
         if form.data['image1']:
-            if(len(review_to_update.reviewImages) > 0):
+            if len(review_to_update.reviewImages) > 0:
                 review_to_update.reviewImages[0].image_url = form.data['image1']
             else:
                 reviewImage1 = ReviewImage(
-                image_url = form.data['image1']
-                )
+                    image_url = form.data['image1']
+                    )
                 review_to_update.reviewImages.append(reviewImage1)
 
-        else: db.session.delete(review_to_update.reviewImages[0])
+        elif len(review_to_update.reviewImages) > 0:
+            db.session.delete(review_to_update.reviewImages[0])
 
         if form.data['image2']:
-            if(len(review_to_update.reviewImages) > 1):
+            if len(review_to_update.reviewImages) > 1:
                 review_to_update.reviewImages[1].image_url = form.data['image2']
             else:
                 reviewImage2 = ReviewImage(
-                image_url = form.data['image2']
-                )
+                    image_url = form.data['image2']
+                    )
                 review_to_update.reviewImages.append(reviewImage2)
 
-        else: db.session.delete(review_to_update.reviewImages[1])
+        elif len(review_to_update.reviewImages) > 1:
+            db.session.delete(review_to_update.reviewImages[1])
 
         if form.data['image3']:
-            if(len(review_to_update.reviewImages) > 2):
+            if len(review_to_update.reviewImages) > 2:
                 review_to_update.reviewImages[2].image_url = form.data['image3']
             else:
                 reviewImage3 = ReviewImage(
-                image_url = form.data['image3']
-                )
+                    image_url = form.data['image3']
+                    )
                 review_to_update.reviewImages.append(reviewImage3)
 
-        else: db.session.delete(review_to_update.reviewImages[2])
+        elif len(review_to_update.reviewImages) > 2:
+            db.session.delete(review_to_update.reviewImages[2])
 
         db.session.commit()
         return review_to_update.to_dict()
