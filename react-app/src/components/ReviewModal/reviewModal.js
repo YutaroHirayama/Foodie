@@ -1,7 +1,7 @@
 import "./reviewModal.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createReviewThunk } from "../../store/business";
+import { createReviewThunk, getOneBusinessThunk } from "../../store/business";
 import { editReviewThunk } from '../../store/session';
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
@@ -31,6 +31,7 @@ const ReviewModal = ({business, user, review}) => {
       };
 
       const res = await dispatch(editReviewThunk(updatedReview))
+      dispatch(getOneBusinessThunk(business.id))
       if(res?.errors) {
         setErrors(res.errors)
       } else {
@@ -46,12 +47,15 @@ const ReviewModal = ({business, user, review}) => {
       };
 
       const res = await dispatch(createReviewThunk(newReview))
+
       if(res?.errors) {
         setErrors(res.errors)
       } else {
+        dispatch(getOneBusinessThunk(business.id))
         closeModal()
       }
     }
+
   }
 
 

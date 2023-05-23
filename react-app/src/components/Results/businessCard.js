@@ -10,7 +10,7 @@ const BusinessCard = ({business, idx}) => {
       stars.push(<i className="fa-solid fa-star"></i>)
     }
     if(half) stars.push(<i className="fa-solid fa-star-half-stroke"></i>)
-    console.log(stars)
+
     return stars
   }
 
@@ -26,7 +26,7 @@ const BusinessCard = ({business, idx}) => {
               <div className='business-card-header'>
                 <div className='business-card-name'>{idx}. {business.name}</div>
                 <div className='business-card-rating'>
-                  {!business.rating && <span>New business</span>}
+                  {!business.rating && <span>New Business</span>}
                   <div className='business-card-stars'>
                     {business.rating && starRes(business.rating)}
                   </div>
@@ -39,7 +39,8 @@ const BusinessCard = ({business, idx}) => {
                   <span> {business.city}</span>
                 </div>
                 <div className='business-card-review'>
-                  {business.reviews[0]?.review}
+                  {business.reviews[0]?.review.slice(0,200)}
+                  {business.reviews[0]?.review.length > 200 && <NavLink to={`/business/${business.id}`} className='more-link'> ...more</NavLink>}
                 </div>
               </div>
             </div>

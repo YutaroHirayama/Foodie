@@ -24,25 +24,27 @@ function App() {
       {isLoaded && (
         <>
           <Route path='/'>
-            <>
+            <div>
               <Navigation isLoaded={isLoaded} />
-              <LandingPage/>
-            </>
+            </div>
           </Route>
           <Switch>
-            <Route path="/login" >
+            <Route exact path='/'>
+              <LandingPage/>
+            </Route>
+            <Route exact path="/login" >
               <LoginFormPage />
             </Route>
-            <Route path="/signup">
+            <Route exact path="/signup">
               <SignupFormPage />
             </Route>
-            <Route path="/business/:businessId">
+            <Route exact path="/business/:businessId">
               <BusinessPage user={sessionUser}/>
             </Route>
-            <Route path="/profile">
+            <Route exact path="/profile">
               <ProfilePage user={sessionUser}/>
             </Route>
-            <Route path="/search">
+            <Route exact path="/search">
               <ResultPage user={sessionUser}/>
             </Route>
           </Switch>

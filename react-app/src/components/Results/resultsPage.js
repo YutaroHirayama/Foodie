@@ -19,7 +19,7 @@ const ResultPage = () => {
       <div className='results-page'>
         <div className='results-page-container'>
           <div className='results-page-header'>
-            <h2>Top 10 Best Results</h2>
+            <h2>All Businesses</h2>
           </div>
           <div className='results-grid'>
             {results && results.map((result, idx) => (

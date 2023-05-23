@@ -49,3 +49,8 @@ a:visited
 .business-card-review {
   padding-top: 10px
 }
+
+.more-link {
+  font-weight: bold;
+  color: purple
+}

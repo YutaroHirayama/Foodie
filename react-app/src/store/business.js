@@ -16,7 +16,6 @@ export const getAllBusinessesAction = (businesses) => ({
   businesses
 });
 
-
 export const getOneBusinessAction = (business) => ({
   type: GET_ONE_BUSINESS,
   business
@@ -96,7 +95,7 @@ export const createBusinessThunk = (business) => async (dispatch) => {
 };
 
 export const editBusinessThunk = (business) => async (dispatch) => {
-  const {name, phoneNumber, address, city, state, zipcode, price, description, category, website} = business;
+  const {name, phoneNumber, address, city, state, zipcode, price, description, category, website, image1, image2, image3} = business;
   const res = await fetch(`/api/business/${business.id}`,
   {
     method: 'PUT',
@@ -113,7 +112,10 @@ export const editBusinessThunk = (business) => async (dispatch) => {
       price,
       description,
       category,
-      website
+      website,
+      image1,
+      image2,
+      image3
     })
   });
 
@@ -156,24 +158,24 @@ const initialState = { allBusinesses: {}, currentBusiness: {}}
 export default function businessReducer(state = initialState, action) {
   switch(action.type) {
     case GET_ALL_BUSINESSES: {
-      const newState = {allBusinesses: [...action.businesses], currentBusiness: {...state.currentBusiness}}
+      const newState = {...state, allBusinesses: [...action.businesses], currentBusiness: {...state.currentBusiness}}
       return newState;
     };
     case GET_ONE_BUSINESS: {
-      const newState = { allBusinesses: {...state.allBusinesses}, currentBusiness: action.business}
+      const newState = { ...state, allBusinesses: {...state.allBusinesses}, currentBusiness: action.business}
       return newState;
     };
     case CREATE_BUSINESS: {
-      const newState = { allBusinesses: {...state.allBusinesses, [action.business.id]: action.business}, currentBusiness: {...state.currentBusiness}}
+      const newState = { ...state, allBusinesses: {...state.allBusinesses, [action.business.id]: action.business}, currentBusiness: {...state.currentBusiness}}
       return newState;
     };
     case EDIT_BUSINESS: {
-      const newState = { allBusinesses: {...state.allBusinesses, [action.business.id]: action.business}, currentBusiness: {...state.currentBusiness}}
+      const newState = { ...state, allBusinesses: {...state.allBusinesses, [action.business.id]: action.business}, currentBusiness: {...state.currentBusiness}}
       return newState;
     };
     case CREATE_REVIEW: {
       const newReviews = [action.review, ...state.currentBusiness.reviews]
-      const newState = { allBusinesses: {...state.allBusinesses}, currentBusiness: {...state.currentBusiness, reviews: newReviews}}
+      const newState = { ...state, allBusinesses: {...state.allBusinesses}, currentBusiness: {...state.currentBusiness, reviews: newReviews}}
       return newState;
     }
     default:

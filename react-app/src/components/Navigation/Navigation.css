@@ -1,7 +1,29 @@
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 100px;
+}
+
 .profile-dropdown {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  z-index: 1
 }
 
 .hidden {
   display: none;
+}
+
+.restaurants-button {
+  font-size: 20px;
+  color: white;
+  background-color: red;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 10px 20px;
 }

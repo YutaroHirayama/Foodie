@@ -9,7 +9,8 @@
   display: flex;
   flex-direction: row;
   height: 400px;
-  width: 80%;
+  width: 90%;
+  min-width: 1280px;
   position: absolute;
   z-index: -1;
 }
@@ -43,9 +44,32 @@
 .business-page-details {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  min-width: 1000px;
+  margin: auto;
+  width: 70%;
+}
+
+.business-page-body-container {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .business-page-body {
-  padding-top: 20px;
+  padding-right: 20px;
+  width: fill;
+
+}
+
+.business-page-contact {
+  height: fit-content;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ebebeb;
+}
+
+.business-page-contact-item {
+  padding: 10px;
 }

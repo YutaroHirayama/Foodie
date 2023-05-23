@@ -183,7 +183,7 @@ const CreateBusinessModal = ({user}) => {
             </label>
           </div>
         </div>
-        <div classname='create-business-description-container'>
+        <div className='create-business-description-container'>
           <div className='create-business-description'>
             <label>
               Description of your Business

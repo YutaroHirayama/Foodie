@@ -18,7 +18,10 @@ const EditBusinessModal = ({business}) => {
   const [hours, setHours] = useState(business.hours);
   const [description, setDescription] = useState(business.description);
   const [category, setCategory] = useState(business.category);
-  const [website, setWebsite] = useState(business.website)
+  const [website, setWebsite] = useState(business.website);
+  const [image1, setImage1] = useState(business.businessImages[0]);
+  const [image2, setImage2] = useState(business.businessImages[1]);
+  const [image3, setImage3] = useState(business.businessImages[2]);
 
   const [errors, setErrors] = useState([]);
 
@@ -40,7 +43,10 @@ const EditBusinessModal = ({business}) => {
       price,
       description,
       category,
-      website
+      website,
+      image1,
+      image2,
+      image3
     };
 
     const res = await dispatch(editBusinessThunk(updatedBusiness))
@@ -180,7 +186,7 @@ const EditBusinessModal = ({business}) => {
             </label>
           </div>
         </div>
-        <div classname='create-business-description-container'>
+        <div className='create-business-description-container'>
           <div className='create-business-description'>
             <label>
               Description of your Business
@@ -193,6 +199,33 @@ const EditBusinessModal = ({business}) => {
                 />
             </label>
           </div>
+        </div>
+        <div className='create-business-images-container'>
+          <label>Upload images for your business here.</label>
+            <div className='create-business-image-input'>
+              <input
+                  className='create-business-image-input'
+                  type='text'
+                  value={image1}
+                  onChange={(e) => setImage1(e.target.value)}
+                  placeholder='Main Image Url'
+                  />
+              <input
+                  className='create-business-image-input'
+                  type='text'
+                  value={image2}
+                  onChange={(e) => setImage2(e.target.value)}
+                  placeholder='Url'
+                  />
+              <input
+                  className='create-business-image-input'
+                  type='text'
+                  value={image3}
+                  onChange={(e) => setImage3(e.target.value)}
+                  placeholder='Url'
+                  />
+            </div>
+
         </div>
         <div className="create-business-submit">
             <button className="create-business-submit-button">Update</button>

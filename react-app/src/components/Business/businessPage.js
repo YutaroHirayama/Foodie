@@ -37,6 +37,27 @@ const BusinessPage = ({user}) => {
     return bannerImages
   }
 
+  const reviewButton = () => {
+    const existingReview = business?.reviews?.find(review => review.userId === user.id)
+    if(!existingReview) {
+      return (
+        <OpenModalButton
+        buttonText='Write a Review'
+        className='create-review-button'
+        modalComponent={<ReviewModal business={business} user={user} />}
+        />
+      )
+    } else {
+      return (
+        <OpenModalButton
+        buttonText='Edit your Review'
+        className='create-review-button'
+        modalComponent={<ReviewModal business={business} user={user} review={existingReview}/>}
+        />
+      )
+    }
+  }
+
   if(!Object.values(business).length) return null;
 
   return (
@@ -65,16 +86,10 @@ const BusinessPage = ({user}) => {
             </div>
           </div>
 
-          <div className='business-page-body'>
-            <div>
+          <div className='business-page-body-container'>
+            <div className='business-page-body'>
               <div className='business-page-create-review'>
-                {user && (
-                  <OpenModalButton
-                        buttonText='Write a Review'
-                        className='create-review-button'
-                        modalComponent={<ReviewModal business={business} user={user} />}
-                        />
-                )}
+                {user && business.ownerId !== user.id && reviewButton()}
               </div>
               <div>Hours</div>
               <div className='business-page-about-container'>
@@ -92,11 +107,10 @@ const BusinessPage = ({user}) => {
                 )}
                 {business.reviews && business.reviews.map(review => <Review key={review.id} review={review}/>)}
               </div>
-
-              <div className='business-page-lock'>
-
-              </div>
-
+            </div>
+            <div className='business-page-contact'>
+              <div className='business-page-contact-item'>{business.website}</div>
+              <div className='business-page-contact-item'>{`(${business.phoneNumber.slice(0,3)}) ${business.phoneNumber.slice(3,6)}-${business.phoneNumber.slice(6)}`}</div>
             </div>
           </div>
         </div>
