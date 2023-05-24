@@ -95,7 +95,7 @@ export const createBusinessThunk = (business) => async (dispatch) => {
 };
 
 export const editBusinessThunk = (business) => async (dispatch) => {
-  const {name, phoneNumber, address, city, state, zipcode, price, description, category, website, image1, image2, image3} = business;
+  const {id, name, phoneNumber, address, city, state, zipcode, price, description, category, website, image1, image2, image3} = business;
   const res = await fetch(`/api/business/${business.id}`,
   {
     method: 'PUT',
@@ -103,6 +103,7 @@ export const editBusinessThunk = (business) => async (dispatch) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      id,
       name,
       phoneNumber,
       address,

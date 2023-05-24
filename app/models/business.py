@@ -84,6 +84,16 @@ class Business(db.Model):
 
     def to_dict_no_owner(self):
 
+        def round_up(num):
+            if (num - math.floor(num)) < 0.5:
+                return math.floor(num)
+            return math.ceil(num)
+
+        ratings = [review.rating for review in self.reviews]
+        if len(ratings) > 0:
+            averageRating = round_up((sum(ratings) / len(ratings)) * 2) / 2
+        else: averageRating = None
+
         return {
             'id': self.id,
             'name': self.name,
@@ -100,6 +110,7 @@ class Business(db.Model):
             'category': self.category,
             'website': self.website,
             'ownerId': self.owner_id,
+            'rating': averageRating,
             'reviews': [review.to_dict_with_user() for review in self.reviews],
             'businessImages': [image.image_url for image in self.businessImages]
         }

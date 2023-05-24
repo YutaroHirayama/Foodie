@@ -29,8 +29,6 @@ const EditBusinessModal = ({business}) => {
 
   const [errors, setErrors] = useState([]);
 
-
-
   const formSubmit = async (e) => {
     e.preventDefault();
 
@@ -156,7 +154,6 @@ const EditBusinessModal = ({business}) => {
                 type='text'
                 value={website}
                 onChange={(e) => setWebsite(e.target.value)}
-                required
                 placeholder='Website'
                 />
             </label>
@@ -170,7 +167,6 @@ const EditBusinessModal = ({business}) => {
                 type='text'
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                required
                 placeholder='Categories'
                 />
             </label>
@@ -178,7 +174,7 @@ const EditBusinessModal = ({business}) => {
 
           <div className='create-business-price'>
             <label>
-              Select a price range per person
+              Select a price range per person:
               <select value={price} onChange={(e) => setPrice(e.target.value)}>
                 <option value="$">$   (~$10)</option>
                 <option value="$$">$$   ($10 - $30)</option>
@@ -191,12 +187,11 @@ const EditBusinessModal = ({business}) => {
         <div className='create-business-description-container'>
           <div className='create-business-description'>
             <label>
-              Description of your Business
+              Description of your Business:
               <textarea
                 className='create-business-details-input'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                required
                 placeholder='About the Business'
                 />
             </label>
@@ -227,7 +222,6 @@ const EditBusinessModal = ({business}) => {
                   placeholder='Url'
                   />
             </div>
-
         </div>
         <div className="create-business-submit">
             <button className="create-business-submit-button">Update</button>

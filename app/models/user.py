@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(40), nullable=False)
     last_name = db.Column(db.String(40), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
-    profile_pic = db.Column(db.String(1000))
+    profile_pic = db.Column(db.String(1000), default='https://img.favpng.com/1/15/9/scalable-vector-graphics-computer-icons-user-profile-portable-network-graphics-png-favpng-n05BjRqcBz9Ub9NtAbz8GXEaN.jpg')
 
     businesses_owned = db.relationship('Business', back_populates='owner')
     reviews = db.relationship('Review', back_populates='user', order_by='Review.created_at.desc()')

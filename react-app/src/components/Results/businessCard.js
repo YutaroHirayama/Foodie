@@ -26,7 +26,7 @@ const BusinessCard = ({business, idx}) => {
               <div className='business-card-header'>
                 <div className='business-card-name'>{idx}. {business.name}</div>
                 <div className='business-card-rating'>
-                  {!business.rating && <span>New Business</span>}
+                  {!business.reviews.length > 0 && <span>New Business</span>}
                   <div className='business-card-stars'>
                     {business.rating && starRes(business.rating)}
                   </div>
@@ -34,7 +34,7 @@ const BusinessCard = ({business, idx}) => {
                     <span className='business-review-count'>{business.reviews.length}</span>)}
                 </div>
                 <div className='business-card-category-price-location'>
-                  <span>{business.category} ·</span>
+                  {business.category && <span>{business.category} ·</span>}
                   <span> {business.price} · </span>
                   <span> {business.city}</span>
                 </div>

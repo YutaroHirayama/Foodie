@@ -31,8 +31,11 @@ const BusinessPage = ({user}) => {
     const bannerImages = []
     console.log('images', images)
     for (let i = 0; i < images.length; i++) {
-      let bannerImage = images[i]
-      bannerImages.push(<img className='business-page-banner-image' src={bannerImage} />)
+      bannerImages.push(
+        <div className='business-page-banner-image-wrapper'>
+          <img className='business-page-banner-image' src={images[i]} />
+        </div>
+        )
     }
     return bannerImages
   }
@@ -58,30 +61,36 @@ const BusinessPage = ({user}) => {
     }
   }
 
+  const bannerExists = () => {
+    if(!business.businessImages || !business.businessImages.length > 0) return 'no-banner'
+  }
+
   if(!Object.values(business).length) return null;
 
   return (
 
       <div className='business-page'>
-        <div className='business-page-banner'>
-          {business.businessImages && businessBanner(business.businessImages)}
-        </div>
+          {business.businessImages && business.businessImages.length > 0 && (
+            <div className='business-page-banner'>
+                {businessBanner(business.businessImages)}
+            </div>
+          )}
         <div className='business-page-details'>
           <div className='business-page-header'>
-            <div className='business-page-header-details'>
+            <div className={`business-page-header-details ${bannerExists()}`}>
               <div className='business-page-name'>
                 <h1>{business.name}</h1>
               </div>
               <div className='business-page-rating'>
                 <div className='business-page-stars'>
-                  {starRes(business.rating)}
+                  {business.rating ? starRes(business.rating) : 'New Business'}
                 </div>
-                <div className='business-page-review-count'>{business.reviews.length} Reviews</div>
+                <div className='business-page-review-count'>{business.reviews.length ? `${business.reviews.length} Reviews`: ''}</div>
               </div>
               <div className='business-page-price-categories'>
                 <span>Claimed ·</span>
-                <span> {business.price} ·</span>
-                <span> {business.category}</span>
+                <span> {business.price} </span>
+                {business.category && <span>· {business.category}</span>}
               </div>
             </div>
           </div>
@@ -91,7 +100,7 @@ const BusinessPage = ({user}) => {
               <div className='business-page-create-review'>
                 {user && business.ownerId !== user.id && reviewButton()}
               </div>
-              <div>Hours</div>
+              {/* <div>Hours</div> */}
               <div className='business-page-about-container'>
                 <h2>About the Business</h2>
                 <div className='business-page-owner'>
@@ -109,6 +118,7 @@ const BusinessPage = ({user}) => {
               </div>
             </div>
             <div className='business-page-contact'>
+              <div className='business-page-contact-item'>{business.address}, {business.city}, {business.state} {business.zipcode}</div>
               <div className='business-page-contact-item'>{business.website}</div>
               <div className='business-page-contact-item'>{`(${business.phoneNumber.slice(0,3)}) ${business.phoneNumber.slice(3,6)}-${business.phoneNumber.slice(6)}`}</div>
             </div>
