@@ -12,7 +12,7 @@ def reviewImage_check(form, field):
 class ReviewForm(FlaskForm):
 
     reviewText = TextAreaField('reviewText', validators=[DataRequired(), Length(max=2000, message='Review can not exceed 2,000 characters.')])
-    rating = IntegerField('rating', validators=[DataRequired(), NumberRange(min=1, max=5, message='Rating must be between 1 and 5.')])
+    rating = IntegerField('rating', validators=[DataRequired(message='You must select a rating.'), NumberRange(min=1, max=5, message='Rating must be between 1 and 5.')])
     image1 = StringField('image1', validators=[Optional(strip_whitespace=True), reviewImage_check])
     image2 = StringField('image2', validators=[Optional(strip_whitespace=True), reviewImage_check])
     image3 = StringField('image3', validators=[Optional(strip_whitespace=True), reviewImage_check])
