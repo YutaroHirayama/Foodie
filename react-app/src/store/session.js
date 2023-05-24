@@ -96,32 +96,38 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (username, email, password) => async (dispatch) => {
-	const response = await fetch("/api/auth/signup", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			username,
-			email,
-			password,
-		}),
-	});
+export const signUp = (user) => async (dispatch) => {
+			const {firstName, lastName, email, username, profilePic, password} = user
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          email,
+          password,
+          firstName,
+          lastName,
+          profilePic
+        }),
+      });
 
-	if (response.ok) {
-		const data = await response.json();
-		dispatch(setUser(data));
-		return null;
-	} else if (response.status < 500) {
-		const data = await response.json();
-		if (data.errors) {
-			return data.errors;
-		}
-	} else {
-		return ["An error occurred. Please try again."];
-	}
-};
+      if (response.ok) {
+        const data = await response.json();
+        dispatch(setUser(data));
+        return null;
+      } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+          return data.errors;
+        }
+      } else {
+        const data = await response.json();
+
+        return data
+      }
+    };
 
 export const fetchBusinessesThunk = () => async (dispatch) => {
 	const res = await fetch('/api/business/user')

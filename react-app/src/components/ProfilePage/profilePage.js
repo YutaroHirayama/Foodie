@@ -23,7 +23,7 @@ const ProfilePage = () => {
     dispatch(fetchBusinessesThunk())
   },[dispatch])
 
-  if(!user) return null;
+  if(!user) return <h1>Log in or Sign up to view profile.</h1>;
 
   return (
       <div className='profile-page'>

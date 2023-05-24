@@ -10,14 +10,43 @@ function SignupFormModal() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [profilePic, setProfilePic] = useState("");
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, email, password));
+
+			let data;
+
+			const newUser = {
+        firstName,
+				lastName,
+				username,
+				email,
+				profilePic,
+				password
+      };
+
+			const newUserNo = {
+        firstName,
+				lastName,
+				username,
+				email,
+				password
+      };
+
+			if(profilePic.length === 0) {
+				data = await dispatch(signUp(newUserNo))
+			} else {
+				data = await dispatch(signUp(newUser))
+			}
+
 			if (data) {
+
 				setErrors(data);
 			} else {
 				closeModal();
@@ -29,6 +58,7 @@ function SignupFormModal() {
 		}
 	};
 
+	console.log(username, email, password, firstName, lastName, profilePic)
 	return (
 		<>
 			<h1>Sign Up</h1>
@@ -38,6 +68,24 @@ function SignupFormModal() {
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
+				<label>
+					First name
+					<input
+						type="text"
+						value={firstName}
+						onChange={(e) => setFirstName(e.target.value)}
+						required
+					/>
+				</label>
+				<label>
+					Last name
+					<input
+						type="text"
+						value={lastName}
+						onChange={(e) => setLastName(e.target.value)}
+						required
+					/>
+				</label>
 				<label>
 					Email
 					<input
@@ -54,6 +102,14 @@ function SignupFormModal() {
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						required
+					/>
+				</label>
+				<label>
+					Profile picture
+					<input
+						type="text"
+						value={profilePic}
+						onChange={(e) => setProfilePic(e.target.value)}
 					/>
 				</label>
 				<label>

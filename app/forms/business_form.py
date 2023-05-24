@@ -30,7 +30,7 @@ class BusinessForm(FlaskForm):
     price = StringField('price', validators=[DataRequired()])
     hours = StringField('hours')
     description = TextAreaField('description', validators=[Optional(strip_whitespace=True), Length(max=1000, message='Description can not exceed 1,000 characters.')])
-    category = StringField('category', validators=[Optional(strip_whitespace=True), Length(max=100, message='Categories cannot exceed 100 characters'), Regexp(regex='^[A-Za-z, ]+', message='Categories can only be alphabet letters.')])
+    category = StringField('category', validators=[Optional(strip_whitespace=True), Length(max=100, message='Categories cannot exceed 100 characters'), Regexp(regex='^[A-Za-z, ]+$', message='Categories can only be alphabet letters.')])
     website = StringField('website', validators=[Optional(strip_whitespace=True), URL(message='Website must be a valid URL.')])
     image1 = StringField('image1', validators=[Optional(strip_whitespace=True), businessImage_check])
     image2 = StringField('image2', validators=[Optional(strip_whitespace=True), businessImage_check])
