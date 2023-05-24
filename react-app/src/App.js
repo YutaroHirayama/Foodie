@@ -24,9 +24,7 @@ function App() {
       {isLoaded && (
         <>
           <Route path='/'>
-            <div>
               <Navigation isLoaded={isLoaded} />
-            </div>
           </Route>
           <Switch>
             <Route exact path='/'>

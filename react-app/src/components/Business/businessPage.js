@@ -118,9 +118,9 @@ const BusinessPage = ({user}) => {
               </div>
             </div>
             <div className='business-page-contact'>
-              <div className='business-page-contact-item'>{business.address}, {business.city}, {business.state} {business.zipcode}</div>
-              <div className='business-page-contact-item'>{business.website}</div>
-              <div className='business-page-contact-item'>{`(${business.phoneNumber.slice(0,3)}) ${business.phoneNumber.slice(3,6)}-${business.phoneNumber.slice(6)}`}</div>
+              <div className='business-page-contact-item'>{`${business.address}, ${business.city}, ${business.state} ${business.zipcode}`}<i className="fa-solid fa-diamond-turn-right contact-icon"/></div>
+              <div className='business-page-contact-item'>{business.website} <i class="fa-regular fa-window-maximize contact-icon"/></div>
+              <div className='business-page-contact-item'>{`(${business.phoneNumber.slice(0,3)}) ${business.phoneNumber.slice(3,6)}-${business.phoneNumber.slice(6)}`}<i class="fa-solid fa-phone-volume contact-icon"/></div>
             </div>
           </div>
         </div>
