@@ -40,11 +40,11 @@ const BusinessCard = ({business, idx}) => {
                 </div>
 
                 <div className='business-card-review-container'>
-                  {business.reviews[0]?.review && <i class="fa-regular fa-comment comment-icon"></i>}
+                  {business.reviews[0]?.review && <i className="fa-regular fa-comment comment-icon"></i>}
                   {business.reviews[0]?.review.length < 300 && `"${business.reviews[0]?.review}"`}
                   {business.reviews[0]?.review.length > 300 && (
                   <div>
-                    "{business.reviews[0]?.review.slice(0,300)}..." <NavLink to={`/business/${business.id}`} className='more-link'> more</NavLink>
+                    "{business.reviews[0]?.review.slice(0,300)}..." <span className='more-link'> more</span>
                   </div>)}
                 </div>
               </div>

@@ -67,7 +67,7 @@ def update_review(reviewId):
     """
 
     review_to_update = Review.query.get(reviewId)
-
+    print('REVIEW TO UPDATE --------->', review_to_update)
     if current_user.id != review_to_update.user_id:
         return {'errors': ['Forbidden']}, 403
 

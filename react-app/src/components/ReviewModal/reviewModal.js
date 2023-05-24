@@ -38,7 +38,7 @@ const ReviewModal = ({business, user, review}) => {
         image2,
         image3
       };
-
+      console.log('UPDATED review ------->', updatedReview)
       const res = await dispatch(editReviewThunk(updatedReview))
       dispatch(getOneBusinessThunk(business.id))
       if(res?.errors) {

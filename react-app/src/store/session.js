@@ -168,6 +168,7 @@ export const fetchReviewsThunk = () => async (dispatch) => {
 
 export const editReviewThunk = (review) => async (dispatch) => {
 	const {reviewId, reviewText, rating, image1, image2, image3} = review;
+	console.log('INSIDE EDIT REVIEW THUNK',reviewId)
 	const res = await fetch(`/api/review/${reviewId}`, {
     method: 'PUT',
     headers: {
