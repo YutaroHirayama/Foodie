@@ -4,13 +4,13 @@ import { NavLink } from 'react-router-dom'
 const BusinessCard = ({business, idx}) => {
 
   const starRes = (rating) => {
-    const half = business.rating % Math.floor(business.rating)
-    let stars = []
-    for (let i = 1; i <= Math.floor(business.rating); i++) {
-      stars.push(<i className="fa-solid fa-star"></i>)
-    }
-    if(half) stars.push(<i className="fa-solid fa-star-half-stroke"></i>)
 
+    let stars = []
+    for (let i = 1; i <= 5; i++) {
+      if(i - rating === 0.5) stars.push(<div className={`half-star-card half-star-${Math.floor(rating)}-card`}><i className='fa-solid fa-star white-star'/></div>)
+      else if(i <= rating) stars.push(<div className={`filled-star-card filled-star-${Math.floor(rating)}`}><i className='fa-solid fa-star white-star'/></div>)
+      else stars.push(<div className='empty-star-card'><i className="fa-solid fa-star white-star"/></div>)
+    }
     return stars
   }
 
@@ -34,13 +34,18 @@ const BusinessCard = ({business, idx}) => {
                     <span className='business-review-count'>{business.reviews.length}</span>)}
                 </div>
                 <div className='business-card-category-price-location'>
-                  {business.category && <span>{business.category} ·</span>}
+                  {business.category && (<><span className='business-card-category'>{business.category}</span><span> · </span></>)}
                   <span> {business.price} · </span>
                   <span> {business.city}</span>
                 </div>
-                <div className='business-card-review'>
-                  {business.reviews[0]?.review.slice(0,200)}
-                  {business.reviews[0]?.review.length > 200 && <NavLink to={`/business/${business.id}`} className='more-link'> ...more</NavLink>}
+
+                <div className='business-card-review-container'>
+                  {business.reviews[0]?.review && <i class="fa-regular fa-comment comment-icon"></i>}
+                  {business.reviews[0]?.review.length < 300 && `"${business.reviews[0]?.review}"`}
+                  {business.reviews[0]?.review.length > 300 && (
+                  <div>
+                    "{business.reviews[0]?.review.slice(0,300)}..." <NavLink to={`/business/${business.id}`} className='more-link'> more</NavLink>
+                  </div>)}
                 </div>
               </div>
             </div>

@@ -37,14 +37,15 @@ function Navigation({ isLoaded }){
 
 	return (
 		<div className='nav-bar'>
-			<div className='Home-button'>
-				<NavLink exact to="/">Home</NavLink>
+			<div className='home-button'>
+				<NavLink exact to="/">foodie <i className="fa-brands fa-yelp home-icon"/></NavLink>
 			</div>
 			<div className='search-container'>
 				<button
 					onClick={() => history.push('/search')}
 					className='restaurants-button'
-					>Restaurants
+					>
+						<i className="fa-solid fa-magnifying-glass"/> Restaurants
 				</button>
 			</div>
 			{isLoaded && !sessionUser && (

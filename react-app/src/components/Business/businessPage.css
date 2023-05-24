@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative
+  position: relative;
 }
 
 .business-page-banner {
@@ -12,6 +12,14 @@
   width: 90%;
   min-width: 1280px;
   position: absolute;
+}
+
+.business-page-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 1000px;
+  margin: auto;
+  width: 60%;
 }
 
 .business-page-banner-image-wrapper {
@@ -50,6 +58,10 @@
   z-index: 2;
 }
 
+.business-page-name {
+  font-size: 50px;
+  font-weight: bold;
+}
 .no-banner {
   color: black;
 }
@@ -59,16 +71,26 @@
   flex-direction: row;
 }
 
-.business-page-review-count {
-  margin-left: 15px;
+.business-page-rating {
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: row;
 }
 
-.business-page-details {
+.business-page-stars {
+  display:flex;
+  flex-direction: row;
+}
+
+.business-page-review-count {
+  margin-left: 15px;
+  font-size: 18px;
   display: flex;
-  flex-direction: column;
-  min-width: 1000px;
-  margin: auto;
-  width: 70%;
+  align-items: center;
+}
+
+.business-claimed {
+  color: rgba(88,180,255,1);
 }
 
 .business-page-body-container {
@@ -83,15 +105,26 @@
   width: fill;
 
 }
+.business-page-owner-container {
+  margin: 20px 0;
+}
+.business-page-owner {
+  font-size: 20px;
+  font-weight: bold;
+}
 
 .business-page-contact {
   height: fit-content;
-  width: 400px;
+  width: 450px;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   border: 1px solid #ebebeb;
 }
 
 .business-page-contact-item {
-  padding: 10px;
+  font-weight: bold;
+  padding: 25px;
+  word-break: break-word;
+  color: rgb(95, 94, 94)
 }

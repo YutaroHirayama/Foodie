@@ -4,9 +4,11 @@ import './review.css'
 const Review = ({review}) => {
 
   const starRes = (rating) => {
-    let stars = [];
-    for (let i = 0; i < rating; i++) {
-      stars.push(<i className="fa-solid fa-star"></i>)
+
+    let stars = []
+    for (let i = 1; i <= 5; i++) {
+      if(i <= rating) stars.push(<div className={`filled-star-card filled-star-${Math.floor(rating)}`}><i className='fa-solid fa-star white-star'/></div>)
+      else stars.push(<div className='empty-star-card'><i className="fa-solid fa-star white-star"/></div>)
     }
     return stars
   }

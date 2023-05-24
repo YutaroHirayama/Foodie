@@ -21,9 +21,21 @@
   flex-direction: row;
 }
 .single-review-image {
-  width: 150px;
-  height: 100px;
-  border-radius: 5px;
+  width: 200px;
+  height: 150px;
+  border-radius: 8px;
   object-fit: cover;
-  padding-right: 10px;
+  margin-right: 10px;
+}
+
+.single-review-rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 12px;
+}
+
+.single-review-date {
+  font-size: 15px;
+  padding-left: 20px;
 }

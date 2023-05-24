@@ -29,7 +29,7 @@ a:visited
 
 .business-card-name {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .business-card-name:hover {
@@ -40,17 +40,45 @@ a:visited
   display: flex;
   flex-direction: row;
   padding: 10px 0px;
+  align-items: center;
+}
+
+.business-card-stars {
+  display: flex;
+  flex-direction: row;
+
 }
 
 .business-review-count {
-  padding-left: 10px
+  padding-left: 10px;
+  color: rgba(110,112,114,1);
+  font-weight: bold;
 }
 
-.business-card-review {
-  padding-top: 10px
+.business-card-category-price-location {
+  color: rgba(110,112,114,1)
 }
 
+.business-card-category {
+  border: 1px transparent solid;
+  border-radius: 5px;
+  background-color: rgb(230, 230, 230);
+  color: rgba(110,112,114,1);
+  padding: 2px;
+  font-weight:bold;
+}
+
+.business-card-review-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: 10px;
+  color: rgba(110,112,114,1)
+}
+
+.comment-icon {
+  margin-right: 5px;
+}
 .more-link {
   font-weight: bold;
-  color: purple
+  color: rgba(2,122,151,1)
 }

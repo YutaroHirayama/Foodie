@@ -17,15 +17,16 @@ const BusinessPage = ({user}) => {
   }, [dispatch, businessId]);
 
   const starRes = (rating) => {
-    const half = rating % Math.floor(rating)
+
     let stars = []
-    for (let i = 1; i <= Math.floor(rating); i++) {
-      stars.push(<i className="fa-solid fa-star"></i>)
+    for (let i = 1; i <= 5; i++) {
+      if(i - rating === 0.5) stars.push(<div className={`half-star half-star-${Math.floor(rating)}`}><i className='fa-solid fa-star white-star'/></div>)
+      else if(i <= rating) stars.push(<div className={`filled-star filled-star-${Math.floor(rating)}`}><i className='fa-solid fa-star white-star'/></div>)
+      else stars.push(<div className='empty-star'><i className="fa-solid fa-star white-star"/></div>)
     }
-    if(half) stars.push(<i className="fa-solid fa-star-half-stroke"></i>)
-    console.log(stars)
     return stars
   }
+
 
   const businessBanner = (images) => {
     const bannerImages = []
@@ -78,9 +79,7 @@ const BusinessPage = ({user}) => {
         <div className='business-page-details'>
           <div className='business-page-header'>
             <div className={`business-page-header-details ${bannerExists()}`}>
-              <div className='business-page-name'>
-                <h1>{business.name}</h1>
-              </div>
+              <div className='business-page-name'>{business.name}</div>
               <div className='business-page-rating'>
                 <div className='business-page-stars'>
                   {business.rating ? starRes(business.rating) : 'New Business'}
@@ -88,7 +87,8 @@ const BusinessPage = ({user}) => {
                 <div className='business-page-review-count'>{business.reviews.length ? `${business.reviews.length} Reviews`: ''}</div>
               </div>
               <div className='business-page-price-categories'>
-                <span>Claimed ·</span>
+                <span className='business-claimed'>Claimed </span>
+                <span>{' · '}</span>
                 <span> {business.price} </span>
                 {business.category && <span>· {business.category}</span>}
               </div>
@@ -103,8 +103,8 @@ const BusinessPage = ({user}) => {
               {/* <div>Hours</div> */}
               <div className='business-page-about-container'>
                 <h2>About the Business</h2>
-                <div className='business-page-owner'>
-                  <h3>{business.owner.firstName} {business.owner.lastName[0]}.</h3>
+                <div className='business-page-owner-container'>
+                  <div className='business-page-owner'>{business.owner.firstName} {business.owner.lastName[0]}.</div>
                   <div>Business Owner</div>
                 </div>
                 <div className='business-page-description'>{business.description}</div>

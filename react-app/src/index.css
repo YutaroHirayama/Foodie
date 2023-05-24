@@ -15,3 +15,101 @@ a {
 button {
   cursor: pointer
 }
+
+.white-star {
+  padding: 2px;
+  margin: 1px;
+  color: white;
+}
+
+.half-star-1 {
+  background: linear-gradient(to right, rgb(255, 204, 75) 0%, rgb(255, 204, 75) 50%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.3) 100%);
+}
+.half-star-2 {
+  background: linear-gradient(to right, rgb(255, 173, 72) 0%, rgb(255, 173, 72) 50%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.3) 100%);
+}
+.half-star-3 {
+  background: linear-gradient(to right, rgb(255, 135, 66) 0%, rgb(255, 135, 66) 50%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.3) 100%);
+}
+.half-star-4 {
+  background: linear-gradient(to right, rgb(255, 100, 61) 0%, rgb(255, 100, 61) 50%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.3) 100%);
+}
+
+.filled-star-1 {
+  background:rgb(255, 204, 75);
+}
+
+.filled-star-2 {
+  background: rgb(255, 173, 72);
+}
+
+.filled-star-3 {
+  background:rgb(255, 135, 66);
+}
+
+.filled-star-4 {
+  background:rgb(255, 100, 61)
+}
+
+.filled-star-5 {
+  background:rgb(251, 80, 60)
+}
+
+.half-star {
+  border: 1px transparent;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 1px;
+}
+
+.filled-star {
+  border: 1px transparent;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 1px;
+}
+.empty-star {
+  background: rgba(255,255,255,0.3);
+  border: 1px transparent;
+  padding: 2px;
+  margin: 1px;
+  border-radius: 5px;
+  color: rgba(255,255,255,1);
+  opacity: 1;
+}
+
+.half-star-card {
+  border: 1px transparent;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 1px;
+}
+
+.filled-star-card {
+  border: 1px transparent;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 1px;
+}
+.empty-star-card {
+  background: rgba(100, 100, 100, 0.3);
+  border: 1px transparent;
+  padding: 2px;
+  margin: 1px;
+  border-radius: 5px;
+  color: rgba(255,255,255,1);
+  opacity: 1;
+}
+
+.half-star-1-card {
+  background: linear-gradient(to right, rgb(255, 204, 75) 0%, rgb(255, 204, 75) 50%, rgba(100, 100, 100, 0.3) 50%, rgba(100, 100, 100, 0.3) 100%);
+}
+.half-star-2-card {
+  background: linear-gradient(to right, rgb(255, 173, 72) 0%, rgb(255, 173, 72) 50%, rgba(100, 100, 100, 0.3) 50%, rgba(100, 100, 100, 0.3) 100%);
+}
+.half-star-3-card {
+  background: linear-gradient(to right, rgb(255, 135, 66) 0%, rgb(255, 135, 66) 50%, rgba(100, 100, 100, 0.3) 50%, rgba(100, 100, 100, 0.3) 100%);
+}
+.half-star-4-card {
+  background: linear-gradient(to right, rgb(255, 100, 61) 0%, rgb(255, 100, 61) 50%, rgba(100, 100, 100, 0.3) 50%, rgba(100, 100, 100, 0.3) 100%);
+}

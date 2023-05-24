@@ -5,6 +5,17 @@
   padding: 20px 100px;
 }
 
+.home-button {
+  font-family: 'Rubik', sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.home-icon {
+  color: #ff1b1b;
+  font-size: 30px;
+  font-weight: bold;
+}
 .profile-dropdown {
   position: absolute;
   display: flex;
