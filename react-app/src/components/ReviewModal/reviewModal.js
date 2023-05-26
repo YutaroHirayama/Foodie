@@ -38,7 +38,7 @@ const ReviewModal = ({business, user, review}) => {
         image2,
         image3
       };
-      console.log('UPDATED review ------->', updatedReview)
+
       const res = await dispatch(editReviewThunk(updatedReview))
       dispatch(getOneBusinessThunk(business.id))
       if(res?.errors) {
@@ -73,8 +73,8 @@ const ReviewModal = ({business, user, review}) => {
 
   return (
     <div className='review-modal'>
-      <form onSubmit={formSubmit}>
-        <h2>{business?.name}</h2>
+      <form className='review-form' onSubmit={formSubmit}>
+        <div className='review-form-title'>{business?.name}</div>
         <ul>
           {errors.map((error, idx) => (
             <li className='form-errors' key={idx}>{error}</li>
@@ -97,7 +97,7 @@ const ReviewModal = ({business, user, review}) => {
           </div>
         </div>
         <div className='review-images-container'>
-          <label>Upload images for your review here.</label>
+          <label>Upload images for your review here (Optional)</label>
             <div className='review-image-input-container'>
               <input
                   className='review-image-input'
@@ -123,7 +123,7 @@ const ReviewModal = ({business, user, review}) => {
             </div>
         </div>
         <div className="review-modal-submit">
-            <button className="review-modal-submit-button">Post Review</button>
+            <button className="review-modal-submit-button">{review ? 'Update Review':'Post Review'}</button>
         </div>
       </form>
     </div>

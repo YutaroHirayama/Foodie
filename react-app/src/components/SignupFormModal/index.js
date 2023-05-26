@@ -58,81 +58,81 @@ function SignupFormModal() {
 		}
 	};
 
-	console.log(username, email, password, firstName, lastName, profilePic)
+
 	return (
-		<>
+		<div className='signup-modal'>
 			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
+			<form className='signup-form' onSubmit={handleSubmit}>
 				<ul>
 					{errors.map((error, idx) => (
 						<li className='form-errors' key={idx}>{error}</li>
 					))}
 				</ul>
-				<label>
-					First name
+				<div>
 					<input
 						type="text"
 						value={firstName}
 						onChange={(e) => setFirstName(e.target.value)}
 						required
+						placeholder='First Name'
 					/>
-				</label>
-				<label>
-					Last name
+				</div>
+				<div>
 					<input
 						type="text"
 						value={lastName}
 						onChange={(e) => setLastName(e.target.value)}
 						required
+						placeholder='Last Name'
 					/>
-				</label>
-				<label>
-					Email
+				</div>
+				<div>
 					<input
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
+						placeholder='Email'
 					/>
-				</label>
-				<label>
-					Username
+				</div>
+				<div>
 					<input
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						required
+						placeholder='Username'
 					/>
-				</label>
-				<label>
-					Profile picture
+				</div>
+				<div>
 					<input
 						type="text"
 						value={profilePic}
 						onChange={(e) => setProfilePic(e.target.value)}
+						placeholder='Profile Picture URL (Optional)'
 					/>
-				</label>
-				<label>
-					Password
+				</div>
+				<div>
 					<input
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						required
+						placeholder='Password'
 					/>
-				</label>
-				<label>
-					Confirm Password
+				</div>
+				<div>
 					<input
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
+						placeholder='Confirm Password'
 					/>
-				</label>
-				<button type="submit">Sign Up</button>
+				</div>
+				<button className='signup-modal-button' type="submit">Sign Up</button>
 			</form>
-		</>
+		</div>
 	);
 }
 

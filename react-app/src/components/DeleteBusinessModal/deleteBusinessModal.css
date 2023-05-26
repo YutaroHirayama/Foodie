@@ -1,0 +1,36 @@
+.delete-modal {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+}
+
+.delete-button-yes {
+  height: 30px;
+  width: 100%;
+  border: 1px transparent;
+  border-radius: 5px;
+  color: rgb(60, 60, 60);
+  margin-bottom: 10px;
+}
+
+.delete-button-yes:hover {
+  background-color: red;
+  color: white;
+}
+
+.delete-button-no {
+  height: 30px;
+  width: 100%;
+  border: 1px transparent;
+  border-radius: 5px;
+  color: rgb(60, 60, 60);
+  margin-bottom: 10px;
+}
+
+.delete-button-no:hover {
+  background-color: rgb(200, 200, 200);
+  color: black
+}

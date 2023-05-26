@@ -1,0 +1,54 @@
+.business-modal {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  padding: 25px;
+  width: 600px;
+}
+
+.form-title {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.business-form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.business-details {
+  width: 100%;
+}
+
+.business-name {
+  width: 100%;
+}
+
+.business-details-input {
+  width: 100%;
+  padding: 5px 0px;
+  margin-bottom: 10px;
+}
+
+.business-form div {
+  width: 100%;
+}
+
+.description-input {
+  height: 60px
+}
+
+.business-image-input-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%
+}
+
+.business-image-input {
+  width: 100%;
+  padding: 5px 0px;
+  margin-bottom: 10px;
+}

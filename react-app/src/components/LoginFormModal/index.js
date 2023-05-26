@@ -27,40 +27,45 @@ function LoginFormModal() {
   };
 
   return (
-    <>
+    <div className='login-modal'>
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+      <form className='login-form' onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li className='form-errors' key={idx}>{error}</li>
           ))}
         </ul>
         <label>
-          Email
           <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder='Email'
           />
         </label>
         <label>
-          Password
           <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder='Password'
           />
         </label>
-        <button type="submit">Log In</button>
-        <button
-          className="demo-user-button"
-          onClick={() => loginDemoUser("demo@aa.io")}
-          >Demo User
-        </button>
+        <div className='form-modal-buttons'>
+          <button
+            className='form-modal-button login foodie-big-button'
+            type="submit">Log In
+          </button>
+          <button
+            className="form-modal-button demo foodie-big-button"
+            onClick={() => loginDemoUser("demo@aa.io")}
+            >Demo User
+          </button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

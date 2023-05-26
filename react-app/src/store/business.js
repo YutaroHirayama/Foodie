@@ -50,7 +50,7 @@ export const getOneBusinessThunk = (businessId) => async (dispatch) => {
 
   if(res.ok) {
     const business = await res.json();
-    console.log('inside get one business thunk res', business)
+
     dispatch(getOneBusinessAction(business))
     return business
   } else {

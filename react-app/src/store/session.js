@@ -134,7 +134,7 @@ export const fetchBusinessesThunk = () => async (dispatch) => {
 
 	if(res.ok) {
 		const businesses = await res.json();
-		console.log('inside business thunk BUSINESSES', businesses)
+
 		dispatch(fetchBusinessesAction(businesses))
 	} else {
 		const errors = await res.json();
@@ -168,7 +168,7 @@ export const fetchReviewsThunk = () => async (dispatch) => {
 
 export const editReviewThunk = (review) => async (dispatch) => {
 	const {reviewId, reviewText, rating, image1, image2, image3} = review;
-	console.log('INSIDE EDIT REVIEW THUNK',reviewId)
+
 	const res = await fetch(`/api/review/${reviewId}`, {
     method: 'PUT',
     headers: {

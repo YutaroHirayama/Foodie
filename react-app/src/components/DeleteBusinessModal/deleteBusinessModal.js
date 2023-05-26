@@ -28,8 +28,8 @@ const DeleteBusinessModal = ({business}) => {
     <div className='delete-modal'>
     <h2>Confirm Delete</h2>
     <h4 className='delete-modal-confirm'>Are you sure you want to delete this business page?</h4>
-    <button id='delete-button-yes' onClick={deleteBusiness}>Yes (Delete Business)</button>
-    <button id='delete-button-no' onClick={closeModal}>No (Keep Page)</button>
+    <button className='delete-button-yes' onClick={deleteBusiness}>Yes (Delete Business)</button>
+    <button className='delete-button-no' onClick={closeModal}>No (Keep Page)</button>
   </div>
   )
 }

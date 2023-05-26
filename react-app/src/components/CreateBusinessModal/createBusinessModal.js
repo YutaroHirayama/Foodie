@@ -56,20 +56,20 @@ const CreateBusinessModal = ({user}) => {
   }
 
   return (
-    <div className='create-business-modal'>
-      <form onSubmit={formSubmit}>
-        <h3>Create a New Business Page</h3>
+    <div className='business-modal'>
+      <form className='business-form' onSubmit={formSubmit}>
+        <div className='form-title'>Create a New Business Page</div>
         <ul>
           {errors.map((error, idx) => (
             <li className='form-errors' key={idx}>{error}</li>
           ))}
         </ul>
 
-        <div className='create-business-details'>
-          <div className='create-business-name'>
-            <label>
+        <div className='business-details'>
+          <div className='business-name'>
+            <label> Name
               <input
-                className='create-business-details-input'
+                className='business-details-input'
                 type='text'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -79,10 +79,10 @@ const CreateBusinessModal = ({user}) => {
             </label>
           </div>
 
-          <div className='create-business-phone-number'>
-            <label>
+          <div className='business-phone-number'>
+            <label> Phone Number
               <input
-                className='create-business-details-input'
+                className='business-details-input'
                 type='text'
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
@@ -92,10 +92,10 @@ const CreateBusinessModal = ({user}) => {
             </label>
           </div>
 
-          <div className='create-business-address'>
-            <label>
+          <div className='business-address'>
+            <label> Address
               <input
-                className='create-business-details-input'
+                className='business-details-input'
                 type='text'
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
@@ -105,10 +105,10 @@ const CreateBusinessModal = ({user}) => {
             </label>
           </div>
 
-          <div className='create-business-city'>
+          <div className='business-city'>
             <label>
               <input
-                className='create-business-details-input'
+                className='business-details-input'
                 type='text'
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
@@ -118,10 +118,10 @@ const CreateBusinessModal = ({user}) => {
             </label>
           </div>
 
-          <div className='create-business-state'>
+          <div className='business-state'>
             <label>
               <input
-                className='create-business-details-input'
+                className='business-details-input'
                 type='text'
                 value={state}
                 onChange={(e) => setState(e.target.value)}
@@ -131,10 +131,10 @@ const CreateBusinessModal = ({user}) => {
             </label>
           </div>
 
-          <div className='create-business-zipcode'>
+          <div className='business-zipcode'>
             <label>
               <input
-                className='create-business-details-input'
+                className='business-details-input'
                 type='text'
                 value={zipcode}
                 onChange={(e) => setZipcode(e.target.value)}
@@ -144,10 +144,10 @@ const CreateBusinessModal = ({user}) => {
             </label>
           </div>
 
-          <div className='create-business-website'>
-            <label>
+          <div className='business-website'>
+            <label>Website (Optional)
               <input
-                className='create-business-details-input'
+                className='business-details-input'
                 type='text'
                 value={website}
                 onChange={(e) => setWebsite(e.target.value)}
@@ -156,11 +156,11 @@ const CreateBusinessModal = ({user}) => {
             </label>
           </div>
 
-          <div className='create-business-category'>
+          <div className='business-category'>
             <label>
-              Your Business Category (ex: Bars Burgers American)
+            Your Business Category (ex: Bars Burgers American) (Optional)
               <input
-                className='create-business-details-input'
+                className='business-details-input'
                 type='text'
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
@@ -169,10 +169,10 @@ const CreateBusinessModal = ({user}) => {
             </label>
           </div>
 
-          <div className='create-business-price'>
+          <div className='business-price'>
             <label>
               Select a price range per person:
-              <select value={price} onChange={(e) => setPrice(e.target.value)}>
+              <select className='business-details-input' value={price} onChange={(e) => setPrice(e.target.value)}>
                 <option value="$">$   (~$10)</option>
                 <option value="$$">$$   ($10 - $30)</option>
                 <option value="$$$">$$$   ($30 - $60)</option>
@@ -181,12 +181,12 @@ const CreateBusinessModal = ({user}) => {
             </label>
           </div>
         </div>
-        <div className='create-business-description-container'>
-          <div className='create-business-description'>
+        <div className='business-description-container'>
+          <div className='business-description'>
             <label>
-              Description of your Business:
+              Description of your Business (Optional)
               <textarea
-                className='create-business-details-input'
+                className='business-details-input description-input'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder='About the Business'
@@ -194,25 +194,25 @@ const CreateBusinessModal = ({user}) => {
             </label>
           </div>
         </div>
-        <div className='create-business-images-container'>
-          <label>Upload images for your business here.</label>
-            <div className='create-business-image-input-container'>
+        <div className='business-images-container'>
+          <label>Upload images for your business below (Optional)</label>
+            <div className='business-image-input-container'>
               <input
-                  className='create-business-image-input'
+                  className='business-image-input'
                   type='text'
                   value={image1}
                   onChange={(e) => setImage1(e.target.value)}
                   placeholder='Main Image Url'
                   />
               <input
-                  className='create-business-image-input'
+                  className='business-image-input'
                   type='text'
                   value={image2}
                   onChange={(e) => setImage2(e.target.value)}
                   placeholder='Url'
                   />
               <input
-                  className='create-business-image-input'
+                  className='business-image-input'
                   type='text'
                   value={image3}
                   onChange={(e) => setImage3(e.target.value)}
@@ -221,8 +221,8 @@ const CreateBusinessModal = ({user}) => {
             </div>
 
         </div>
-        <div className="create-business-submit">
-            <button className="create-business-submit-button">Create Page</button>
+        <div className="business-submit">
+            <button className="business-submit-button">Create Page</button>
         </div>
       </form>
     </div>

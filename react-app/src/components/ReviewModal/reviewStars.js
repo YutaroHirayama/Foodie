@@ -15,7 +15,7 @@ const ReviewRatingStars = ({stars, onChange}) => {
     return (
       <div
         key={number}
-        className={rating >= number ? "fa fa-star" : "fa fa-star-o"}
+        className={rating >= number ? "fa fa-star rating-icon" : "fa fa-star-o rating-icon"}
         {...props}
       >
         <i className='star'></i>
@@ -26,7 +26,6 @@ const ReviewRatingStars = ({stars, onChange}) => {
   return (
     <div className="reviewRating-input">
       {[1, 2, 3, 4, 5].map((number) => starsIcon(number))}
-      <span> Stars </span>
     </div>
   );
 };
