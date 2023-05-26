@@ -26,7 +26,7 @@ const Review = ({review}) => {
         <span className='single-review-date'>{' '}{review.createdAt}</span>
       </div>
       <div className='single-review-text'>
-        <p>{review.review}</p>
+        {review.review}
       </div>
       <div className='single-review-images-container'>
         {review.reviewImages && review.reviewImages.map(image => (

@@ -1,12 +1,14 @@
 .single-review {
   display: flex;
   flex-direction: column;
-  width: 100%
+  width: 100%;
+  padding-bottom: 40px;
 }
 
 .single-review-reviewer {
   display: flex;
   flex-direction: row;
+  align-items: center
 }
 
 .single-review-profile-pic {
@@ -14,6 +16,12 @@
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
+  margin-right: 10px;
+}
+
+.single-review-name {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .single-review-images-container {
@@ -33,9 +41,15 @@
   flex-direction: row;
   align-items: center;
   font-size: 12px;
+  padding: 10px 0px;
 }
 
 .single-review-date {
   font-size: 15px;
   padding-left: 20px;
+}
+
+.single-review-text {
+  display: flex;
+  word-break: break-all;
 }

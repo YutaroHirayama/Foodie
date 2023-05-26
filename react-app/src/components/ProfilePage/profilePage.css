@@ -1,7 +1,6 @@
 .profile-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin: auto;
   width: 50%;
 }
@@ -16,8 +15,25 @@
 .profile-page-header {
   display: flex;
   flex-direction: row;
+  align-self: center;
 }
 
+.profile-page-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+.profile-page-reviews {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.owned-review-card {
+  width: 100%;
+}
 .profile-page-info {
   display: flex;
   flex-direction: column;

@@ -36,34 +36,36 @@ const ProfilePage = () => {
             <div className='profile-page-review-count'>{user.reviews.length} Reviews</div>
           </div>
         </div>
-        <div className='profile-page-businesses'>
-          <h2 className='profile-page-businesses-owned-header'>Manage your Businesses</h2>
-          <div className='profile-page-create-business'>
-            <OpenModalButton
-              buttonText='Create a Business Page'
-              className='create-business-button'
-              modalComponent={<CreateBusinessModal user={user} />}
-              />
-          </div>
-          <div className='profile-page-businesses-owned'>
+        <div className='profile-page-body'>
+          <div className='profile-page-businesses'>
+            <h2 className='profile-page-businesses-owned-header'>Manage your Businesses</h2>
+            <div className='profile-page-create-business'>
+              <OpenModalButton
+                buttonText='Create a Business Page'
+                className='create-business-button'
+                modalComponent={<CreateBusinessModal user={user} />}
+                />
+            </div>
+            <div className='profile-page-businesses-owned'>
 
-            {businessesOwned && businessesOwned.map((business, idx) => (
-              <div className='owned-business-card'>
-                <BusinessCard key={idx} business={business} idx={idx+1} />
-                <div className='owned-business-button-container'>
-                  <OpenModalButton
-                    buttonText='Edit'
-                    className='owned-business-button'
-                    modalComponent={<EditBusinessModal business={business} />}
-                  />
-                  <OpenModalButton
-                    buttonText='Delete'
-                    className='owned-business-button'
-                    modalComponent={<DeleteBusinessModal business={business} />}
-                  />
+              {businessesOwned && businessesOwned.map((business, idx) => (
+                <div className='owned-business-card'>
+                  <BusinessCard key={idx} business={business} idx={idx+1} />
+                  <div className='owned-business-button-container'>
+                    <OpenModalButton
+                      buttonText='Edit'
+                      className='owned-business-button'
+                      modalComponent={<EditBusinessModal business={business} />}
+                    />
+                    <OpenModalButton
+                      buttonText='Delete'
+                      className='owned-business-button'
+                      modalComponent={<DeleteBusinessModal business={business} />}
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div className='profile-page-reviews'>
             <h2>Manage your Reviews</h2>
@@ -85,10 +87,8 @@ const ProfilePage = () => {
                   </div>
                 </div>
               ))}
-
-
-
           </div>
+
         </div>
       </div>
   )

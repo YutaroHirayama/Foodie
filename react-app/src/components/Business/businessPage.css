@@ -20,6 +20,7 @@
   min-width: 1000px;
   margin: auto;
   width: 60%;
+  padding: 0 20px;
 }
 
 .business-page-banner-image-wrapper {
@@ -102,7 +103,7 @@
 
 .business-page-body {
   padding-right: 20px;
-  width: fill;
+  width: 100%;
 
 }
 .business-page-owner-container {
@@ -112,6 +113,11 @@
   font-size: 20px;
   font-weight: bold;
 }
+
+.business-page-reviews-container {
+  width: 100%;
+}
+
 
 .business-page-contact {
   height: fit-content;
@@ -129,7 +135,7 @@
   justify-content: space-between;
   font-weight: bold;
   padding: 25px;
-  word-break: break-word;
+  word-break: break-all;
   color: rgb(95, 94, 94);
 
 }

@@ -72,7 +72,8 @@ a:visited
   display: flex;
   flex-direction: row;
   padding-top: 10px;
-  color: rgba(110,112,114,1)
+  color: rgba(110,112,114,1);
+  word-break: break-all;
 }
 
 .comment-icon {
