@@ -1,7 +1,10 @@
 import './businessCard.css';
 import { NavLink } from 'react-router-dom'
+import EditBusinessModal from '../EditBusinessModal/editBusinessModal';
+import DeleteBusinessModal from '../DeleteBusinessModal/deleteBusinessModal';
+import OpenModalButton from '../OpenModalButton';
 
-const BusinessCard = ({business, idx}) => {
+const BusinessCard = ({business, idx, type}) => {
 
   const starRes = (rating) => {
 
@@ -20,7 +23,10 @@ const BusinessCard = ({business, idx}) => {
         <div className='business-card-container'>
           <div className='business-card'>
             <div className='business-card-image-container'>
-              <img src={business.businessImages[0]} className='business-card-image'/>
+              <img src={business.businessImages[0] || './defaultBusiness.jpg'}
+                className='business-card-image'
+                onError={e => {e.currentTarget.src='/defaultBusiness.jpg'}}
+                />
             </div>
             <div className='business-card-details'>
               <div className='business-card-header'>
@@ -50,6 +56,22 @@ const BusinessCard = ({business, idx}) => {
               </div>
             </div>
           </div>
+          {type === 'private' && (
+            <div className='owned-button-container'>
+              <OpenModalButton
+                buttonText='Edit'
+                className='foodie-small-button'
+                icon="fa-regular fa-building"
+                modalComponent={<EditBusinessModal business={business} />}
+                />
+              <OpenModalButton
+                buttonText='Delete'
+                className='foodie-small-button'
+                icon="fa-regular fa-trash-can"
+                modalComponent={<DeleteBusinessModal business={business} />}
+                />
+            </div>
+          )}
         </div>
       </NavLink>
     </>

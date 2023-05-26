@@ -62,6 +62,27 @@ class Business(db.Model):
             'businessImages': [image.image_url for image in self.businessImages]
         }
 
+    def to_dict_review(self):
+
+        return {
+            'id': self.id,
+            'name': self.name,
+            'phoneNumber': self.phone_number,
+            'address': self.address,
+            'city': self.city,
+            'state': self.state,
+            'zipcode': self.zipcode,
+            'lat': self.lat,
+            'lng': self.lng,
+            'price': self.price,
+            'hours': self.hours,
+            'description': self.description,
+            'category': self.category,
+            'website': self.website,
+            'ownerId': self.owner_id,
+            'businessImages': [image.image_url for image in self.businessImages]
+        }
+
     def to_dict_no_ref(self):
 
         return {

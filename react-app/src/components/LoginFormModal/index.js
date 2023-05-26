@@ -32,7 +32,7 @@ function LoginFormModal() {
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <li className='form-errors' key={idx}>{error}</li>
           ))}
         </ul>
         <label>

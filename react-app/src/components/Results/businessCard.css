@@ -4,17 +4,24 @@ a:visited
   text-decoration: none;
 }
 
-.business-card {
+.business-card-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  padding: 20px;
   border-top: 1px solid transparent;
   border-bottom: 1px solid #ebebeb;
   transition: box-shadow 0.3s;
-  padding: 20px;
 }
-.business-card:hover {
+
+.business-card-container:hover {
   box-shadow: 0 0 5px 3px #ebebeb;
 }
+
+.business-card {
+  display: flex;
+  flex-direction: row;
+}
+
 .business-card-image {
   width: 200px;
   height: 200px;

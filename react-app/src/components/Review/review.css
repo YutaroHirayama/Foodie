@@ -3,6 +3,12 @@
   flex-direction: column;
   width: 100%;
   padding-bottom: 40px;
+  transition: box-shadow 0.3s;
+  padding: 20px;
+}
+
+.single-review:hover {
+  box-shadow: 0 0 5px 3px #ebebeb;
 }
 
 .single-review-reviewer {
@@ -27,6 +33,7 @@
 .single-review-images-container {
   display: flex;
   flex-direction: row;
+  padding-top: 10px;
 }
 .single-review-image {
   width: 200px;
@@ -52,4 +59,9 @@
 .single-review-text {
   display: flex;
   word-break: break-all;
+}
+
+.private-review-business-details {
+  display: flex;
+  flex-direction: column;
 }

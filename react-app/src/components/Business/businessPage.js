@@ -30,11 +30,10 @@ const BusinessPage = ({user}) => {
 
   const businessBanner = (images) => {
     const bannerImages = []
-    console.log('images', images)
     for (let i = 0; i < images.length; i++) {
       bannerImages.push(
         <div className='business-page-banner-image-wrapper'>
-          <img className='business-page-banner-image' src={images[i]} />
+          <img className='business-page-banner-image' src={images[i]} onError={e =>{e.currentTarget.src='/defaultBusiness.jpg'}}/>
         </div>
         )
     }
@@ -47,7 +46,8 @@ const BusinessPage = ({user}) => {
       return (
         <OpenModalButton
         buttonText='Write a Review'
-        className='create-review-button'
+        className='foodie-big-button'
+        icon='fa-regular fa-star'
         modalComponent={<ReviewModal business={business} user={user} />}
         />
       )
@@ -55,15 +55,12 @@ const BusinessPage = ({user}) => {
       return (
         <OpenModalButton
         buttonText='Edit your Review'
-        className='create-review-button'
+        className='foodie-big-button'
+        icon='fa-regular fa-pen-to-square'
         modalComponent={<ReviewModal business={business} user={user} review={existingReview}/>}
         />
       )
     }
-  }
-
-  const bannerExists = () => {
-    if(!business.businessImages || !business.businessImages.length > 0) return 'no-banner'
   }
 
   if(!Object.values(business).length) return null;
@@ -76,9 +73,14 @@ const BusinessPage = ({user}) => {
                 {businessBanner(business.businessImages)}
             </div>
           )}
+          {(!business.businessImages || business.businessImages.length === 0) && (
+            <div className='business-page-banner'>
+                {businessBanner(['/defaultBusiness.jpg', '/defaultBusiness.jpg'])}
+            </div>
+          )}
         <div className='business-page-details'>
           <div className='business-page-header'>
-            <div className={`business-page-header-details ${bannerExists()}`}>
+            <div className={`business-page-header-details`}>
               <div className='business-page-name'>{business.name}</div>
               <div className='business-page-rating'>
                 <div className='business-page-stars'>
@@ -114,13 +116,22 @@ const BusinessPage = ({user}) => {
                 {business.reviews.length === 0 && (
                   <h3>Be the first to review this business!</h3>
                 )}
-                {business.reviews && business.reviews.map(review => <Review key={review.id} review={review}/>)}
+                {business.reviews && business.reviews.map(review => <Review key={review.id} review={review} type='public'/>)}
               </div>
             </div>
             <div className='business-page-contact'>
-              <div className='business-page-contact-item'>{`${business.address}, ${business.city}, ${business.state} ${business.zipcode}`}<i className="fa-solid fa-diamond-turn-right contact-icon"/></div>
-              <div className='business-page-contact-item'>{business.website} <i className="fa-regular fa-window-maximize contact-icon"/></div>
-              <div className='business-page-contact-item'>{`(${business.phoneNumber.slice(0,3)}) ${business.phoneNumber.slice(3,6)}- ${business.phoneNumber.slice(6)}`}<i className="fa-solid fa-phone-volume contact-icon"/></div>
+              <div className='business-page-contact-item'>
+                <div className='business-page-contact-text'>{`${business.address}, ${business.city}, ${business.state} ${business.zipcode}`}</div>
+                <i className="fa-solid fa-diamond-turn-right contact-icon"/>
+              </div>
+              <div className='business-page-contact-item'>
+                <div className='business-page-contact-text'>{business.website} </div>
+                <i className="fa-regular fa-window-maximize contact-icon"/>
+              </div>
+              <div className='business-page-contact-item'>
+                <div className='business-page-contact-text'>{`(${business.phoneNumber.slice(0,3)}) ${business.phoneNumber.slice(3,6)}- ${business.phoneNumber.slice(6)}`}</div>
+                <i className="fa-solid fa-phone-volume contact-icon"/>
+              </div>
             </div>
           </div>
         </div>

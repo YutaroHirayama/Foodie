@@ -12,6 +12,49 @@ a {
   height: 100vh;
 }
 
+.form-errors {
+  color: red;
+}
+
+.foodie-big-button {
+  font-size: 16px;
+  color: white;
+  background-color: rgba(224,7,7,1);
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.foodie-big-button:hover {
+  background-color: red;
+}
+
+.foodie-small-button {
+  font-size: 14px;
+  color: rgb(100, 100, 100);
+  border: 1px solid rgb(220, 220, 220);
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-right: 10px;
+  background-color: rgb(235, 235, 235);
+}
+
+.foodie-small-button:hover {
+  background-color: rgb(220, 220, 220);
+  color: black;
+  border: 1px solid rgb(20, 20, 20);
+}
+
+.owned-button-container {
+  display: flex;
+  flex-direction: row;
+  padding-top: 15px;
+}
+
+
+
 button {
   cursor: pointer
 }

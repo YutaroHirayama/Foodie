@@ -28,8 +28,6 @@ const ResultPage = () => {
           </div>
           <>
           </>
-
-
         </div>
         <div className='results-map'>
           </div>

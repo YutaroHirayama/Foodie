@@ -43,30 +43,32 @@ function Navigation({ isLoaded }){
 			<div className='search-container'>
 				<button
 					onClick={() => history.push('/search')}
-					className='restaurants-button'
+					className='search-button'
 					>
 						<i className="fa-solid fa-magnifying-glass"/> Restaurants
 				</button>
 			</div>
-			{isLoaded && !sessionUser && (
-				<div className='nav-bar-log-in-buttons'>
-						<OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-						<OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-				</div>
-			)}
-			{isLoaded && sessionUser && (
-				<div>
+			<div className='user-button-container'>
+				{isLoaded && !sessionUser && (
+					<div className='nav-bar-log-in-buttons'>
+							<OpenModalButton
+								buttonText="Log In"
+								onItemClick={closeMenu}
+								className='log-in-button'
+								modalComponent={<LoginFormModal />}
+							/>
+							<OpenModalButton
+								buttonText="Sign Up"
+								onItemClick={closeMenu}
+								className='sign-up-button'
+								modalComponent={<SignupFormModal />}
+							/>
+					</div>
+				)}
+				{isLoaded && sessionUser && (
 					<ProfileButton user={sessionUser} />
-				</div>
-			)}
+				)}
+			</div>
 		</div>
 	);
 }

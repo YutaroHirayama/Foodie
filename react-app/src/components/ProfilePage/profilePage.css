@@ -8,7 +8,7 @@
 .profile-page-pic {
   width: 200px;
   height: 200px;
-  border-radius: 5px;
+  border-radius: 10px;
   object-fit: cover;
 }
 
@@ -16,8 +16,12 @@
   display: flex;
   flex-direction: row;
   align-self: center;
+  padding: 20px 0px;
 }
 
+.profile-page-create-business {
+  padding-bottom: 20px
+}
 .profile-page-body {
   display: flex;
   flex-direction: column;
@@ -31,8 +35,9 @@
   width: 100%;
 }
 
-.owned-review-card {
-  width: 100%;
+.profile-page-reviews-grid {
+  display: flex;
+  flex-direction: column;
 }
 .profile-page-info {
   display: flex;
