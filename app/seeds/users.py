@@ -10,7 +10,7 @@ def seed_users():
         last_name='User',
         email='demo@aa.io',
         password='password',
-        profile_pic='https://img.favpng.com/1/15/9/scalable-vector-graphics-computer-icons-user-profile-portable-network-graphics-png-favpng-n05BjRqcBz9Ub9NtAbz8GXEaN.jpg'
+        profile_pic='https://theme.zdassets.com/theme_assets/949671/b3a8969e11dee569b690ee9344ffc30affdeb6b2.png'
     )
     user1 = User(
         username='User1',
