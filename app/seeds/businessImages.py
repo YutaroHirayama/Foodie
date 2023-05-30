@@ -5,6 +5,12 @@ from sqlalchemy.sql import text
 pizza1_1 = BusinessImage(
     image_url='https://s3-media0.fl.yelpcdn.com/bphoto/Yge-XaZ4E-Q3SAXKaWr4nQ/o.jpg'
   )
+pizza1_2 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/U1yEGpwXmVa2gHLOS9rEeQ/o.jpg'
+  )
+pizza1_3 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/ePiYmNCXh0CiAUGwJJZl1g/o.jpg'
+  )
 pizza2_1 = BusinessImage(
     image_url='https://s3-media0.fl.yelpcdn.com/bphoto/7h9z8mCAbDunqqct_xIYPA/o.jpg'
   )
