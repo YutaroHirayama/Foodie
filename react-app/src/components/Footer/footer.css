@@ -1,9 +1,10 @@
 .footer {
   display: flex;
   flex-direction: row;
-  padding: 0 50px;
+  padding: 50px 50px;
   justify-content: center;
   align-items: center;
+
 }
 
 .about-link {
