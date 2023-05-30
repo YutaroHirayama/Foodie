@@ -18,7 +18,7 @@ def seed_users():
         last_name='One',
         email='user1@aa.io',
         password='password',
-        profile_pic='https://img.favpng.com/1/15/9/scalable-vector-graphics-computer-icons-user-profile-portable-network-graphics-png-favpng-n05BjRqcBz9Ub9NtAbz8GXEaN.jpg'
+        profile_pic='https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?size=626&ext=jpg'
     )
     user2 = User(
         username='User2',
@@ -26,7 +26,7 @@ def seed_users():
         last_name='Two',
         email='user2@aa.io',
         password='password',
-        profile_pic='https://img.favpng.com/1/15/9/scalable-vector-graphics-computer-icons-user-profile-portable-network-graphics-png-favpng-n05BjRqcBz9Ub9NtAbz8GXEaN.jpg'
+        profile_pic='https://img.freepik.com/free-photo/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction_176420-15187.jpg?size=626&ext=jpg'
     )
     user3 = User(
         username='User3',
@@ -34,7 +34,7 @@ def seed_users():
         last_name='Three',
         email='user3@aa.io',
         password='password',
-        profile_pic='https://img.favpng.com/1/15/9/scalable-vector-graphics-computer-icons-user-profile-portable-network-graphics-png-favpng-n05BjRqcBz9Ub9NtAbz8GXEaN.jpg'
+        profile_pic='https://img.freepik.com/free-photo/close-up-shot-pretty-woman-with-perfect-teeth-dark-clean-skin-having-rest-indoors-smiling-happily-after-received-good-positive-news_273609-1248.jpg?size=626&ext=jpg'
     )
     user4 = User(
         username='User4',
@@ -42,7 +42,7 @@ def seed_users():
         last_name='Four',
         email='user4@aa.io',
         password='password',
-        profile_pic='https://img.favpng.com/1/15/9/scalable-vector-graphics-computer-icons-user-profile-portable-network-graphics-png-favpng-n05BjRqcBz9Ub9NtAbz8GXEaN.jpg'
+        profile_pic='https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg?size=626&ext=jpg'
     )
     user5 = User(
         username='User5',
@@ -50,7 +50,7 @@ def seed_users():
         last_name='Five',
         email='user5@aa.io',
         password='password',
-        profile_pic='https://img.favpng.com/1/15/9/scalable-vector-graphics-computer-icons-user-profile-portable-network-graphics-png-favpng-n05BjRqcBz9Ub9NtAbz8GXEaN.jpg'
+        profile_pic='https://img.freepik.com/free-photo/portrait-african-american-man_23-2149072179.jpg?size=626&ext=jpg'
     )
     user6 = User(
         username='User6',
