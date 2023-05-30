@@ -1,7 +1,7 @@
 from app.models import db, Review, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import datetime
-from .reviewImages import review1_1, review1_2, review1_3, review2_1
+from .reviewImages import review1_1, review1_2, review1_3, review2_1, review5_1, review5_2, review9_1
 
 def seed_reviews():
     pizza1r1 = Review(
@@ -81,13 +81,51 @@ def seed_reviews():
         rating=2,
         created_at=datetime.now()
     )
+    sushi1r1 = Review(
+        user_id=3,
+        business_id=5,
+        review="This is your sign to go... Shiro's is so so so good and their service ... amazing!!! Prior to my visit, my partner went online to do reservations. We came in around 5:30 and had a reservation for 6 PM, but luckily there were seats available! The restaurant can either be pretty casual or you can dress up! We were seated in the back room, in the corner of the restaurant & I was honestly worried that we wouldn't really be noticed... but the service was so great and accommodating! The hostess noticed that I was left handed and asked the chefs to plate my dish Left to Right rather than the traditional way (Right to Left). The fish is so fresh and the flavors are so simple but delicious. The presentation of each course was put together so nicely as well! My favorites were the pieces with Yuzu and Salt, and definitely the blue fin tuna pieces (3rd course). This is definitely a restaurant somewhere I would recommend another person to visit if they are visiting Seattle.",
+        rating=5,
+        created_at=datetime.now()
+    )
+    sushi1r2 = Review(
+        user_id=4,
+        business_id=5,
+        review="Shiro's was delicious - each of us got the 19-piece omakase where we sat at the table. We also ordered the Black Cod Karaage and both Hojicha desserts and were impressed with how amazing they were. Some of the cuts weren't the best but we're getting a discount at the table rather than the chef's bar. I'd come back for sure when visiting Seattle!",
+        rating=5,
+        created_at=datetime.now()
+    )
+    taco1r1 = Review(
+        user_id=3,
+        business_id=7,
+        review="One of the trendiest taco spots within Seattle, I feel like if you haven't heard of this place you probably don't go out for tacos a whole lot. Tacos Chukis is located on Broadway Capitol Hill inside a little building with a couple of shops in it. You'll have to go upstairs into the very back area. Everytime I come in I always order their house special Tacos Chukis, which is basically their regular taco with a chunk of pineapple added. Sounds a little strange but oddly enough it works! They're pretty good tacos and fairly priced for inner-city taco spots. Would give them a solid 4.5/5 rating",
+        rating=5,
+        created_at=datetime.now()
+    )
+    taco1r2 = Review(
+        user_id=4,
+        business_id=7,
+        review="We arrived with a line outside the door as people were ordering online via their phone. We went inside and used the iPad to place our order. 15 min later someone was taking orders.",
+        rating=5,
+        created_at=datetime.now()
+    )
+    ramen1r1 = Review(
+        user_id=6,
+        business_id=9,
+        review="This is my first review ever. I've been going to Ramen Danbo for 3/4 years and it's always good, I love the consistency. Probably the best ramen in Seattle. So grateful I have this place! I always get the Spicy Miso Rekka Ramen. It's always perfect as well as the toppings. (Yum yum Kikurage!) Thank you to the chefs and staff! Appreciate you guys.",
+        rating=5,
+        created_at=datetime.now()
+    )
 
     pizza1r1.reviewImages.append(review1_1)
     pizza1r1.reviewImages.append(review1_2)
     pizza1r1.reviewImages.append(review1_3)
     pizza1r2.reviewImages.append(review2_1)
+    sushi1r1.reviewImages.append(review5_1)
+    sushi1r1.reviewImages.append(review5_2)
+    ramen1r1.reviewImages.append(review9_1)
 
-    all_reviews = [pizza1r1, pizza1r2, pizza1r3, pizza1r4, pizza2r1, pizza2r2, pizza2r3, burger1r1, burger1r2, burger2r1, burger2r2]
+    all_reviews = [pizza1r1, pizza1r2, pizza1r3, pizza1r4, pizza2r1, pizza2r2, pizza2r3, burger1r1, burger1r2, burger2r1, burger2r2, sushi1r1, sushi1r2, taco1r1, taco1r2, ramen1r1]
     add_reviews = [db.session.add(review) for review in all_reviews]
     db.session.commit()
     print('all reviews added')

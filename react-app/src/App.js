@@ -9,6 +9,7 @@ import LandingPage from './components/LandingPage/landingPage';
 import ProfilePage from './components/ProfilePage/profilePage';
 import BusinessPage from "./components/Business/businessPage";
 import ResultPage from "./components/Results/resultsPage";
+import Footer from "./components/Footer/footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,9 @@ function App() {
               <ResultPage user={sessionUser}/>
             </Route>
           </Switch>
+          <Route path='/'>
+            <Footer />
+          </Route>
         </>
       )}
     </>
