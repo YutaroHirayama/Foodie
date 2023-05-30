@@ -31,5 +31,5 @@ class SignUpForm(FlaskForm):
     lastName = StringField('lastName', validators=[DataRequired(), Length(min=1, max=50, message='Last name must be less than 50 characters.'), Regexp(regex='^[A-Za-z]+$', message='Last name can only be alphabet letters.')])
     email = StringField('email', validators=[DataRequired(), Email(message='Valid email is required.'), Length(max=255, message='Email must be less than 255 characters.'), user_exists])
     username = StringField('username', validators=[DataRequired(message='Username is required.'), Length(min=4, max=40, message='Username must be between 5 and 40 characters.'), Regexp(regex='^[0-9A-Za-z]+', message='Username must be alphanumeric.'),username_exists])
-    profilePic = StringField('profilePic', URL(message='Image must be a valid URL.'), validators=[profile_check])
+    profilePic = StringField('profilePic', validators=[Optional(strip_whitespace=True), URL(message='Image must be a valid URL.'), profile_check])
     password = StringField('password', validators=[DataRequired(), Length(min=5, max=20, message='Password must be between 5 and 20 characters.')])
