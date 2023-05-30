@@ -1,7 +1,7 @@
 .single-review {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 95%;
   padding-bottom: 40px;
   transition: box-shadow 0.3s;
   padding: 20px;
