@@ -28,13 +28,10 @@ Check out [Foodie](https://foodie-4p0x.onrender.com/) here.
 
 ![foodie-search](https://github.com/YutaroHirayama/Foodie/assets/101540997/084eb775-e8d5-482b-93e1-ae4b6ba7c889)
 
-## Business Page
+## Business Page and Reviews
 
 ![foodie-business-details](https://github.com/YutaroHirayama/Foodie/assets/101540997/2a3e5682-d2eb-40fe-b24b-c5b6ac462053)
 
-## Profile Page
-
-![foodie-profile](https://github.com/YutaroHirayama/Foodie/assets/101540997/098eb90a-2799-4711-987f-c852e415653c)
 
 ## Core Features
 
