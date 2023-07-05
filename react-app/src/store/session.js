@@ -6,6 +6,7 @@ const DELETE_BUSINESS = 'session/DELETE_BUSINESS';
 const GET_REVIEWS = 'session/GET_REVIEWS';
 const EDIT_REVIEW = 'session/EDIT_REVIEW';
 const DELETE_REVIEW = 'session/DELETE_REVIEW';
+const GET_BOOKMARKS = 'session/GET_BOOKMARKS';
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -31,7 +32,6 @@ export const fetchReviewsAction = (reviews) => ({
 	reviews
 })
 
-
 export const editReviewAction = (review) => ({
 	type: EDIT_REVIEW,
 	review
@@ -40,6 +40,11 @@ export const editReviewAction = (review) => ({
 export const deleteReviewAction = (reviewId) => ({
 	type: DELETE_REVIEW,
 	reviewId
+})
+
+export const fetchBookmarksAction = (bookmarks) => ({
+	type: GET_BOOKMARKS,
+	bookmarks
 })
 
 export const authenticate = () => async (dispatch) => {
