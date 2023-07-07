@@ -62,6 +62,7 @@ def seed_users():
     )
 
     all_users = [demo, user1, user2, user3, user4, user5, user6]
+
     add_users = [db.session.add(user) for user in all_users]
     db.session.commit()
     print('all users added')

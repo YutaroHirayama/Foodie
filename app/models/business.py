@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 import math
+from .bookmark import bookmarks
 
 class Business(db.Model):
     __tablename__ = 'businesses'
@@ -26,7 +27,12 @@ class Business(db.Model):
     owner = db.relationship('User', back_populates='businesses_owned')
     reviews = db.relationship('Review', back_populates='business', order_by='Review.created_at.desc()', cascade='all, delete')
     businessImages = db.relationship('BusinessImage', back_populates='business', cascade='delete, all')
-    bookmarks = db.relationship('Bookmark', back_populates='business', cascade='all, delete')
+
+    users_bookmarks = db.relationship(
+        "User",
+        secondary = bookmarks,
+        back_populates = "businesses_bookmarks"
+    )
 
 
     def to_dict(self):

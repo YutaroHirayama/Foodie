@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .bookmark import bookmarks
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -18,7 +19,12 @@ class User(db.Model, UserMixin):
 
     businesses_owned = db.relationship('Business', back_populates='owner')
     reviews = db.relationship('Review', back_populates='user', order_by='Review.created_at.desc()')
-    bookmarks = db.relationship('Bookmark', back_populates='user')
+
+    businesses_bookmarks = db.relationship(
+        "Business",
+        secondary=bookmarks,
+        back_populates="users_bookmarks"
+    )
 
     @property
     def password(self):
