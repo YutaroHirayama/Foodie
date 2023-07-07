@@ -2,15 +2,17 @@ import './businessPage.css'
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneBusinessThunk } from '../../store/business';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Review from '../Review/review';
 import OpenModalButton from '../OpenModalButton';
 import ReviewModal from '../ReviewModal/reviewModal';
+import { removeBookmarkThunk, addBookmarkThunk } from "../../store/session";
 
 const BusinessPage = ({user}) => {
   const dispatch = useDispatch();
   const { businessId } = useParams();
   const business = useSelector(state => state.business?.currentBusiness)
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     dispatch(getOneBusinessThunk(businessId))
@@ -63,6 +65,41 @@ const BusinessPage = ({user}) => {
     }
   }
 
+
+  const addBookmark = async () => {
+    const res = await dispatch(addBookmarkThunk(business.id))
+  }
+
+  const removeBookmark = async (bookmarkId) => {
+    const res = await dispatch(removeBookmarkThunk(bookmarkId))
+
+    if(res?.errors) {
+      setErrors(res.errors)
+    }
+  }
+
+  const bookmarkButton = () => {
+    const bookmarked = user?.bookmarks?.find(bookmark => bookmark.id === business.id)
+    if(!bookmarked) {
+      return (
+        <button
+          onClick={(e) => addBookmark()}
+        >
+          Bookmark
+        </button>
+      )
+    }
+    if(bookmarked) {
+      return (
+        <button
+          onClick={(e) => removeBookmark(bookmarked.id)}
+        >
+          Remove Bookmark
+        </button>
+      )
+    }
+  }
+
   if(!Object.values(business).length) return null;
 
   return (
@@ -99,8 +136,13 @@ const BusinessPage = ({user}) => {
 
           <div className='business-page-body-container'>
             <div className='business-page-body'>
-              <div className='business-page-create-review'>
-                {user && business.ownerId !== user.id && reviewButton()}
+              <div className='business-page-buttons'>
+                <div className='business-page-create-review'>
+                  {user && business.ownerId !== user.id && reviewButton()}
+                </div>
+                <div>
+                  {user && business.ownerId !== user.id && bookmarkButton()}
+                </div>
               </div>
               {/* <div>Hours</div> */}
               <div className='business-page-about-container'>

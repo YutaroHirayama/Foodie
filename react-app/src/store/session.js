@@ -6,7 +6,9 @@ const DELETE_BUSINESS = 'session/DELETE_BUSINESS';
 const GET_REVIEWS = 'session/GET_REVIEWS';
 const EDIT_REVIEW = 'session/EDIT_REVIEW';
 const DELETE_REVIEW = 'session/DELETE_REVIEW';
-const GET_BOOKMARKS = 'session/GET_BOOKMARKS';
+// const GET_BOOKMARKS = 'session/GET_BOOKMARKS';
+const ADD_BOOKMARK = 'session/ADD_BOOKMARK';
+const REMOVE_BOOKMARK = 'session/REMOVE_BOOKMARK';
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -42,9 +44,19 @@ export const deleteReviewAction = (reviewId) => ({
 	reviewId
 })
 
-export const fetchBookmarksAction = (bookmarks) => ({
-	type: GET_BOOKMARKS,
-	bookmarks
+// export const fetchBookmarksAction = (bookmarks) => ({
+// 	type: GET_BOOKMARKS,
+// 	bookmarks
+// })
+
+export const addBookmarkAction = (bookmark) => ({
+	type: ADD_BOOKMARK,
+	bookmark
+})
+
+export const removeBookmarkAction = (bookmarkId) => ({
+	type: REMOVE_BOOKMARK,
+	bookmarkId
 })
 
 export const authenticate = () => async (dispatch) => {
@@ -209,6 +221,51 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
   }
 }
 
+// export const fetchBookmarksThunk = () => async (dispatch) => {
+// 	const res = await fetch('/api/bookmark/user')
+
+// 	if(res.ok) {
+// 		const bookmarks = await res.json();
+// 		dispatch(fetchBookmarksAction(bookmarks))
+// 	} else {
+// 		const errors = await res.json();
+//     return errors;
+// 	}
+// }
+
+export const addBookmarkThunk = (businessId) => async (dispatch) => {
+	const res = await fetch(`/api/bookmark/${businessId}`,
+	{
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+			businessId
+    })
+	})
+
+	if(res.ok) {
+    const newBookmark = await res.json();
+    dispatch(addBookmarkAction(newBookmark));
+  } else {
+    const errors = await res.json();
+    return errors;
+  };
+}
+
+export const removeBookmarkThunk = (bookmarkId) => async (dispatch) => {
+	const res = await fetch(`/api/bookmark/${bookmarkId}`, {method: 'DELETE'})
+
+	if(res.ok) {
+    const removedBookmark = res.json();
+    dispatch(removeBookmarkAction(bookmarkId));
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+}
+
 const initialState = { user: null };
 
 export default function reducer(state = initialState, action) {
@@ -247,6 +304,21 @@ export default function reducer(state = initialState, action) {
 			const newState = { ...state, user: {...state.user, reviews: [...state.user.reviews]}}
 			const newReviews = newState.user.reviews.filter(review => review.id !== action.reviewId)
 			newState.user.reviews = newReviews
+			return newState
+		}
+		// case GET_BOOKMARKS: {
+		// 	const newState = { ...state, user: {...state.user, bookmarks: action.bookmarks}}
+		// 	return newState
+		// }
+		case ADD_BOOKMARK: {
+			const newBookmarks = [action.bookmark, ...state.user.bookmarks]
+			const newState = { ...state, user: {...state.user, bookmarks: newBookmarks}}
+			return newState
+		}
+		case REMOVE_BOOKMARK: {
+			const newState = { ...state, user: {...state.user, bookmarks: [...state.user.bookmarks]}}
+			const newBookmarks = newState.user.bookmarks.filter(bookmark => bookmark.id !== action.bookmarkId)
+			newState.user.bookmarks = newBookmarks
 			return newState
 		}
 		default:

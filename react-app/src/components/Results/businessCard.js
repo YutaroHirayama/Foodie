@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import EditBusinessModal from '../EditBusinessModal/editBusinessModal';
 import DeleteBusinessModal from '../DeleteBusinessModal/deleteBusinessModal';
 import OpenModalButton from '../OpenModalButton';
+import RemoveBookmarkModal from '../RemoveBookmarkModal/removeBookmarkModal';
 
 const BusinessCard = ({business, idx, type}) => {
 
@@ -69,6 +70,16 @@ const BusinessCard = ({business, idx, type}) => {
                 className='foodie-small-button'
                 icon="fa-regular fa-trash-can"
                 modalComponent={<DeleteBusinessModal business={business} />}
+                />
+            </div>
+          )}
+          {type === 'bookmark' && (
+            <div className='owned-button-container'>
+              <OpenModalButton
+                buttonText='Remove'
+                className='foodie-small-button'
+                icon="fa-regular fa-trash-can"
+                modalComponent={<RemoveBookmarkModal bookmark={business} />}
                 />
             </div>
           )}

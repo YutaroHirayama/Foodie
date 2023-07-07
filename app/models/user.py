@@ -23,7 +23,8 @@ class User(db.Model, UserMixin):
     businesses_bookmarks = db.relationship(
         "Business",
         secondary=bookmarks,
-        back_populates="users_bookmarks"
+        back_populates="users_bookmarks",
+        passive_deletes=True
     )
 
     @property
@@ -47,7 +48,7 @@ class User(db.Model, UserMixin):
             'profilePic': self.profile_pic,
             'businessesOwned': [business.to_dict() for business in self.businesses_owned],
             'reviews': [review.to_dict_no_ref() for review in self.reviews],
-            'bookmarks': [bookmark.to_dict() for bookmark in self.businesses_bookmarks]
+            'bookmarks': [business.to_dict() for business in self.businesses_bookmarks]
         }
 
     def to_dict_no_ref(self):

@@ -31,7 +31,8 @@ class Business(db.Model):
     users_bookmarks = db.relationship(
         "User",
         secondary = bookmarks,
-        back_populates = "businesses_bookmarks"
+        back_populates = "businesses_bookmarks",
+        cascade="all, delete"
     )
 
 
@@ -66,7 +67,8 @@ class Business(db.Model):
             'rating': averageRating,
             'owner': self.owner.to_dict_no_ref(),
             'reviews': [review.to_dict_with_user() for review in self.reviews],
-            'businessImages': [image.image_url for image in self.businessImages]
+            'businessImages': [image.image_url for image in self.businessImages],
+            'bookmarkUsers': [user.to_dict_no_ref() for user in self.users_bookmarks]
         }
 
     def to_dict_review(self):
