@@ -8,7 +8,7 @@ import DeleteBusinessModal from '../DeleteBusinessModal/deleteBusinessModal';
 import ReviewModal from '../ReviewModal/reviewModal';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { fetchReviewsThunk, fetchBusinessesThunk, fetchBookmarksThunk} from '../../store/session'
+import { fetchReviewsThunk, fetchBusinessesThunk} from '../../store/session'
 import Review from '../Review/review';
 import DeleteReviewModal from '../DeleteReviewModal/deleteReviewModal';
 
@@ -22,7 +22,7 @@ const ProfilePage = () => {
   useEffect(() => {
     dispatch(fetchReviewsThunk())
     dispatch(fetchBusinessesThunk())
-    dispatch(fetchBookmarksThunk())
+    // dispatch(fetchBookmarksThunk())
   },[dispatch])
 
   if(!user) return <h1>Log in or Sign up to view profile.</h1>;

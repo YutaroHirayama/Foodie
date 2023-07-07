@@ -4,4 +4,3 @@ from .business import Business
 from .review import Review
 from .businessImage import BusinessImage
 from .reviewImage import ReviewImage
-from .bookmark import Bookmark

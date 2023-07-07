@@ -1,18 +1,19 @@
 """empty message
 
-Revision ID: 9ba0bf43198f
+Revision ID: 797cc8b74143
 Revises:
-Create Date: 2023-05-24 10:58:02.172807
+Create Date: 2023-07-06 22:20:56.739447
 
 """
 from alembic import op
 import sqlalchemy as sa
+
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '9ba0bf43198f'
+revision = '797cc8b74143'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -51,6 +52,13 @@ def upgrade():
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('bookmarks',
+    sa.Column('users', sa.Integer(), nullable=False),
+    sa.Column('businesses', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['businesses'], ['businesses.id'], ),
+    sa.ForeignKeyConstraint(['users'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('users', 'businesses')
+    )
     op.create_table('businessImages',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('business_id', sa.Integer(), nullable=False),
@@ -77,6 +85,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
+
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
@@ -85,6 +94,7 @@ def downgrade():
     op.drop_table('reviewImages')
     op.drop_table('reviews')
     op.drop_table('businessImages')
+    op.drop_table('bookmarks')
     op.drop_table('businesses')
     op.drop_table('users')
     # ### end Alembic commands ###

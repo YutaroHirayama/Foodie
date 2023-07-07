@@ -1,7 +1,7 @@
 from app.models import db, Business, environment, SCHEMA
 from sqlalchemy.sql import text
 from .businessImages import pizza1_1, pizza1_2, pizza1_3, pizza2_1, burger1_1, burger2_1, sushi1_1, sushi1_2, sushi1_3, sushi2_1, sushi2_2, sushi2_3, taco1_1, taco1_2, taco2_1, ramen1_1, ramen1_2, ramen1_3
-from .users import user2
+from .users import demo
 
 def seed_businesses():
     pizza1 = Business(
@@ -147,18 +147,28 @@ def seed_businesses():
     pizza1.businessImages.append(pizza1_1)
     pizza1.businessImages.append(pizza1_2)
     pizza1.businessImages.append(pizza1_3)
+
     pizza2.businessImages.append(pizza2_1)
+    pizza2.users_bookmarks.append(demo)
+
     burger1.businessImages.append(burger1_1)
+
     burger2.businessImages.append(burger2_1)
+    burger2.users_bookmarks.append(demo)
+
     sushi1.businessImages.append(sushi1_1)
     sushi1.businessImages.append(sushi1_2)
     sushi1.businessImages.append(sushi1_3)
+
     sushi2.businessImages.append(sushi2_1)
     sushi2.businessImages.append(sushi2_2)
     sushi2.businessImages.append(sushi2_3)
+
     taco1.businessImages.append(taco1_1)
     taco1.businessImages.append(taco1_2)
+
     taco2.businessImages.append(taco2_1)
+
     ramen1.businessImages.append(ramen1_1)
     ramen1.businessImages.append(ramen1_2)
     ramen1.businessImages.append(ramen1_3)
