@@ -16,10 +16,10 @@ const EditBusinessModal = ({business}) => {
   const [city, setCity] = useState(business.city);
   const [state, setState] = useState(business.state);
   const [zipcode, setZipcode] = useState(business.zipcode);
-  const [lat, setLat] = useState(business.lat);
-  const [lng, setLng] = useState(business.lng);
+  // const [lat, setLat] = useState(business.lat);
+  // const [lng, setLng] = useState(business.lng);
   const [price, setPrice] = useState(business.price);
-  const [hours, setHours] = useState(business.hours);
+  // const [hours, setHours] = useState(business.hours);
   const [description, setDescription] = useState(business.description);
   const [category, setCategory] = useState(business.category);
   const [website, setWebsite] = useState(business.website);
@@ -44,9 +44,9 @@ const EditBusinessModal = ({business}) => {
       description,
       category,
       website,
-      image1,
-      image2,
-      image3
+      // image1,
+      // image2,
+      // image3
     };
 
     const res = await dispatch(editBusinessThunk(updatedBusiness))
@@ -197,7 +197,7 @@ const EditBusinessModal = ({business}) => {
             </label>
           </div>
         </div>
-        <div className='business-images-container'>
+        {/* <div className='business-images-container'>
           <label>Upload images for your business below (Optional)</label>
             <div className='business-image-input-container'>
               <input
@@ -222,7 +222,7 @@ const EditBusinessModal = ({business}) => {
                   placeholder='Url'
                   />
             </div>
-        </div>
+        </div> */}
         <div className="business-submit">
             <button className="business-submit-button">Update</button>
         </div>

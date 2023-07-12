@@ -1,19 +1,19 @@
 """empty message
 
-Revision ID: 797cc8b74143
+Revision ID: cfd7e3f1221f
 Revises:
-Create Date: 2023-07-06 22:20:56.739447
+Create Date: 2023-07-11 22:48:38.380642
 
 """
 from alembic import op
 import sqlalchemy as sa
-
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
+
 # revision identifiers, used by Alembic.
-revision = '797cc8b74143'
+revision = 'cfd7e3f1221f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,10 +41,7 @@ def upgrade():
     sa.Column('city', sa.String(length=50), nullable=False),
     sa.Column('state', sa.String(length=50), nullable=False),
     sa.Column('zipcode', sa.String(length=20), nullable=False),
-    sa.Column('lat', sa.Float(), nullable=True),
-    sa.Column('lng', sa.Float(), nullable=True),
     sa.Column('price', sa.String(), nullable=False),
-    sa.Column('hours', sa.String(), nullable=True),
     sa.Column('description', sa.String(length=1000), nullable=True),
     sa.Column('category', sa.String(), nullable=True),
     sa.Column('website', sa.String(), nullable=True),
@@ -55,8 +52,8 @@ def upgrade():
     op.create_table('bookmarks',
     sa.Column('users', sa.Integer(), nullable=False),
     sa.Column('businesses', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['businesses'], ['businesses.id'], ),
-    sa.ForeignKeyConstraint(['users'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['businesses'], ['businesses.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['users'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('users', 'businesses')
     )
     op.create_table('businessImages',
@@ -85,7 +82,6 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
-
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 

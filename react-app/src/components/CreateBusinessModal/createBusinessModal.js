@@ -12,16 +12,18 @@ const CreateBusinessModal = ({user}) => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipcode, setZipcode] = useState("");
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
+  // const [lat, setLat] = useState("");
+  // const [lng, setLng] = useState("");
   const [price, setPrice] = useState("$");
-  const [hours, setHours] = useState("");
+  // const [hours, setHours] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [website, setWebsite] = useState("");
   const [image1, setImage1] = useState("");
-  const [image2, setImage2] = useState("")
-  const [image3, setImage3] = useState("")
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
+  const [imageLoading, setImageLoading] = useState(false);
+  const [submitLoading, setSubmitLoading] = useState(false);
 
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
@@ -30,23 +32,26 @@ const CreateBusinessModal = ({user}) => {
 
   const formSubmit = async (e) => {
     e.preventDefault();
-    const newBusiness = {
-      name,
-      phoneNumber,
-      address,
-      city,
-      state,
-      zipcode,
-      price,
-      description,
-      category,
-      website,
-      image1,
-      image2,
-      image3
-    };
 
-    const res = await dispatch(createBusinessThunk(newBusiness))
+    const formData = await new FormData();
+
+    formData.append('name', name);
+    formData.append('phoneNumber', phoneNumber);
+    formData.append('address', address);
+    formData.append('city', city);
+    formData.append('state', state);
+    formData.append('zipcode', zipcode);
+    formData.append('price', price);
+    formData.append('description', description);
+    formData.append('category', category);
+    formData.append('website', website);
+    formData.append('image1', image1);
+    formData.append('image2', image2);
+    formData.append('image3', image3);
+
+    console.log('FORM DATA newBUSINES ---->', formData)
+
+    const res = await dispatch(createBusinessThunk(formData))
     if(res?.errors) {
       setErrors(res.errors)
     } else {
@@ -57,7 +62,7 @@ const CreateBusinessModal = ({user}) => {
 
   return (
     <div className='business-modal'>
-      <form className='business-form' onSubmit={formSubmit}>
+      <form className='business-form' onSubmit={formSubmit} encType="multipart/form-data">
         <div className='form-title'>Create a New Business Page</div>
         <ul>
           {errors.map((error, idx) => (
@@ -199,30 +204,31 @@ const CreateBusinessModal = ({user}) => {
             <div className='business-image-input-container'>
               <input
                   className='business-image-input'
-                  type='text'
-                  value={image1}
-                  onChange={(e) => setImage1(e.target.value)}
+                  type='file'
+                  accept='image/*'
+                  onChange={(e) => setImage1(e.target.files[0])}
                   placeholder='Main Image Url'
                   />
               <input
                   className='business-image-input'
-                  type='text'
-                  value={image2}
-                  onChange={(e) => setImage2(e.target.value)}
+                  type='file'
+                  accept='image/*'
+                  onChange={(e) => setImage2(e.target.files[0])}
                   placeholder='Url'
                   />
               <input
                   className='business-image-input'
-                  type='text'
-                  value={image3}
-                  onChange={(e) => setImage3(e.target.value)}
+                  type='file'
+                  accept='image/*'
+                  onChange={(e) => setImage3(e.target.files[0])}
                   placeholder='Url'
                   />
             </div>
 
         </div>
         <div className="business-submit">
-            <button className="business-submit-button">Create Page</button>
+            <button className="business-submit-button" type='submit'>Create Page</button>
+            {(imageLoading)&& <p>Loading...</p>}
         </div>
       </form>
     </div>

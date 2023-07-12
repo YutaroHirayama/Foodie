@@ -61,27 +61,14 @@ export const getOneBusinessThunk = (businessId) => async (dispatch) => {
 
 export const createBusinessThunk = (business) => async (dispatch) => {
   const {name, phoneNumber, address, city, state, zipcode, price, description, category, website, image1, image2, image3} = business;
+  console.log('BUSINESS ------>', business)
   const res = await fetch(`/api/business`,
   {
     method: 'POST',
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name,
-      phoneNumber,
-      address,
-      city,
-      state,
-      zipcode,
-      price,
-      description,
-      category,
-      website,
-      image1,
-      image2,
-      image3
-    })
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
+    body: business
   });
 
   if(res.ok) {
@@ -95,7 +82,7 @@ export const createBusinessThunk = (business) => async (dispatch) => {
 };
 
 export const editBusinessThunk = (business) => async (dispatch) => {
-  const {id, name, phoneNumber, address, city, state, zipcode, price, description, category, website, image1, image2, image3} = business;
+  const {id, name, phoneNumber, address, city, state, zipcode, price, description, category, website} = business;
   const res = await fetch(`/api/business/${business.id}`,
   {
     method: 'PUT',
@@ -114,9 +101,9 @@ export const editBusinessThunk = (business) => async (dispatch) => {
       description,
       category,
       website,
-      image1,
-      image2,
-      image3
+      // image1,
+      // image2,
+      // image3
     })
   });
 
