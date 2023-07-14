@@ -43,7 +43,7 @@ function App() {
             <Route exact path="/profile">
               <ProfilePage user={sessionUser}/>
             </Route>
-            <Route exact path="/search">
+            <Route exact path="/search/:keywords">
               <ResultPage user={sessionUser}/>
             </Route>
           </Switch>

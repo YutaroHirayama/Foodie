@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Business, BusinessImage, db
+from sqlalchemy import or_
 from ..forms import BusinessForm
 from .auth_routes import validation_errors_to_error_messages
 from ..api.aws_helpers import get_unique_filename, upload_file_to_s3
@@ -196,3 +197,13 @@ def delete_business(businessId):
     db.session.commit()
 
     return {'message': 'Successfully deleted business page.'}
+
+
+@business_routes.route('/search/<keywords>')
+def search_businesses(keywords):
+    """
+    This route searches businesses by keyword
+    """
+
+    businesses = Business.query.filter(or_(Business.name.ilike(f'%{keywords}%'), Business.category.ilike(f'%{keywords}%')))
+    return [business.to_dict() for business in businesses]

@@ -306,10 +306,7 @@ export default function reducer(state = initialState, action) {
 			newState.user.reviews = newReviews
 			return newState
 		}
-		// case GET_BOOKMARKS: {
-		// 	const newState = { ...state, user: {...state.user, bookmarks: action.bookmarks}}
-		// 	return newState
-		// }
+
 		case ADD_BOOKMARK: {
 			const newBookmarks = [action.bookmark, ...state.user.bookmarks]
 			const newState = { ...state, user: {...state.user, bookmarks: newBookmarks}}

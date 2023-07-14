@@ -45,6 +45,14 @@ export const getAllBusinessesThunk = () => async (dispatch) => {
   dispatch(getAllBusinessesAction(businesses))
 };
 
+export const getSearchResultsThunk = (keywords) => async (dispatch) => {
+  console.log('keywords THUNK ---->', keywords)
+  const res = await fetch(`/api/business/search/${keywords}`);
+  const businesses = await res.json();
+
+  dispatch(getAllBusinessesAction(businesses))
+};
+
 export const getOneBusinessThunk = (businessId) => async (dispatch) => {
   const res = await fetch(`/api/business/${businessId}`);
 

@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import SearchBar from "../SearchBar/searchBar";
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -41,12 +42,7 @@ function Navigation({ isLoaded }){
 				<NavLink exact to="/">foodie <i className="fa-brands fa-yelp home-icon"/></NavLink>
 			</div>
 			<div className='search-container'>
-				<button
-					onClick={() => history.push('/search')}
-					className='search-button'
-					>
-						<i className="fa-solid fa-magnifying-glass"/> Restaurants
-				</button>
+				<SearchBar/>
 			</div>
 			<div className='user-button-container'>
 				{isLoaded && !sessionUser && (
