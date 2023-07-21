@@ -116,6 +116,62 @@ def seed_reviews():
         rating=5,
         created_at=datetime.now()
     )
+    boba1r1 = Review(
+        user_id=6,
+        business_id=10,
+        review="Great tasting tea in Chinatown right by the train station and fast service! They have many options and I'm not sure you can go wrong, however I recommend the lychee oolong tea. Sweet, but not too sweet.",
+        rating=5,
+        created_at=datetime.now()
+    )
+    boba1r2 = Review(
+        user_id=5,
+        business_id=10,
+        review="It's located right next to the Chinatown entrance. There is usually a line, but they are fast. Got my order and drink in less than 10 mins. (There was 4 parties ahead of me).  Highly recommend their heavy oolong milk tea! They also offer free toppings!",
+        rating=4,
+        created_at=datetime.now()
+    )
+    boba2r1 = Review(
+        user_id=4,
+        business_id=11,
+        review="The Hojicha ice cream part of the parfait was my favorite. Unlike other places that pour Hojicha syrup onto vanilla soft seeve, this place has Hojicha infused ice cream that is 'not too sweet' and tastes super toasty, creamy, and delicious almost like black sesame. The corn flakes and mochi added nice textures to the parfait. The jelly on the bottom was bland. I would just go for the Hojicha ice cream itself Next time!",
+        rating=5,
+        created_at=datetime.now()
+    )
+    kbbq1r1 = Review(
+        user_id=5,
+        business_id=12,
+        review="Omg this place was sooo good! We ordered the signature feast which comes with 4 chefs choice cuts. I don't remember what the first two were (right and left of the picture) but the other two were pork belly and kalbi. The marbling on the meat was amazing and made it incredibly tender. The standout meat for me was the kalbi which was sooo flavorful and melted in your mouth. I would probably skip the pork belly as it was kind of chewy and didn't compare to the beef cuts.",
+        rating=5,
+        created_at=datetime.now()
+    )
+    kbbq2r1 = Review(
+        user_id=6,
+        business_id=13,
+        review="Finally an AYCE Kbbq in Seattle that I can see myself coming to satisfy my cravings! Came to Bellwether during their soft opening and I was pleasantly surprised.",
+        rating=4,
+        created_at=datetime.now()
+    )
+    sandwich1r1 = Review(
+        user_id=3,
+        business_id=14,
+        review="I recently had the pleasure of trying the Caribbean roast sandwich at Paseo and I have to say, it was one of the juiciest and most flavorful sandwiches I have ever had! The combination of tender roast beef, tangy Caribbean spices, and fresh vegetables made for a truly unforgettable taste experience.",
+        rating=4,
+        created_at=datetime.now()
+    )
+    sandwich1r2 = Review(
+        user_id=5,
+        business_id=14,
+        review="Incredibly delicious - we skated in minutes before closing, so they said we could only order the famous #1, so we ordered 2 of those. There's a reason it is rated best sandwich in Seattle, extremely delicious! The pork tastes like there is BBQ sauce even with no sauce.",
+        rating=5,
+        created_at=datetime.now()
+    )
+    sandwich2r1 = Review(
+        user_id=4,
+        business_id=15,
+        review="Valhalla has some inventive and delicious takes on classic sandwiches! We got a Fidel Cashflow (like a Cubano but with pork belly) and an El Duderino. I personally preferred El Duderino because it felt a bit more balanced, but both sandwiches were fresh and so packed with flavor, on a crispy yet soft roll. I'd also highly recommend the tater tots with rosemary aioli!",
+        rating=5,
+        created_at=datetime.now()
+    )
 
     pizza1r1.reviewImages.append(review1_1)
     pizza1r1.reviewImages.append(review1_2)
@@ -125,7 +181,7 @@ def seed_reviews():
     sushi1r1.reviewImages.append(review5_2)
     ramen1r1.reviewImages.append(review9_1)
 
-    all_reviews = [pizza1r1, pizza1r2, pizza1r3, pizza1r4, pizza2r1, pizza2r2, pizza2r3, burger1r1, burger1r2, burger2r1, burger2r2, sushi1r1, sushi1r2, taco1r1, taco1r2, ramen1r1]
+    all_reviews = [pizza1r1, pizza1r2, pizza1r3, pizza1r4, pizza2r1, pizza2r2, pizza2r3, burger1r1, burger1r2, burger2r1, burger2r2, sushi1r1, sushi1r2, taco1r1, taco1r2, ramen1r1, boba1r1, boba1r2, boba2r1, kbbq1r1, kbbq2r1, sandwich1r1, sandwich1r2, sandwich2r1]
     add_reviews = [db.session.add(review) for review in all_reviews]
     db.session.commit()
     print('all reviews added')

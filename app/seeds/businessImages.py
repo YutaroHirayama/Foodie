@@ -56,6 +56,71 @@ ramen1_2 = BusinessImage(
 ramen1_3 = BusinessImage(
     image_url='https://s3-media0.fl.yelpcdn.com/bphoto/3I_sDbr9pYkRql9jT0-6sQ/o.jpg'
 )
+
+boba1_1 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/uxsrWjNLEFn_kPLRXBnFYA/o.jpg'
+)
+
+boba1_2 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/Y4_GCoKZeW4M0B8f139Ygw/o.jpg'
+)
+
+boba2_1 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/NeLDxcp9mIdGozl53JuEow/o.jpg'
+)
+
+boba2_2 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/ubCKhAYRfX_WUTH9STXZTQ/o.jpg'
+)
+
+kbbq1_1 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/SKjqbeJkC6dVEK0lElgiMA/o.jpg'
+)
+
+kbbq1_2 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/yhpsQYf_eq7QN5-2JVZBjw/o.jpg'
+)
+
+kbbq1_3 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/IqKLrLxccCdy81CZnxJzlw/o.jpg'
+)
+
+kbbq2_1 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/Dov6mCkJSk1pFUXjj7e-jQ/o.jpg'
+)
+
+kbbq2_2 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/QFWJNdBykqNQ5R0xOFLx9A/o.jpg'
+)
+
+kbbq2_3 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/VAASuMPsc7goCfeLu9PrKA/o.jpg'
+)
+
+sandwich1_1 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/-7BjwyFcao4akURGnVPNDA/o.jpg'
+)
+
+sandwich1_2 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/be6kG81vh7fr8OLQX3bRTQ/o.jpg'
+)
+
+sandwich1_3 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/6YUiGbQJTjBSGGbpVY8I2Q/o.jpg'
+)
+
+sandwich2_1 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/gEDAd15V8vfCq9BrmKl7rg/o.jpg'
+)
+
+sandwich2_2 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/TkoSnO3nLaKFmWgRuNRD9w/o.jpg'
+)
+
+sandwich2_3 = BusinessImage(
+    image_url='https://s3-media0.fl.yelpcdn.com/bphoto/hyu4ynv2sGEd0uT5uw5wlw/o.jpg'
+)
+
 def undo_businessImages():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.businessImages RESTART IDENTITY CASCADE;")
