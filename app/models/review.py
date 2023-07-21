@@ -27,7 +27,7 @@ class Review(db.Model):
             'createdAt': self.created_at,
             'user': self.user.to_dict_no_ref(),
             'business': self.business.to_dict_review(),
-            'reviewImages': [image.image_url for image in self.reviewImages]
+            'reviewImages': [image.to_dict() for image in self.reviewImages]
         }
 
     def to_dict_no_ref(self):
@@ -49,5 +49,5 @@ class Review(db.Model):
             'rating': self.rating,
             'createdAt': self.created_at,
             'user': self.user.to_dict_no_ref(),
-            'reviewImages': [image.image_url for image in self.reviewImages]
+            'reviewImages': [image.to_dict() for image in self.reviewImages]
     }

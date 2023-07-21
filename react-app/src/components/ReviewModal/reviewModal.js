@@ -2,10 +2,11 @@ import "./reviewModal.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createReviewThunk, getOneBusinessThunk } from "../../store/business";
-import { editReviewThunk } from '../../store/session';
+import { editReviewThunk, deleteReviewImageThunk } from '../../store/session';
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
 import ReviewRatingStars from "./reviewStars";
+
 
 const ReviewModal = ({business, user, review}) => {
   const { closeModal } = useModal();
@@ -28,18 +29,20 @@ const ReviewModal = ({business, user, review}) => {
   const formSubmit = async (e) => {
     e.preventDefault();
 
+
+
     if(review) {
 
-      const updatedReview = {
-        reviewId: review.id,
-        reviewText,
-        rating: stars,
-        image1,
-        image2,
-        image3
-      };
+      const formData = await new FormData();
 
-      const res = await dispatch(editReviewThunk(updatedReview))
+      formData.append('id', review.id)
+      formData.append('reviewText', reviewText);
+      formData.append('rating', stars);
+      formData.append('image1', image1);
+      formData.append('image2', image2);
+      formData.append('image3', image3);
+
+      const res = await dispatch(editReviewThunk(formData, review.id))
       dispatch(getOneBusinessThunk(business.id))
       if(res?.errors) {
         setErrors(res.errors)
@@ -49,16 +52,15 @@ const ReviewModal = ({business, user, review}) => {
 
     } else {
 
-      const newReview = {
-        businessId: business.id,
-        reviewText,
-        rating: stars,
-        image1,
-        image2,
-        image3
-      };
+      const formData = await new FormData();
 
-      const res = await dispatch(createReviewThunk(newReview))
+      formData.append('reviewText', reviewText);
+      formData.append('rating', stars);
+      formData.append('image1', image1);
+      formData.append('image2', image2);
+      formData.append('image3', image3);
+
+      const res = await dispatch(createReviewThunk(formData, business.id))
 
       if(res?.errors) {
         setErrors(res.errors)
@@ -70,8 +72,16 @@ const ReviewModal = ({business, user, review}) => {
 
   }
 
+  const deleteImage = async (image, e) => {
+    console.log(image)
+    const res = await dispatch(deleteReviewImageThunk(image.id))
+    if(res?.errors) {
+      setErrors(res.errors)
+    }
+  }
 
   return (
+
     <div className='review-modal'>
       <form className='review-form' onSubmit={formSubmit}>
         <div className='review-form-title'>{business?.name}</div>
@@ -99,7 +109,67 @@ const ReviewModal = ({business, user, review}) => {
         <div className='review-images-container'>
           <label>Upload images for your review here (Optional)</label>
             <div className='review-image-input-container'>
-              <input
+              {image1 && image1.type !== 'image/jpeg' && (
+                <div className='business-image-loaded-container'>
+                  <img className='business-image-loaded' src={image1.imageUrl}/>
+                  <button
+                    className='business-image-loaded-button'
+                    type='button'
+                    onClick={(e) => {deleteImage(image1, e); setImage1('')}}>
+                      <i className="fa-regular fa-trash-can"/>
+                  </button>
+                </div>
+              )}
+              {(!image1 || image1.type === 'image/jpeg') && (
+                <input
+                  className='business-image-input'
+                  type='file'
+                  accept='image/*'
+                  onChange={(e) => setImage1(e.target.files[0])}
+                  placeholder='Main Image Url'
+                />
+              )}
+                            {image2 && image2.type !== 'image/jpeg' && (
+                <div className='business-image-loaded-container'>
+                  <img className='business-image-loaded' src={image2.imageUrl}/>
+                  <button
+                    className='business-image-loaded-button'
+                    type='button'
+                    onClick={(e) => {deleteImage(image2, e); setImage2('')}}>
+                      <i className="fa-regular fa-trash-can"/>
+                  </button>
+                </div>
+              )}
+              {(!image2 || image2.type === 'image/jpeg') && (
+                <input
+                  className='business-image-input'
+                  type='file'
+                  accept='image/*'
+                  onChange={(e) => setImage2(e.target.files[0])}
+                  placeholder='Url'
+                />
+              )}
+              {image3 && image3.type !== 'image/jpeg' && (
+                <div className='business-image-loaded-container'>
+                  <img className='business-image-loaded' src={image3.imageUrl}/>
+                  <button
+                    className='business-image-loaded-button'
+                    type='button'
+                    onClick={(e) => {deleteImage(image3, e); setImage3('')}}>
+                      <i className="fa-regular fa-trash-can"/>
+                  </button>
+                </div>
+              )}
+              {(!image3 || image3.type === 'image/jpeg') && (
+                <input
+                  className='business-image-input'
+                  type='file'
+                  accept='image/*'
+                  onChange={(e) => setImage3(e.target.files[0])}
+                  placeholder='Url'
+                />
+              )}
+              {/* <input
                   className='review-image-input'
                   type='text'
                   value={image1}
@@ -119,7 +189,7 @@ const ReviewModal = ({business, user, review}) => {
                   value={image3}
                   onChange={(e) => setImage3(e.target.value)}
                   placeholder='Url'
-                  />
+                  /> */}
             </div>
         </div>
         <div className="review-modal-submit">
@@ -127,6 +197,7 @@ const ReviewModal = ({business, user, review}) => {
         </div>
       </form>
     </div>
+
   )
 }
 

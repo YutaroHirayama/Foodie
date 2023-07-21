@@ -10,6 +10,7 @@ const DELETE_REVIEW = 'session/DELETE_REVIEW';
 const ADD_BOOKMARK = 'session/ADD_BOOKMARK';
 const REMOVE_BOOKMARK = 'session/REMOVE_BOOKMARK';
 const DELETE_BUSINESS_IMAGE = 'business/DELETE_BUSINESS_IMAGE'
+const DELETE_REVIEW_IMAGE = 'session/DELETE_REVIEW_IMAGE'
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -42,6 +43,11 @@ export const editReviewAction = (review) => ({
 
 export const deleteReviewAction = (reviewId) => ({
 	type: DELETE_REVIEW,
+	reviewId
+})
+
+export const deleteReviewImageAction = (reviewId) => ({
+	type: DELETE_REVIEW_IMAGE,
 	reviewId
 })
 
@@ -189,21 +195,15 @@ export const fetchReviewsThunk = () => async (dispatch) => {
 	}
 }
 
-export const editReviewThunk = (review) => async (dispatch) => {
-	const {reviewId, reviewText, rating, image1, image2, image3} = review;
+export const editReviewThunk = (review, reviewId) => async (dispatch) => {
+	// const {reviewId, reviewText, rating, image1, image2, image3} = review;
 
 	const res = await fetch(`/api/review/${reviewId}`, {
     method: 'PUT',
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-			reviewText,
-			rating,
-			image1,
-			image2,
-			image3
-    })
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
+    body: review
   });
 
   if(res.ok) {
@@ -221,6 +221,18 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
 	if(res.ok) {
     const deletedReview = res.json();
     dispatch(deleteReviewAction(reviewId));
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+}
+
+export const deleteReviewImageThunk = (reviewId) => async (dispatch) => {
+	const res = await fetch(`api/reviewImage/${reviewId}`, {method: 'DELETE'})
+
+	if(res.ok) {
+    const deletedImage = res.json();
+    dispatch(deleteReviewImageAction(reviewId));
   } else {
     const errors = await res.json();
     return errors;

@@ -1,9 +1,26 @@
 .business-modal {
   display: flex;
   flex-direction: column;
-  height: fit-content;
+  height: 600px;
   padding: 25px;
   width: 600px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.business-modal::-webkit-scrollbar {
+  width: 12px;
+
+}
+
+.business-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.business-modal::-webkit-scrollbar-thumb {
+  background-color: #80808083;
+  border-radius: 10px;
+  border: none;
 }
 
 .form-title {

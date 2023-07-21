@@ -2,8 +2,24 @@
   width: 600px;
   display: flex;
   flex-direction: column;
-  height: fit-content;
+  height: 420px;
   padding: 25px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.review-modal::-webkit-scrollbar {
+  width: 12px;
+}
+
+.review-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.review-modal::-webkit-scrollbar-thumb {
+  background-color: #80808083;
+  border-radius: 10px;
+  border: none;
 }
 
 .review-form {
@@ -40,6 +56,8 @@
 .review-modal-input {
   height: 100px;
   width: 100%;
+  position: relative;
+  z-index: 10;
 }
 .review-image-input-container {
   display: flex;

@@ -1,3 +1,4 @@
+import "./searchBar.css"
 import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 
@@ -21,7 +22,7 @@ const SearchBar = () => {
       <input
         className='searchbar-input'
         type='text'
-        placeholder='Search for restaurants here'
+        placeholder='Search with restaurant name or keywords'
         value={keywords}
         onChange={(e) => setKeywords(e.target.value)}
         >

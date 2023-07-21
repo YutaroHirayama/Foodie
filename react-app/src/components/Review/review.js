@@ -46,7 +46,7 @@ const Review = ({review, type}) => {
       </div>
       <div className='single-review-images-container'>
         {review.reviewImages && review.reviewImages.map(image => (
-          <img className='single-review-image' src={image} onError={e =>{e.currentTarget.src='/defaultReview.png'}}/>
+          <img className='single-review-image' src={image.imageUrl} onError={e =>{e.currentTarget.src='/defaultReview.png'}}/>
         ))
         }
       </div>

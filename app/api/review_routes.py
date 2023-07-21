@@ -4,6 +4,8 @@ from app.models import Review, Business, ReviewImage, db
 from ..forms import ReviewForm
 from .auth_routes import validation_errors_to_error_messages
 from datetime import datetime
+from .auth_routes import validation_errors_to_error_messages
+from ..api.aws_helpers import get_unique_filename, upload_file_to_s3
 
 review_routes = Blueprint('review', __name__)
 
@@ -36,22 +38,64 @@ def create_review(businessId):
         )
 
         if form.data['image1']:
+
+            image1 = form.data['image1']
+            image1.filename = get_unique_filename(image1.filename)
+            upload1 = upload_file_to_s3(image1)
+
+            if "url" not in upload1:
+                return upload1, 400
+
             reviewImage1 = ReviewImage(
-                image_url = form.data['image1']
-            )
+                image_url = upload1['url']
+                )
             newReview.reviewImages.append(reviewImage1)
 
         if form.data['image2']:
+
+            image2 = form.data['image2']
+            image2.filename = get_unique_filename(image2.filename)
+            upload2 = upload_file_to_s3(image2)
+
+            if "url" not in upload2:
+                return upload2, 400
+
             reviewImage2 = ReviewImage(
-                image_url = form.data['image2']
-            )
+                image_url = upload2['url']
+                )
             newReview.reviewImages.append(reviewImage2)
 
         if form.data['image3']:
+
+            image3 = form.data['image3']
+            image3.filename = get_unique_filename(image3.filename)
+            upload3 = upload_file_to_s3(image3)
+
+            if "url" not in upload3:
+                return upload3, 400
+
             reviewImage3 = ReviewImage(
-                image_url = form.data['image3']
-            )
+                image_url = upload3['url']
+                )
             newReview.reviewImages.append(reviewImage3)
+
+        # if form.data['image1']:
+        #     reviewImage1 = ReviewImage(
+        #         image_url = form.data['image1']
+        #     )
+        #     newReview.reviewImages.append(reviewImage1)
+
+        # if form.data['image2']:
+        #     reviewImage2 = ReviewImage(
+        #         image_url = form.data['image2']
+        #     )
+        #     newReview.reviewImages.append(reviewImage2)
+
+        # if form.data['image3']:
+        #     reviewImage3 = ReviewImage(
+        #         image_url = form.data['image3']
+        #     )
+        #     newReview.reviewImages.append(reviewImage3)
 
         db.session.add(newReview)
         db.session.commit()
@@ -67,7 +111,7 @@ def update_review(reviewId):
     """
 
     review_to_update = Review.query.get(reviewId)
-    print('REVIEW TO UPDATE --------->', review_to_update)
+
     if current_user.id != review_to_update.user_id:
         return {'errors': ['Forbidden']}, 403
 
@@ -78,40 +122,82 @@ def update_review(reviewId):
         review_to_update.rating = form.data['rating']
 
         if form.data['image1']:
-            if len(review_to_update.reviewImages) > 0:
-                review_to_update.reviewImages[0].image_url = form.data['image1']
-            else:
-                reviewImage1 = ReviewImage(
-                    image_url = form.data['image1']
-                    )
-                review_to_update.reviewImages.append(reviewImage1)
 
-        elif len(review_to_update.reviewImages) > 0:
-            db.session.delete(review_to_update.reviewImages[0])
+            image1 = form.data['image1']
+            image1.filename = get_unique_filename(image1.filename)
+            upload1 = upload_file_to_s3(image1)
+
+            if "url" not in upload1:
+                return upload1, 400
+
+            reviewImage1 = ReviewImage(
+                image_url = upload1['url']
+                )
+            review_to_update.reviewImages.append(reviewImage1)
 
         if form.data['image2']:
-            if len(review_to_update.reviewImages) > 1:
-                review_to_update.reviewImages[1].image_url = form.data['image2']
-            else:
-                reviewImage2 = ReviewImage(
-                    image_url = form.data['image2']
-                    )
-                review_to_update.reviewImages.append(reviewImage2)
 
-        elif len(review_to_update.reviewImages) > 1:
-            db.session.delete(review_to_update.reviewImages[1])
+            image2 = form.data['image2']
+            image2.filename = get_unique_filename(image2.filename)
+            upload2 = upload_file_to_s3(image2)
+
+            if "url" not in upload2:
+                return upload2, 400
+
+            reviewImage2 = ReviewImage(
+                image_url = upload2['url']
+                )
+            review_to_update.reviewImages.append(reviewImage2)
 
         if form.data['image3']:
-            if len(review_to_update.reviewImages) > 2:
-                review_to_update.reviewImages[2].image_url = form.data['image3']
-            else:
-                reviewImage3 = ReviewImage(
-                    image_url = form.data['image3']
-                    )
-                review_to_update.reviewImages.append(reviewImage3)
 
-        elif len(review_to_update.reviewImages) > 2:
-            db.session.delete(review_to_update.reviewImages[2])
+            image3 = form.data['image3']
+            image3.filename = get_unique_filename(image3.filename)
+            upload3 = upload_file_to_s3(image3)
+
+            if "url" not in upload3:
+                return upload3, 400
+
+            reviewImage3 = ReviewImage(
+                image_url = upload3['url']
+                )
+            review_to_update.reviewImages.append(reviewImage3)
+
+        # if form.data['image1']:
+        #     if len(review_to_update.reviewImages) > 0:
+        #         review_to_update.reviewImages[0].image_url = form.data['image1']
+        #     else:
+        #         reviewImage1 = ReviewImage(
+        #             image_url = form.data['image1']
+        #             )
+        #         review_to_update.reviewImages.append(reviewImage1)
+
+        # elif len(review_to_update.reviewImages) > 0:
+        #     db.session.delete(review_to_update.reviewImages[0])
+
+        # if form.data['image2']:
+        #     if len(review_to_update.reviewImages) > 1:
+        #         review_to_update.reviewImages[1].image_url = form.data['image2']
+        #     else:
+        #         reviewImage2 = ReviewImage(
+        #             image_url = form.data['image2']
+        #             )
+        #         review_to_update.reviewImages.append(reviewImage2)
+
+        # elif len(review_to_update.reviewImages) > 1:
+        #     db.session.delete(review_to_update.reviewImages[1])
+
+        # if form.data['image3']:
+        #     if len(review_to_update.reviewImages) > 2:
+        #         review_to_update.reviewImages[2].image_url = form.data['image3']
+        #     else:
+        #         reviewImage3 = ReviewImage(
+        #             image_url = form.data['image3']
+        #             )
+        #         review_to_update.reviewImages.append(reviewImage3)
+
+        # elif len(review_to_update.reviewImages) > 2:
+        #     db.session.delete(review_to_update.reviewImages[2])
 
         db.session.commit()
         return review_to_update.to_dict()
