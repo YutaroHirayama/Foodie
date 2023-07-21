@@ -143,3 +143,28 @@
   word-break: break-word;
   padding-right: 10px;
 }
+
+.business-page-buttons {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.add-bookmark-button {
+  font-size: 16px;
+  color: white;
+  background-color: rgba(224,7,7,1);
+  border: 3px solid rgba(224,7,7,1);
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.remove-bookmark-button {
+  font-size: 16px;
+  color: rgba(224,7,7,1);
+  background-color: white;
+  border: 3px solid rgba(224,7,7,1);
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+}

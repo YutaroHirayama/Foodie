@@ -12,8 +12,8 @@ const CreateBusinessModal = ({user}) => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipcode, setZipcode] = useState("");
-  // const [lat, setLat] = useState("");
-  // const [lng, setLng] = useState("");
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
   const [price, setPrice] = useState("$");
   // const [hours, setHours] = useState("");
   const [description, setDescription] = useState("");
@@ -32,7 +32,9 @@ const CreateBusinessModal = ({user}) => {
 
   const formSubmit = async (e) => {
     e.preventDefault();
-
+    console.log('on page state', state)
+    console.log('on page LAT', lat)
+    console.log('on page lng', lng)
     const formData = await new FormData();
 
     formData.append('name', name);
@@ -41,6 +43,8 @@ const CreateBusinessModal = ({user}) => {
     formData.append('city', city);
     formData.append('state', state);
     formData.append('zipcode', zipcode);
+    formData.append('lat', lat);
+    formData.append('lng', lng);
     formData.append('price', price);
     formData.append('description', description);
     formData.append('category', category);
@@ -143,6 +147,32 @@ const CreateBusinessModal = ({user}) => {
                 onChange={(e) => setZipcode(e.target.value)}
                 required
                 placeholder='Zipcode'
+                />
+            </label>
+          </div>
+
+          <div className='business-lat'>
+            <label>
+              <input
+                className='business-details-input'
+                type='number'
+                value={lat}
+                onChange={(e) => setLat(e.target.value)}
+                required
+                placeholder='Latitude'
+                />
+            </label>
+          </div>
+
+          <div className='business-lng'>
+            <label>
+              <input
+                className='business-details-input'
+                type='number'
+                value={lng}
+                onChange={(e) => setLng(e.target.value)}
+                required
+                placeholder='Longitude'
                 />
             </label>
           </div>

@@ -52,3 +52,21 @@
   padding: 5px 0px;
   margin-bottom: 10px;
 }
+
+.business-image-loaded {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.business-image-loaded-container {
+  display: flex;
+  margin: 10px;
+  height: 100px;
+  align-items: flex-end;
+}
+
+.business-image-loaded-button {
+  height: 20px;
+}

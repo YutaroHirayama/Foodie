@@ -11,6 +11,7 @@ const EDIT_BUSINESS = 'business/EDIT_BUSINESS';
 const CREATE_REVIEW = 'review/CREATE_REVIEW';
 
 
+
 export const getAllBusinessesAction = (businesses) => ({
   type: GET_ALL_BUSINESSES,
   businesses
@@ -35,6 +36,8 @@ export const createReviewAction = (review) => ({
   type: CREATE_REVIEW,
   review
 })
+
+
 
 // THUNKS -------------------------------------------------------------------------
 
@@ -68,8 +71,7 @@ export const getOneBusinessThunk = (businessId) => async (dispatch) => {
 };
 
 export const createBusinessThunk = (business) => async (dispatch) => {
-  const {name, phoneNumber, address, city, state, zipcode, price, description, category, website, image1, image2, image3} = business;
-  console.log('BUSINESS ------>', business)
+  console.log('BUSINESS------>', ...business)
   const res = await fetch(`/api/business`,
   {
     method: 'POST',
@@ -90,7 +92,7 @@ export const createBusinessThunk = (business) => async (dispatch) => {
 };
 
 export const editBusinessThunk = (business) => async (dispatch) => {
-  const {id, name, phoneNumber, address, city, state, zipcode, price, description, category, website} = business;
+  const {id, name, phoneNumber, address, city, state, zipcode, lat, lng, price, description, category, website} = business;
   const res = await fetch(`/api/business/${business.id}`,
   {
     method: 'PUT',
@@ -105,6 +107,8 @@ export const editBusinessThunk = (business) => async (dispatch) => {
       city,
       state,
       zipcode,
+      lat,
+      lng,
       price,
       description,
       category,
@@ -124,6 +128,7 @@ export const editBusinessThunk = (business) => async (dispatch) => {
     return errors;
   }
 }
+
 
 export const createReviewThunk = (review) => async (dispatch) => {
   const {businessId, reviewText, rating, image1, image2, image3} = review;
@@ -169,7 +174,7 @@ export default function businessReducer(state = initialState, action) {
       return newState;
     };
     case EDIT_BUSINESS: {
-      const newState = { ...state, allBusinesses: {...state.allBusinesses, [action.business.id]: action.business}, currentBusiness: {...state.currentBusiness}}
+      const newState = { ...state, allBusinesses: {...state.allBusinesses, [action.business.id]: action.business}, currentBusiness: action.business}
       return newState;
     };
     case CREATE_REVIEW: {

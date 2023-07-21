@@ -7,6 +7,9 @@ import Review from '../Review/review';
 import OpenModalButton from '../OpenModalButton';
 import ReviewModal from '../ReviewModal/reviewModal';
 import { removeBookmarkThunk, addBookmarkThunk } from "../../store/session";
+import BusinessMap from '../BusinessMap/BusinessMap';
+import MapContainer from '../BusinessMap';
+import EditBusinessModal from '../EditBusinessModal/editBusinessModal';
 
 const BusinessPage = ({user}) => {
   const dispatch = useDispatch();
@@ -83,18 +86,22 @@ const BusinessPage = ({user}) => {
     if(!bookmarked) {
       return (
         <button
+          className='add-bookmark-button'
           onClick={(e) => addBookmark()}
         >
-          Bookmark
+          <i className='fa-solid fa-bookmark'/>
+          <span> Bookmark</span>
         </button>
       )
     }
     if(bookmarked) {
       return (
         <button
+          className='remove-bookmark-button'
           onClick={(e) => removeBookmark(bookmarked.id)}
         >
-          Remove Bookmark
+          <i className="fa-solid fa-bookmark" style={{color: '#f40707'}}/>
+          <span> Remove Bookmark</span>
         </button>
       )
     }
@@ -139,12 +146,23 @@ const BusinessPage = ({user}) => {
               <div className='business-page-buttons'>
                 <div className='business-page-create-review'>
                   {user && business.ownerId !== user.id && reviewButton()}
+                  {user && business.ownerId == user.id && (
+                     <OpenModalButton
+                     buttonText='Edit Business'
+                     className='foodie-big-button'
+                     icon="fa-regular fa-building"
+                     modalComponent={<EditBusinessModal business={business} user={user} />}
+                     />
+                  )}
                 </div>
                 <div>
                   {user && business.ownerId !== user.id && bookmarkButton()}
                 </div>
               </div>
               {/* <div>Hours</div> */}
+              <div className='business-map'>
+                <MapContainer business={business}/>
+              </div>
               <div className='business-page-about-container'>
                 <h2>About the Business</h2>
                 <div className='business-page-owner-container'>

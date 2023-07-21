@@ -2,6 +2,7 @@ import './resultsPage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom'
+import ResultsMapContainer from '../ResultsMap';
 
 import { getAllBusinessesThunk, getSearchResultsThunk } from '../../store/business';
 import BusinessCard from './businessCard';
@@ -36,11 +37,10 @@ const ResultPage = () => {
               <BusinessCard key={idx} business={result} idx={idx+1}/>
             ))}
           </div>
-          <>
-          </>
         </div>
         <div className='results-map'>
-          </div>
+          <ResultsMapContainer results={results}/>
+        </div>
       </div>
   )
 }

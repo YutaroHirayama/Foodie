@@ -20,10 +20,11 @@ a {
   font-size: 16px;
   color: white;
   background-color: rgba(224,7,7,1);
-  border: 1px solid transparent;
+  border: 3px solid transparent;
   border-radius: 5px;
   padding: 8px;
   cursor: pointer;
+  margin-right: 10px
 }
 
 .foodie-big-button:hover {

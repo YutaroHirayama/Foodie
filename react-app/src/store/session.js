@@ -9,6 +9,7 @@ const DELETE_REVIEW = 'session/DELETE_REVIEW';
 // const GET_BOOKMARKS = 'session/GET_BOOKMARKS';
 const ADD_BOOKMARK = 'session/ADD_BOOKMARK';
 const REMOVE_BOOKMARK = 'session/REMOVE_BOOKMARK';
+const DELETE_BUSINESS_IMAGE = 'business/DELETE_BUSINESS_IMAGE'
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -57,6 +58,11 @@ export const addBookmarkAction = (bookmark) => ({
 export const removeBookmarkAction = (bookmarkId) => ({
 	type: REMOVE_BOOKMARK,
 	bookmarkId
+})
+
+export const deleteBusinessImageAction = (image) => ({
+  type: DELETE_BUSINESS_IMAGE,
+  image
 })
 
 export const authenticate = () => async (dispatch) => {
@@ -260,6 +266,17 @@ export const removeBookmarkThunk = (bookmarkId) => async (dispatch) => {
 	if(res.ok) {
     const removedBookmark = res.json();
     dispatch(removeBookmarkAction(bookmarkId));
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+}
+
+export const deleteBusinessImageThunk = (businessId, image) => async(dispatch) => {
+  const res = await fetch (`api/business/${businessId}/${image}`, {method: 'DELETE'})
+
+  if(res.ok) {
+    const removedImage = res.json();
   } else {
     const errors = await res.json();
     return errors;

@@ -1,4 +1,4 @@
-import { csrfFetch } from './csrf';
+// import { csrfFetch } from './csrf';
 
 const LOAD_API_KEY = 'maps/LOAD_API_KEY';
 
@@ -8,11 +8,11 @@ const loadApiKey = (key) => ({
 });
 
 export const getKey = () => async (dispatch) => {
-  const res = await csrfFetch('/api/maps/key', {
+  const res = await fetch('/api/mapkey/key', {
     method: 'POST',
   });
   const data = await res.json();
-  dispatch(loadApiKey(data.googleMapsAPIKey));
+  dispatch(loadApiKey(data.mapsAPIKey));
 };
 
 const initialState = { key: null };

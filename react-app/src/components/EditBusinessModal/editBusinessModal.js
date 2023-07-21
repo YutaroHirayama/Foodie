@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { editBusinessThunk } from "../../store/business";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
+import { deleteBusinessImageThunk } from "../../store/session";
 
 const EditBusinessModal = ({business}) => {
   const dispatch = useDispatch();
@@ -16,8 +17,8 @@ const EditBusinessModal = ({business}) => {
   const [city, setCity] = useState(business.city);
   const [state, setState] = useState(business.state);
   const [zipcode, setZipcode] = useState(business.zipcode);
-  // const [lat, setLat] = useState(business.lat);
-  // const [lng, setLng] = useState(business.lng);
+  const [lat, setLat] = useState(business.lat);
+  const [lng, setLng] = useState(business.lng);
   const [price, setPrice] = useState(business.price);
   // const [hours, setHours] = useState(business.hours);
   const [description, setDescription] = useState(business.description);
@@ -26,6 +27,8 @@ const EditBusinessModal = ({business}) => {
   const [image1, setImage1] = useState(business.businessImages[0]);
   const [image2, setImage2] = useState(business.businessImages[1]);
   const [image3, setImage3] = useState(business.businessImages[2]);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [submitLoading, setSubmitLoading] = useState(false);
 
   const [errors, setErrors] = useState([]);
 
@@ -40,6 +43,8 @@ const EditBusinessModal = ({business}) => {
       city,
       state,
       zipcode,
+      lat,
+      lng,
       price,
       description,
       category,
@@ -55,6 +60,14 @@ const EditBusinessModal = ({business}) => {
     } else {
       closeModal()
       history.push(`/business/${res}`)
+    }
+  }
+
+  const deleteImage = async (e, image) => {
+    e.preventDefault();
+    const res = await dispatch(deleteBusinessImageThunk(business.id, image))
+    if(res?.errors) {
+      setErrors(res.errors)
     }
   }
 
@@ -147,6 +160,32 @@ const EditBusinessModal = ({business}) => {
             </label>
           </div>
 
+          <div className='business-lat'>
+            <label>
+              <input
+                className='business-details-input'
+                type='number'
+                value={lat}
+                onChange={(e) => setLat(e.target.value)}
+                required
+                placeholder='Latitude'
+                />
+            </label>
+          </div>
+
+          <div className='business-lng'>
+            <label>
+              <input
+                className='business-details-input'
+                type='number'
+                value={lng}
+                onChange={(e) => setLng(e.target.value)}
+                required
+                placeholder='Longitude'
+                />
+            </label>
+          </div>
+
           <div className='business-website'>
             <label> Website (Optional)
               <input
@@ -197,32 +236,75 @@ const EditBusinessModal = ({business}) => {
             </label>
           </div>
         </div>
-        {/* <div className='business-images-container'>
+        <div className='business-images-container'>
           <label>Upload images for your business below (Optional)</label>
             <div className='business-image-input-container'>
-              <input
-                  className='business-image-input'
-                  type='text'
-                  value={image1}
-                  onChange={(e) => setImage1(e.target.value)}
-                  placeholder='Main Image Url'
-                  />
-              <input
-                  className='business-image-input'
-                  type='text'
-                  value={image2}
-                  onChange={(e) => setImage2(e.target.value)}
-                  placeholder='Url'
-                  />
-              <input
-                  className='business-image-input'
-                  type='text'
-                  value={image3}
-                  onChange={(e) => setImage3(e.target.value)}
-                  placeholder='Url'
-                  />
+              {image1 && (
+                <div className='business-image-loaded-container'>
+                  <img className='business-image-loaded' src={image1}/>
+                  <button
+                    className='business-image-loaded-button'
+                    type='button'
+                    value={image1}
+                    onClick={(e) => deleteImage(e.target.value)}>
+                      <i className="fa-regular fa-trash-can"/>
+                  </button>
+                </div>
+                // <input
+                // className='business-image-input'
+                // type='text'
+                // value={image1}
+                // onChange={(e) => setImage1(e.target.value)}
+                // placeholder='Main Image Url'
+                // />
+              )}
+              {!image1 && (
+                <input
+                className='business-image-input'
+                type='file'
+                accept='image/*'
+                onChange={(e) => setImage1(e.target.files[0])}
+                placeholder='Main Image Url'
+                />
+              )}
+              {image2 && (
+                <input
+                className='business-image-input'
+                type='text'
+                value={image2}
+                onChange={(e) => setImage2(e.target.value)}
+                placeholder='Url'
+                />
+              )}
+              {!image2 && (
+                <input
+                className='business-image-input'
+                type='file'
+                accept='image/*'
+                onChange={(e) => setImage2(e.target.files[0])}
+                placeholder='Url'
+                />
+              )}
+              {image3 && (
+                <input
+                className='business-image-input'
+                type='text'
+                value={image3}
+                onChange={(e) => setImage3(e.target.value)}
+                placeholder='Url'
+                />
+              )}
+              {!image3 && (
+                <input
+                className='business-image-input'
+                type='file'
+                accept='image/*'
+                onChange={(e) => setImage3(e.target.files[0])}
+                placeholder='Url'
+                />
+              )}
             </div>
-        </div> */}
+        </div>
         <div className="business-submit">
             <button className="business-submit-button">Update</button>
         </div>
