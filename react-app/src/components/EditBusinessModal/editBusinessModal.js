@@ -34,7 +34,7 @@ const EditBusinessModal = ({business}) => {
     e.preventDefault();
 
     const formData = await new FormData();
-    console.log('TYPE OF IMAGE 1', typeof(image1), image1)
+
     formData.append('id', business.id)
     formData.append('name', name);
     formData.append('phoneNumber', phoneNumber);
