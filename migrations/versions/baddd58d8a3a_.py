@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: cfd7e3f1221f
+Revision ID: baddd58d8a3a
 Revises:
-Create Date: 2023-07-11 22:48:38.380642
+Create Date: 2023-07-17 09:12:13.834711
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'cfd7e3f1221f'
+revision = 'baddd58d8a3a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,7 +41,10 @@ def upgrade():
     sa.Column('city', sa.String(length=50), nullable=False),
     sa.Column('state', sa.String(length=50), nullable=False),
     sa.Column('zipcode', sa.String(length=20), nullable=False),
+    sa.Column('lat', sa.Float(), nullable=True),
+    sa.Column('lng', sa.Float(), nullable=True),
     sa.Column('price', sa.String(), nullable=False),
+    sa.Column('hours', sa.String(), nullable=True),
     sa.Column('description', sa.String(length=1000), nullable=True),
     sa.Column('category', sa.String(), nullable=True),
     sa.Column('website', sa.String(), nullable=True),

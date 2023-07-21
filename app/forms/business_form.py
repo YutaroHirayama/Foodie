@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, DecimalField, TextAreaField, IntegerField, SubmitField
-from wtforms.validators import DataRequired, ValidationError, Length, Regexp, Optional, URL
+from wtforms.validators import DataRequired, ValidationError, Length, Regexp, Optional, URL, NumberRange
 from ..api.aws_helpers import ALLOWED_EXTENSIONS
 from app.models import Business
 
@@ -27,8 +27,8 @@ class BusinessForm(FlaskForm):
     city = StringField('city', validators=[DataRequired(), Length(max=50, message='City can not exceed 50 characters.')])
     state = StringField('state', validators=[DataRequired(), Length(max=50, message='State can not exceed 50 characters.')])
     zipcode = StringField('zipcode', validators=[DataRequired(), Length(min=5, max=5, message='Zipcode must be 5 digits.'), Regexp(regex='^[0-9]+', message='Zipcode must be numbers.')])
-    # lat = DecimalField('lat')
-    # lng = DecimalField('lng')
+    lat = DecimalField('lat', validators=[DataRequired(), NumberRange(min=-180, max=180, message='Latitude must be between -180 and 180')])
+    lng = DecimalField('lng', validators=[DataRequired(), NumberRange(min=-180, max=180, message='Longitude must be between -180 and 180')])
     price = StringField('price', validators=[DataRequired()])
     # hours = StringField('hours')
     description = TextAreaField('description', validators=[Optional(strip_whitespace=True), Length(max=1000, message='Description can not exceed 1,000 characters.')])

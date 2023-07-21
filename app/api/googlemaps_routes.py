@@ -4,8 +4,7 @@ import os
 
 mapkey_routes = Blueprint('mapkey', __name__)
 
-@mapkey_routes.route('/', methods=['POST'])
-@login_required
+@mapkey_routes.route('/key', methods=['POST'])
 def mapkey():
     key = os.environ.get('MAPS_API_KEY')
 
