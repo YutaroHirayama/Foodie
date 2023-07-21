@@ -2,8 +2,8 @@ import React from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
-  width: '400px',
-  height: '400px',
+  width: '600px',
+  height: '1000px',
 };
 
 const ResultsMap = ({ apiKey, results }) => {
@@ -30,7 +30,7 @@ const ResultsMap = ({ apiKey, results }) => {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={{lat: results[0].lat, lng: results[0].lng}}
-          zoom={14}
+          zoom={13}
         >
           {results.map((result, i) => (
             <Marker position={{lat: result.lat, lng: result.lng}} label={{text: (i+1).toString()}}/>
