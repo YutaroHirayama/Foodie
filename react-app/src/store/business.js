@@ -75,9 +75,6 @@ export const createBusinessThunk = (business) => async (dispatch) => {
   const res = await fetch(`/api/business`,
   {
     method: 'POST',
-    // headers: {
-    //   "Content-Type": "application/json",
-    // },
     body: business
   });
 
@@ -91,32 +88,12 @@ export const createBusinessThunk = (business) => async (dispatch) => {
   };
 };
 
-export const editBusinessThunk = (business) => async (dispatch) => {
+export const editBusinessThunk = (business, businessId) => async (dispatch) => {
   const {id, name, phoneNumber, address, city, state, zipcode, lat, lng, price, description, category, website} = business;
-  const res = await fetch(`/api/business/${business.id}`,
+  const res = await fetch(`/api/business/${businessId}`,
   {
     method: 'PUT',
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id,
-      name,
-      phoneNumber,
-      address,
-      city,
-      state,
-      zipcode,
-      lat,
-      lng,
-      price,
-      description,
-      category,
-      website,
-      // image1,
-      // image2,
-      // image3
-    })
+    body: business
   });
 
   if(res.ok) {

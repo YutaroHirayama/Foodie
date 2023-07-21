@@ -27,34 +27,31 @@ const EditBusinessModal = ({business}) => {
   const [image1, setImage1] = useState(business.businessImages[0]);
   const [image2, setImage2] = useState(business.businessImages[1]);
   const [image3, setImage3] = useState(business.businessImages[2]);
-  const [imageLoading, setImageLoading] = useState(false);
-  const [submitLoading, setSubmitLoading] = useState(false);
 
   const [errors, setErrors] = useState([]);
 
   const formSubmit = async (e) => {
     e.preventDefault();
 
-    const updatedBusiness = {
-      id: business.id,
-      name,
-      phoneNumber,
-      address,
-      city,
-      state,
-      zipcode,
-      lat,
-      lng,
-      price,
-      description,
-      category,
-      website,
-      // image1,
-      // image2,
-      // image3
-    };
+    const formData = await new FormData();
+    console.log('TYPE OF IMAGE 1', typeof(image1), image1)
+    formData.append('name', name);
+    formData.append('phoneNumber', phoneNumber);
+    formData.append('address', address);
+    formData.append('city', city);
+    formData.append('state', state);
+    formData.append('zipcode', zipcode);
+    formData.append('lat', lat);
+    formData.append('lng', lng);
+    formData.append('price', price);
+    formData.append('description', description);
+    formData.append('category', category);
+    formData.append('website', website);
+    formData.append('image1', image1);
+    formData.append('image2', image2);
+    formData.append('image3', image3);
 
-    const res = await dispatch(editBusinessThunk(updatedBusiness))
+    const res = await dispatch(editBusinessThunk(formData, business.id))
     if(res?.errors) {
       setErrors(res.errors)
     } else {
@@ -239,7 +236,7 @@ const EditBusinessModal = ({business}) => {
         <div className='business-images-container'>
           <label>Upload images for your business below (Optional)</label>
             <div className='business-image-input-container'>
-              {image1 && (
+              {image1 && image1.type !== 'image/jpeg' && (
                 <div className='business-image-loaded-container'>
                   <img className='business-image-loaded' src={image1}/>
                   <button
@@ -258,7 +255,7 @@ const EditBusinessModal = ({business}) => {
                 // placeholder='Main Image Url'
                 // />
               )}
-              {!image1 && (
+              {(!image1 || image1.type === 'image/jpeg') && (
                 <input
                 className='business-image-input'
                 type='file'

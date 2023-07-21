@@ -137,47 +137,60 @@ def update_business(businessId):
         business_to_update.lat = form.data['lat']
         business_to_update.lng = form.data['lng']
         business_to_update.price = form.data['price']
-        # business_to_update.hours = form.data['hours']
         business_to_update.description = form.data['description']
         business_to_update.category = form.data['category']
         business_to_update.website = form.data['website']
 
         if form.data['image1']:
 
-            if len(business_to_update.businessImages) > 0:
-                business_to_update.businessImages[0].image_url = form.data['image1']
-            else:
-                businessImage1 = BusinessImage(
-                    image_url = form.data['image1']
-                    )
-                business_to_update.businessImages.append(businessImage1)
+            image1 = form.data['image1']
+            image1.filename = get_unique_filename(image1.filename)
+            upload1 = upload_file_to_s3(image1)
 
-        elif len(business_to_update.businessImages) > 0:
-                db.session.delete(business_to_update.businessImages[0])
+            if "url" not in upload1:
+                return upload1, 400
 
-        if form.data['image2']:
-            if len(business_to_update.businessImages) > 1:
-                business_to_update.businessImages[1].image_url = form.data['image2']
-            else:
-                businessImage2 = BusinessImage(
-                    image_url = form.data['image2']
-                    )
-                business_to_update.businessImages.append(businessImage2)
+            businessImage1 = BusinessImage(
+                image_url = upload1['url']
+                )
+            business_to_update.businessImages.append(businessImage1)
 
-        elif len(business_to_update.businessImages) > 1:
-            db.session.delete(business_to_update.businessImages[1])
+        # if form.data['image1']:
 
-        if form.data['image3']:
-            if(len(business_to_update.businessImages) > 2):
-                business_to_update.businessImages[2].image_url = form.data['image3']
-            else:
-                businessImage3 = BusinessImage(
-                    image_url = form.data['image3']
-                    )
-                business_to_update.businessImages.append(businessImage3)
+        #     if len(business_to_update.businessImages) > 0:
+        #         business_to_update.businessImages[0].image_url = form.data['image1']
+        #     else:
+        #         businessImage1 = BusinessImage(
+        #             image_url = form.data['image1']
+        #             )
+        #         business_to_update.businessImages.append(businessImage1)
 
-        elif len(business_to_update.businessImages) > 2:
-            db.session.delete(business_to_update.businessImages[2])
+        # elif len(business_to_update.businessImages) > 0:
+        #         db.session.delete(business_to_update.businessImages[0])
+
+        # if form.data['image2']:
+        #     if len(business_to_update.businessImages) > 1:
+        #         business_to_update.businessImages[1].image_url = form.data['image2']
+        #     else:
+        #         businessImage2 = BusinessImage(
+        #             image_url = form.data['image2']
+        #             )
+        #         business_to_update.businessImages.append(businessImage2)
+
+        # elif len(business_to_update.businessImages) > 1:
+        #     db.session.delete(business_to_update.businessImages[1])
+
+        # if form.data['image3']:
+        #     if(len(business_to_update.businessImages) > 2):
+        #         business_to_update.businessImages[2].image_url = form.data['image3']
+        #     else:
+        #         businessImage3 = BusinessImage(
+        #             image_url = form.data['image3']
+        #             )
+        #         business_to_update.businessImages.append(businessImage3)
+
+        # elif len(business_to_update.businessImages) > 2:
+        #     db.session.delete(business_to_update.businessImages[2])
 
         db.session.commit()
         return business_to_update.to_dict()
