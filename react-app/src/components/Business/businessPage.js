@@ -38,7 +38,7 @@ const BusinessPage = ({user}) => {
     for (let i = 0; i < images.length; i++) {
       bannerImages.push(
         <div className='business-page-banner-image-wrapper'>
-          <img className='business-page-banner-image' src={images[i]} onError={e =>{e.currentTarget.src='/defaultBusiness.jpg'}}/>
+          <img className='business-page-banner-image' src={images[i].imageUrl || '/defaultBusiness.jpg'} onError={e =>{e.currentTarget.src='/defaultBusiness.jpg'}}/>
         </div>
         )
     }

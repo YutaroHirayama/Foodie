@@ -4,6 +4,7 @@ from .businesses import seed_businesses, undo_businesses
 from .reviews import seed_reviews, undo_reviews
 from .businessImages import undo_businessImages
 from .reviewImages import undo_reviewImages
+from .bookmarks import undo_bookmarks
 
 from app.models.db import db, environment, SCHEMA
 
@@ -20,8 +21,9 @@ def seed():
         # command, which will  truncate all tables prefixed with
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
-        # undo_reviewImages()
-        # undo_businessImages()
+        undo_reviewImages()
+        undo_businessImages()
+        undo_bookmarks()
         undo_reviews()
         undo_businesses()
         undo_users()
@@ -36,6 +38,7 @@ def seed():
 def undo():
     undo_reviewImages()
     undo_businessImages()
+    undo_bookmarks()
     undo_reviews()
     undo_businesses()
     undo_users()

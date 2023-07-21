@@ -32,9 +32,7 @@ const CreateBusinessModal = ({user}) => {
 
   const formSubmit = async (e) => {
     e.preventDefault();
-    console.log('on page state', state)
-    console.log('on page LAT', lat)
-    console.log('on page lng', lng)
+
     const formData = await new FormData();
 
     formData.append('name', name);

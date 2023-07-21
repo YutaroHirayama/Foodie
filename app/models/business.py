@@ -67,7 +67,7 @@ class Business(db.Model):
             'rating': averageRating,
             'owner': self.owner.to_dict_no_ref(),
             'reviews': [review.to_dict_with_user() for review in self.reviews],
-            'businessImages': [image.image_url for image in self.businessImages],
+            'businessImages': [image.to_dict() for image in self.businessImages],
             'bookmarkUsers': [user.to_dict_no_ref() for user in self.users_bookmarks]
         }
 
@@ -89,7 +89,7 @@ class Business(db.Model):
             'category': self.category,
             'website': self.website,
             'ownerId': self.owner_id,
-            'businessImages': [image.image_url for image in self.businessImages]
+            'businessImages': [image.to_dict() for image in self.businessImages]
         }
 
     def to_dict_no_ref(self):
@@ -142,5 +142,5 @@ class Business(db.Model):
             'ownerId': self.owner_id,
             'rating': averageRating,
             'reviews': [review.to_dict_with_user() for review in self.reviews],
-            'businessImages': [image.image_url for image in self.businessImages]
+            'businessImages': [image.to_dict() for image in self.businessImages]
         }

@@ -24,7 +24,7 @@ const BusinessCard = ({business, idx, type}) => {
         <div className='business-card-container'>
           <div className='business-card'>
             <div className='business-card-image-container'>
-              <img src={business.businessImages[0] || './defaultBusiness.jpg'}
+              <img src={business.businessImages[0]?.imageUrl || './defaultBusiness.jpg'}
                 className='business-card-image'
                 onError={e => {e.currentTarget.src='/defaultBusiness.jpg'}}
                 />

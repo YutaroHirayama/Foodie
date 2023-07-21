@@ -35,6 +35,7 @@ const EditBusinessModal = ({business}) => {
 
     const formData = await new FormData();
     console.log('TYPE OF IMAGE 1', typeof(image1), image1)
+    formData.append('id', business.id)
     formData.append('name', name);
     formData.append('phoneNumber', phoneNumber);
     formData.append('address', address);
@@ -60,9 +61,9 @@ const EditBusinessModal = ({business}) => {
     }
   }
 
-  const deleteImage = async (e, image) => {
-    e.preventDefault();
-    const res = await dispatch(deleteBusinessImageThunk(business.id, image))
+  const deleteImage = async (image, e) => {
+    console.log(image)
+    const res = await dispatch(deleteBusinessImageThunk(image.id))
     if(res?.errors) {
       setErrors(res.errors)
     }
@@ -238,66 +239,62 @@ const EditBusinessModal = ({business}) => {
             <div className='business-image-input-container'>
               {image1 && image1.type !== 'image/jpeg' && (
                 <div className='business-image-loaded-container'>
-                  <img className='business-image-loaded' src={image1}/>
+                  <img className='business-image-loaded' src={image1.imageUrl}/>
                   <button
                     className='business-image-loaded-button'
                     type='button'
-                    value={image1}
-                    onClick={(e) => deleteImage(e.target.value)}>
+                    onClick={(e) => {deleteImage(image1, e); setImage1('')}}>
                       <i className="fa-regular fa-trash-can"/>
                   </button>
                 </div>
-                // <input
-                // className='business-image-input'
-                // type='text'
-                // value={image1}
-                // onChange={(e) => setImage1(e.target.value)}
-                // placeholder='Main Image Url'
-                // />
               )}
               {(!image1 || image1.type === 'image/jpeg') && (
                 <input
-                className='business-image-input'
-                type='file'
-                accept='image/*'
-                onChange={(e) => setImage1(e.target.files[0])}
-                placeholder='Main Image Url'
+                  className='business-image-input'
+                  type='file'
+                  accept='image/*'
+                  onChange={(e) => setImage1(e.target.files[0])}
+                  placeholder='Main Image Url'
                 />
               )}
-              {image2 && (
+              {image2 && image2.type !== 'image/jpeg' && (
+                <div className='business-image-loaded-container'>
+                  <img className='business-image-loaded' src={image2.imageUrl}/>
+                  <button
+                    className='business-image-loaded-button'
+                    type='button'
+                    onClick={(e) => {deleteImage(image2, e); setImage2('')}}>
+                      <i className="fa-regular fa-trash-can"/>
+                  </button>
+                </div>
+              )}
+              {(!image2 || image2.type === 'image/jpeg') && (
                 <input
-                className='business-image-input'
-                type='text'
-                value={image2}
-                onChange={(e) => setImage2(e.target.value)}
-                placeholder='Url'
+                  className='business-image-input'
+                  type='file'
+                  accept='image/*'
+                  onChange={(e) => setImage2(e.target.files[0])}
+                  placeholder='Url'
                 />
               )}
-              {!image2 && (
-                <input
-                className='business-image-input'
-                type='file'
-                accept='image/*'
-                onChange={(e) => setImage2(e.target.files[0])}
-                placeholder='Url'
-                />
+              {image3 && image3.type !== 'image/jpeg' && (
+                <div className='business-image-loaded-container'>
+                  <img className='business-image-loaded' src={image3.imageUrl}/>
+                  <button
+                    className='business-image-loaded-button'
+                    type='button'
+                    onClick={(e) => {deleteImage(image3, e); setImage3('')}}>
+                      <i className="fa-regular fa-trash-can"/>
+                  </button>
+                </div>
               )}
-              {image3 && (
+              {(!image3 || image3.type === 'image/jpeg') && (
                 <input
-                className='business-image-input'
-                type='text'
-                value={image3}
-                onChange={(e) => setImage3(e.target.value)}
-                placeholder='Url'
-                />
-              )}
-              {!image3 && (
-                <input
-                className='business-image-input'
-                type='file'
-                accept='image/*'
-                onChange={(e) => setImage3(e.target.files[0])}
-                placeholder='Url'
+                  className='business-image-input'
+                  type='file'
+                  accept='image/*'
+                  onChange={(e) => setImage3(e.target.files[0])}
+                  placeholder='Url'
                 />
               )}
             </div>

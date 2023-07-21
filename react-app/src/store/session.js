@@ -272,11 +272,12 @@ export const removeBookmarkThunk = (bookmarkId) => async (dispatch) => {
   }
 }
 
-export const deleteBusinessImageThunk = (businessId, image) => async(dispatch) => {
-  const res = await fetch (`api/business/${businessId}/${image}`, {method: 'DELETE'})
+export const deleteBusinessImageThunk = (imageId) => async(dispatch) => {
+  const res = await fetch(`/api/businessImage/${imageId}`, {method: 'DELETE'})
 
   if(res.ok) {
     const removedImage = res.json();
+		dispatch(deleteBusinessImageAction(imageId))
   } else {
     const errors = await res.json();
     return errors;

@@ -155,6 +155,34 @@ def update_business(businessId):
                 )
             business_to_update.businessImages.append(businessImage1)
 
+        if form.data['image2']:
+
+            image2 = form.data['image2']
+            image2.filename = get_unique_filename(image2.filename)
+            upload2 = upload_file_to_s3(image2)
+
+            if "url" not in upload2:
+                return upload2, 400
+
+            businessImage2 = BusinessImage(
+                image_url = upload2['url']
+                )
+            business_to_update.businessImages.append(businessImage2)
+
+        if form.data['image3']:
+
+            image3 = form.data['image3']
+            image3.filename = get_unique_filename(image3.filename)
+            upload3 = upload_file_to_s3(image3)
+
+            if "url" not in upload3:
+                return upload3, 400
+
+            businessImage3 = BusinessImage(
+                image_url = upload3['url']
+                )
+            business_to_update.businessImages.append(businessImage3)
+
         # if form.data['image1']:
 
         #     if len(business_to_update.businessImages) > 0:
@@ -197,19 +225,19 @@ def update_business(businessId):
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-@business_routes.route('/<int:businessId>/<image>', methods=['DELETE'])
-@login_required
-def delete_business_image(businessId, image):
-    """
-    This route deletes a business Image.
-    """
-    business_of_image = Business.query.get(businessId)
-    image_to_delete = BusinessImage.query.filter(image == Business.image_url)
+# @business_routes.route('/<int:businessId>/<int:imageId>', methods=['DELETE'])
+# @login_required
+# def delete_business_image(businessId, imageId):
+#     """
+#     This route deletes a business Image.
+#     """
+#     business_of_image = Business.query.get(businessId)
+#     image_to_delete = BusinessImage.query.get(imageId)
 
-    if current_user.id != business_of_image.owner_id:
-        return {'errors': ['Forbidden']}, 403
+#     if current_user.id != business_of_image.owner_id:
+#         return {'errors': ['Forbidden']}, 403
 
-    db.session.delete(image_to_delete)
+#     db.session.delete(image_to_delete)
 
 @business_routes.route('/<int:businessId>', methods=['DELETE'])
 @login_required
