@@ -25,7 +25,7 @@ const ResultPage = () => {
 
   if(!results.length) return (
     <div className='noResults-page'>
-      <img src='/noResults.jpg' className='noResults-image'/>
+      <img src='/NoResults.jpg' className='noResults-image'/>
     </div>
   )
 
