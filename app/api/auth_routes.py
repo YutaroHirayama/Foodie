@@ -80,9 +80,6 @@ def sign_up():
             if "url" not in upload:
                 return upload, 400
 
-            # profilePic = BusinessImage(
-            #     image_url = upload1['url']
-            #     )
             user.profile_pic = upload['url']
 
         db.session.add(user)

@@ -4,7 +4,6 @@ from app.models import Review, Business, ReviewImage, db
 from ..forms import ReviewForm
 from .auth_routes import validation_errors_to_error_messages
 from datetime import datetime
-from .auth_routes import validation_errors_to_error_messages
 from ..api.aws_helpers import get_unique_filename, upload_file_to_s3
 
 review_routes = Blueprint('review', __name__)
