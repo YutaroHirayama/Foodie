@@ -2,6 +2,7 @@ from app.models import db, Business, environment, SCHEMA
 from sqlalchemy.sql import text
 from .businessImages import pizza1_1, pizza1_2, pizza1_3, pizza2_1, burger1_1, burger2_1, sushi1_1, sushi1_2, sushi1_3, sushi2_1, sushi2_2, sushi2_3, taco1_1, taco1_2, taco2_1, ramen1_1, ramen1_2, ramen1_3, boba1_1, boba1_2, boba2_1, boba2_2, kbbq1_1, kbbq1_2, kbbq1_3, kbbq2_1, kbbq2_2, kbbq2_3, sandwich1_1, sandwich1_2, sandwich1_3, sandwich2_1, sandwich2_2, sandwich2_3
 from .users import demo
+from datetime import datetime
 
 def seed_businesses():
     pizza1 = Business(
@@ -17,7 +18,8 @@ def seed_businesses():
         description='our dough is hand-crafted through a multiple day process which gives it complexity. the crust is then blistered in 600-degree heat until lightly browned. they are then topped with things like housemade charcuterie, foraged mushrooms, and imported cheeses. we source fresh vegetables and herbs from prosser, washington which utilizes the bounty of the pacific northwest.',
         category = 'Pizza',
         website='https://www.seriouspieseattle.com/location/serious-pie-downtown/',
-        owner_id=1
+        owner_id=1,
+        created_at=datetime.now()
     )
     pizza2 = Business(
         name="Rocco's",
@@ -32,7 +34,8 @@ def seed_businesses():
         description='Specialty Bar & Pizzeria : Extensive and unique selection of Spirits, Beer 120 PLus, Cocktails and Wine. Vegan, Gluten Free, Organic, Local, Artisan and the Heights quality of ingredients.',
         category = 'Bars, Pizza',
         website='https://www.roccosseattle.com/',
-        owner_id=2
+        owner_id=2,
+        created_at=datetime.now()
     )
 
     burger1 = Business(
@@ -48,7 +51,8 @@ def seed_businesses():
         description='Handcrafted, ingredient driven burgers.',
         category = 'Burgers, Whiskey Bars, Cocktail Bars',
         website='https://www.8ozburgerandco.com/',
-        owner_id=1
+        owner_id=1,
+        created_at=datetime.now()
     )
 
     burger2 = Business(
@@ -64,7 +68,8 @@ def seed_businesses():
         description='Handcrafted, ingredient driven burgers.',
         category = 'Burgers, Sandwiches',
         website='http://uneedaburger.com/',
-        owner_id=2
+        owner_id=2,
+        created_at = datetime.now()
     )
 
     sushi1 = Business(
@@ -80,7 +85,8 @@ def seed_businesses():
         description='The first Edomae Sushi restaurant in Seattle.',
         category = 'Sushi Bars Japanese',
         website='http://www.shiros.com/',
-        owner_id=1
+        owner_id=1,
+        created_at=datetime.now()
     )
 
     sushi2 = Business(
@@ -96,7 +102,8 @@ def seed_businesses():
         description='Chef Shiro Kashiba has delighted Seattle diners with his culinary artistry and craft for over five decades. Located next to the Pike Place Market, Sushi Kashiba offers the highest standard Japanese cuisine that sushi lovers have come to expect from who the Seattle Times calls, the "Sushi Sensei" of Seattle.',
         category = 'Sushi Bars Japanese',
         website='https://sushikashiba.com',
-        owner_id=2
+        owner_id=2,
+        created_at=datetime.now()
     )
     taco1 = Business(
         name="Tacos Chukis",
@@ -111,7 +118,8 @@ def seed_businesses():
         description='',
         category = 'Mexican',
         website='https://www.seattlechukis.com',
-        owner_id=1
+        owner_id=1,
+        created_at = datetime.now()
     )
 
     taco2= Business(
@@ -126,7 +134,8 @@ def seed_businesses():
         price='$',
         description='Mexico City street tacos',
         category = 'Tacos Food Stands',
-        owner_id=2
+        owner_id=2,
+        created_at=datetime.now()
     )
 
     ramen1 = Business(
@@ -142,7 +151,8 @@ def seed_businesses():
         description='Fukuoka - traditional Style Tonkotsu Ramen',
         category = 'Ramen Noodles',
         website='http://ramendanbo.com',
-        owner_id=1
+        owner_id=1,
+        created_at=datetime.now()
     )
 
     boba1 = Business(
@@ -158,7 +168,8 @@ def seed_businesses():
         description='We sell high mountain and organic premium tea and all kinds of bubble tea.',
         category = 'Coffee Tea Bubble Boba Cafe',
         website='https://www.seattlebesttea.com/',
-        owner_id=2
+        owner_id=2,
+        created_at=datetime.now()
     )
 
     boba2 = Business(
@@ -174,7 +185,8 @@ def seed_businesses():
         description='Japanese cafe specializing in green tea desserts!',
         category = 'Japanese Desserts Cafe',
         website='https://www.nanasgreenteaseattle.com/',
-        owner_id=2
+        owner_id=2,
+        created_at=datetime.now()
     )
 
     kbbq1 = Business(
@@ -190,7 +202,8 @@ def seed_businesses():
         description='Meat - We only use Prime Angus, American Wagyu Beef and Kurobuta Pork at Meet KBBQ. Working with reputable ranchers such as Snake River Farms and Rosewood ensures that quality is priority number one. Special cuts such as A5 Wagyu and Dry Aged beef will also make frequent appearances on the menu.',
         category = 'Korean Barbeque',
         website='https://www.meetkoreanbbq.com/',
-        owner_id=1
+        owner_id=1,
+        created_at=datetime.now()
     )
 
     kbbq2 = Business(
@@ -206,7 +219,8 @@ def seed_businesses():
         description='Soft Opening: Friday, July 1st 2023',
         category = 'Korean Barbeque Asian',
         website='https://bellwetherbbq.com/',
-        owner_id=2
+        owner_id=2,
+        created_at=datetime.now()
     )
 
     sandwich1 = Business(
@@ -222,7 +236,8 @@ def seed_businesses():
         description='We produce artisan Caribbean inspired food created with the freshest local ingredients available.',
         category = 'Sandwich Caribbean Cuban',
         website='https://www.paseo.com/',
-        owner_id=1
+        owner_id=1,
+        created_at=datetime.now()
     )
 
     sandwich2 = Business(
@@ -238,7 +253,8 @@ def seed_businesses():
         description='Loaded sandwiches of all kinds!',
         category = 'Sandwich',
         website='https://valhallasandwiches.com/',
-        owner_id=2
+        owner_id=2,
+        created_at=datetime.now()
     )
 
     pizza1.businessImages.append(pizza1_1)

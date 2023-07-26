@@ -23,6 +23,7 @@ class Business(db.Model):
     category = db.Column(db.String)
     website = db.Column(db.String)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    created_at = db.Column(db.DateTime, nullable=False)
 
     owner = db.relationship('User', back_populates='businesses_owned')
     reviews = db.relationship('Review', back_populates='business', order_by='Review.created_at.desc()', cascade='all, delete')
@@ -64,6 +65,7 @@ class Business(db.Model):
             'category': self.category,
             'website': self.website,
             'ownerId': self.owner_id,
+            'createdAt': self.created_at,
             'rating': averageRating,
             'owner': self.owner.to_dict_no_ref(),
             'reviews': [review.to_dict_with_user() for review in self.reviews],
@@ -89,6 +91,7 @@ class Business(db.Model):
             'category': self.category,
             'website': self.website,
             'ownerId': self.owner_id,
+            'createdAt': self.created_at,
             'businessImages': [image.to_dict() for image in self.businessImages]
         }
 
@@ -109,7 +112,8 @@ class Business(db.Model):
             'description': self.description,
             'category': self.category,
             'website': self.website,
-            'ownerId': self.owner_id
+            'ownerId': self.owner_id,
+            'createdAt': self.created_at
         }
 
     def to_dict_no_owner(self):
@@ -140,6 +144,7 @@ class Business(db.Model):
             'category': self.category,
             'website': self.website,
             'ownerId': self.owner_id,
+            'createdAt': self.created_at,
             'rating': averageRating,
             'reviews': [review.to_dict_with_user() for review in self.reviews],
             'businessImages': [image.to_dict() for image in self.businessImages]

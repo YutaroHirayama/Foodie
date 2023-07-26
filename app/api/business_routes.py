@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Business, BusinessImage, db
+from datetime import datetime
 from sqlalchemy import or_
 from ..forms import BusinessForm
 from .auth_routes import validation_errors_to_error_messages
@@ -14,7 +15,7 @@ def get_all_businesses():
     This route gets all the businesses that are in the db
     """
 
-    businesses = Business.query.all()
+    businesses = Business.query.order_by(Business.created_at.desc()).all()
     return [business.to_dict() for business in businesses]
 
 @business_routes.route('/user')
@@ -23,7 +24,7 @@ def get_businesses_current_user():
     This route gets businesses that are owned by the current user.
     """
 
-    businessesOwned = Business.query.filter(Business.owner_id == current_user.id).order_by(Business.name)
+    businessesOwned = Business.query.filter(Business.owner_id == current_user.id).order_by(Business.created_at.desc())
     return [business.to_dict_no_owner() for business in businessesOwned]
 
 @business_routes.route('/<int:id>')
@@ -60,7 +61,8 @@ def create_business():
             description = form.data['description'],
             category = form.data['category'],
             website = form.data['website'],
-            owner=current_user
+            owner=current_user,
+            created_at = datetime.now()
         )
 
         if form.data['image1']:
@@ -263,5 +265,5 @@ def search_businesses(keywords):
     This route searches businesses by keyword
     """
 
-    businesses = Business.query.filter(or_(Business.name.ilike(f'%{keywords}%'), Business.category.ilike(f'%{keywords}%')))
+    businesses = Business.query.filter(or_(Business.name.ilike(f'%{keywords}%'), Business.category.ilike(f'%{keywords}%'))).order_by(Business.created_at.desc())
     return [business.to_dict() for business in businesses]

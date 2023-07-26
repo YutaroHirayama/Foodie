@@ -23,7 +23,11 @@ const ResultPage = () => {
     }
   },[dispatch, keywords])
 
-  if(!results.length) return null
+  if(!results.length) return (
+    <div>
+      <img className='noResults-image' src='./NoResults.jpg'/>
+    </div>
+  )
   return (
 
       <div className='results-page'>
