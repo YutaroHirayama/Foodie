@@ -20,34 +20,44 @@ function SignupFormModal() {
 		e.preventDefault();
 		if (password === confirmPassword) {
 
-			let data;
+			const formData = await new FormData();
 
-			const newUser = {
-        firstName,
-				lastName,
-				username,
-				email,
-				profilePic,
-				password
-      };
+			formData.append('firstName', firstName);
+			formData.append('lastName', lastName);
+			formData.append('username', username);
+			formData.append('email', email);
+			formData.append('password', password);
+			formData.append('profilePic', profilePic);
 
-			const newUserNo = {
-        firstName,
-				lastName,
-				username,
-				email,
-				password
-      };
+			// let data;
 
-			if(profilePic.length === 0) {
-				data = await dispatch(signUp(newUserNo))
-			} else {
-				data = await dispatch(signUp(newUser))
-			}
+			// const newUser = {
+      //   firstName,
+			// 	lastName,
+			// 	username,
+			// 	email,
+			// 	profilePic,
+			// 	password
+      // };
 
-			if (data) {
+			// const newUserNo = {
+      //   firstName,
+			// 	lastName,
+			// 	username,
+			// 	email,
+			// 	password
+      // };
 
-				setErrors(data);
+			// if(profilePic.length === 0) {
+			// 	data = await dispatch(signUp(newUserNo))
+			// } else {
+			// 	data = await dispatch(signUp(newUser))
+			// }
+
+			const res = await dispatch(signUp(formData))
+
+			if (res?.errors) {
+				setErrors(res.errors);
 			} else {
 				closeModal();
 			}
@@ -104,14 +114,14 @@ function SignupFormModal() {
 						placeholder='Username'
 					/>
 				</div>
-				<div>
+				{/* <div>
 					<input
 						type="text"
 						value={profilePic}
 						onChange={(e) => setProfilePic(e.target.value)}
 						placeholder='Profile Picture URL (Optional)'
 					/>
-				</div>
+				</div> */}
 				<div>
 					<input
 						type="password"
@@ -129,6 +139,16 @@ function SignupFormModal() {
 						required
 						placeholder='Confirm Password'
 					/>
+				</div>
+				<div>
+					<label>Upload a profile picture</label>
+					<input
+						className='profile-image-input'
+						type='file'
+						accept='image/*'
+						onChange={(e) => setProfilePic(e.target.files[0])}
+						placeholder='Profile Picture'
+						/>
 				</div>
 				<button className='signup-modal-button' type="submit">Sign Up</button>
 			</form>
