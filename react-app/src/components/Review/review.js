@@ -29,7 +29,7 @@ const Review = ({review, type}) => {
       {type === 'private' && (
         <NavLink to={`/business/${review?.businessId}`}>
           <div className='single-review-reviewer'>
-              <img className='single-review-profile-pic' src={review.business?.businessImages[0] || '/defaultBusiness.jpg'} onError={e =>{e.currentTarget.src='/defaultBusiness.jpg'}}/>
+              <img className='single-review-profile-pic' src={review.business?.businessImages[0].imageUrl || '/defaultBusiness.jpg'} onError={e =>{e.currentTarget.src='/defaultBusiness.jpg'}}/>
               <div className='private-review-business-details'>
                 <div className='single-review-name'>{review.business?.name}</div>
                 <div className='private-review-location'>{review.business?.city}, {review.business?.state}</div>
@@ -62,7 +62,7 @@ const Review = ({review, type}) => {
             buttonText='Delete'
             className='foodie-small-button'
             icon="fa-regular fa-trash-can"
-            modalComponent={<DeleteReviewModal reviewId={review.id}/>}
+            modalComponent={<DeleteReviewModal review={review}/>}
           />
         </div>
       )}

@@ -5,106 +5,7 @@ from .users import demo
 from datetime import datetime
 
 def seed_businesses():
-    pizza1 = Business(
-        name='Serious Pie Downtown',
-        phone_number='2068387388',
-        address='2001 4th Ave',
-        city='Seattle',
-        state='WA',
-        zipcode='98121',
-        lat=47.61296191169304,
-        lng=-122.34061046489039,
-        price='$$',
-        description='our dough is hand-crafted through a multiple day process which gives it complexity. the crust is then blistered in 600-degree heat until lightly browned. they are then topped with things like housemade charcuterie, foraged mushrooms, and imported cheeses. we source fresh vegetables and herbs from prosser, washington which utilizes the bounty of the pacific northwest.',
-        category = 'Pizza',
-        website='https://www.seriouspieseattle.com/location/serious-pie-downtown/',
-        owner_id=1,
-        created_at=datetime.now()
-    )
-    pizza2 = Business(
-        name="Rocco's",
-        phone_number='2064665989',
-        address='2312 2nd Ave',
-        city='Seattle',
-        state='WA',
-        zipcode='98121',
-        lat=47.61458886080757,
-        lng=-122.34605458816941,
-        price='$$',
-        description='Specialty Bar & Pizzeria : Extensive and unique selection of Spirits, Beer 120 PLus, Cocktails and Wine. Vegan, Gluten Free, Organic, Local, Artisan and the Heights quality of ingredients.',
-        category = 'Bars, Pizza',
-        website='https://www.roccosseattle.com/',
-        owner_id=2,
-        created_at=datetime.now()
-    )
 
-    burger1 = Business(
-        name='8oz Burger & Co',
-        phone_number='2063974210',
-        address='2312 2nd Ave',
-        city='Seattle',
-        state='WA',
-        zipcode='98121',
-        lat=47.61495754338527,
-        lng=-122.32078860001081,
-        price='$$',
-        description='Handcrafted, ingredient driven burgers.',
-        category = 'Burgers, Whiskey Bars, Cocktail Bars',
-        website='https://www.8ozburgerandco.com/',
-        owner_id=1,
-        created_at=datetime.now()
-    )
-
-    burger2 = Business(
-        name='Uneeda Burger',
-        phone_number='2065472600',
-        address='4302 Fremont Ave N',
-        city='Seattle',
-        state='WA',
-        zipcode='98103',
-        lat=47.65964056920178,
-        lng=-122.34974111122028,
-        price='$$',
-        description='Handcrafted, ingredient driven burgers.',
-        category = 'Burgers, Sandwiches',
-        website='http://uneedaburger.com/',
-        owner_id=2,
-        created_at = datetime.now()
-    )
-
-    sushi1 = Business(
-        name="Shiro's",
-        phone_number='2064439844',
-        address='2401 2nd Ave',
-        city='Seattle',
-        state='WA',
-        zipcode='98121',
-        lat=47.614865187426894,
-        lng=-122.34748543065385,
-        price='$$$$',
-        description='The first Edomae Sushi restaurant in Seattle.',
-        category = 'Sushi Bars Japanese',
-        website='http://www.shiros.com/',
-        owner_id=1,
-        created_at=datetime.now()
-    )
-
-    sushi2 = Business(
-        name="Sushi Kashiba",
-        phone_number='2064418844',
-        address='86 Pine St Ste 1',
-        city='Seattle',
-        state='WA',
-        zipcode='98101',
-        lat=47.6100407265009,
-        lng=-122.34153348306207,
-        price='$$$$',
-        description='Chef Shiro Kashiba has delighted Seattle diners with his culinary artistry and craft for over five decades. Located next to the Pike Place Market, Sushi Kashiba offers the highest standard Japanese cuisine that sushi lovers have come to expect from who the Seattle Times calls, the "Sushi Sensei" of Seattle.',
-        category = 'Sushi Bars Japanese',
-        website='https://sushikashiba.com',
-        owner_id=2,
-        created_at=datetime.now()
-    )
     taco1 = Business(
         name="Tacos Chukis",
         phone_number='2069058537',
@@ -257,6 +158,107 @@ def seed_businesses():
         created_at=datetime.now()
     )
 
+    sushi1 = Business(
+        name="Shiro's",
+        phone_number='2064439844',
+        address='2401 2nd Ave',
+        city='Seattle',
+        state='WA',
+        zipcode='98121',
+        lat=47.614865187426894,
+        lng=-122.34748543065385,
+        price='$$$$',
+        description='The first Edomae Sushi restaurant in Seattle.',
+        category = 'Sushi Bars Japanese',
+        website='http://www.shiros.com/',
+        owner_id=1,
+        created_at=datetime.now()
+    )
+
+    sushi2 = Business(
+        name="Sushi Kashiba",
+        phone_number='2064418844',
+        address='86 Pine St Ste 1',
+        city='Seattle',
+        state='WA',
+        zipcode='98101',
+        lat=47.6100407265009,
+        lng=-122.34153348306207,
+        price='$$$$',
+        description='Chef Shiro Kashiba has delighted Seattle diners with his culinary artistry and craft for over five decades. Located next to the Pike Place Market, Sushi Kashiba offers the highest standard Japanese cuisine that sushi lovers have come to expect from who the Seattle Times calls, the "Sushi Sensei" of Seattle.',
+        category = 'Sushi Bars Japanese',
+        website='https://sushikashiba.com',
+        owner_id=2,
+        created_at=datetime.now()
+    )
+
+    burger1 = Business(
+        name='8oz Burger & Co',
+        phone_number='2063974210',
+        address='2312 2nd Ave',
+        city='Seattle',
+        state='WA',
+        zipcode='98121',
+        lat=47.61495754338527,
+        lng=-122.32078860001081,
+        price='$$',
+        description='Handcrafted, ingredient driven burgers.',
+        category = 'Burgers, Whiskey Bars, Cocktail Bars',
+        website='https://www.8ozburgerandco.com/',
+        owner_id=1,
+        created_at=datetime.now()
+    )
+
+    burger2 = Business(
+        name='Uneeda Burger',
+        phone_number='2065472600',
+        address='4302 Fremont Ave N',
+        city='Seattle',
+        state='WA',
+        zipcode='98103',
+        lat=47.65964056920178,
+        lng=-122.34974111122028,
+        price='$$',
+        description='Handcrafted, ingredient driven burgers.',
+        category = 'Burgers, Sandwiches',
+        website='http://uneedaburger.com/',
+        owner_id=2,
+        created_at = datetime.now()
+    )
+
+    pizza1 = Business(
+        name='Serious Pie Downtown',
+        phone_number='2068387388',
+        address='2001 4th Ave',
+        city='Seattle',
+        state='WA',
+        zipcode='98121',
+        lat=47.61296191169304,
+        lng=-122.34061046489039,
+        price='$$',
+        description='our dough is hand-crafted through a multiple day process which gives it complexity. the crust is then blistered in 600-degree heat until lightly browned. they are then topped with things like housemade charcuterie, foraged mushrooms, and imported cheeses. we source fresh vegetables and herbs from prosser, washington which utilizes the bounty of the pacific northwest.',
+        category = 'Pizza',
+        website='https://www.seriouspieseattle.com/location/serious-pie-downtown/',
+        owner_id=1,
+        created_at=datetime.now()
+    )
+    pizza2 = Business(
+        name="Rocco's",
+        phone_number='2064665989',
+        address='2312 2nd Ave',
+        city='Seattle',
+        state='WA',
+        zipcode='98121',
+        lat=47.61458886080757,
+        lng=-122.34605458816941,
+        price='$$',
+        description='Specialty Bar & Pizzeria : Extensive and unique selection of Spirits, Beer 120 PLus, Cocktails and Wine. Vegan, Gluten Free, Organic, Local, Artisan and the Heights quality of ingredients.',
+        category = 'Bars, Pizza',
+        website='https://www.roccosseattle.com/',
+        owner_id=2,
+        created_at=datetime.now()
+    )
+
     pizza1.businessImages.append(pizza1_1)
     pizza1.businessImages.append(pizza1_2)
     pizza1.businessImages.append(pizza1_3)
@@ -308,7 +310,7 @@ def seed_businesses():
     sandwich2.businessImages.append(sandwich2_2)
     sandwich2.businessImages.append(sandwich2_3)
 
-    all_businesses = [pizza1, pizza2, burger1, burger2, sushi1, sushi2, taco1, taco2, ramen1, boba1, boba2, kbbq1, kbbq2, sandwich1, sandwich2]
+    all_businesses = [pizza1, pizza2, burger1, burger2, sushi1, sushi2, taco1, taco2, ramen1, boba1, boba2, kbbq1, kbbq2, sandwich2, sandwich1]
     add_businesses = [db.session.add(business) for business in all_businesses]
     db.session.commit()
     print('all businesses added')

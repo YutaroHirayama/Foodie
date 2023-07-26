@@ -4,8 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteReviewThunk } from "../../store/session";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
+import { getOneBusinessThunk } from "../../store/business";
 
-const DeleteReviewModal = ({reviewId}) => {
+const DeleteReviewModal = ({review}) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [errors, setErrors] = useState([]);
@@ -15,11 +16,12 @@ const DeleteReviewModal = ({reviewId}) => {
   const deleteReview = async (e) => {
     e.preventDefault();
 
-    const res = await dispatch(deleteReviewThunk(reviewId))
-
+    const res = await dispatch(deleteReviewThunk(review.id))
+    dispatch(getOneBusinessThunk(review.businessId))
     if(res?.errors) {
       setErrors(res.errors)
     } else {
+
       closeModal()
     }
   }

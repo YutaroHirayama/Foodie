@@ -10,6 +10,7 @@ import { removeBookmarkThunk, addBookmarkThunk } from "../../store/session";
 import BusinessMap from '../BusinessMap/BusinessMap';
 import MapContainer from '../BusinessMap';
 import EditBusinessModal from '../EditBusinessModal/editBusinessModal';
+import DeleteReviewModal from '../DeleteReviewModal/deleteReviewModal';
 
 const BusinessPage = ({user}) => {
   const dispatch = useDispatch();
@@ -58,12 +59,20 @@ const BusinessPage = ({user}) => {
       )
     } else {
       return (
-        <OpenModalButton
-        buttonText='Edit your Review'
-        className='foodie-big-button'
-        icon='fa-regular fa-pen-to-square'
-        modalComponent={<ReviewModal business={business} user={user} review={existingReview}/>}
-        />
+        <>
+          <OpenModalButton
+            buttonText='Edit your Review'
+            className='foodie-big-button'
+            icon='fa-regular fa-pen-to-square'
+            modalComponent={<ReviewModal business={business} user={user} review={existingReview}/>}
+          />
+          <OpenModalButton
+            buttonText='Delete your Review'
+            className='foodie-big-button'
+            icon='fa-regular fa-pen-to-square'
+            modalComponent={<DeleteReviewModal review={existingReview}/>}
+          />
+        </>
       )
     }
   }

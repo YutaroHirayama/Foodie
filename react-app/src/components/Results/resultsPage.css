@@ -19,3 +19,12 @@
   flex-direction:column;
   width: 100%;
 }
+
+.noResults-page {
+  display: flex;
+  justify-content: center;
+}
+
+.noResults-image {
+  border-radius: 20px;
+}
