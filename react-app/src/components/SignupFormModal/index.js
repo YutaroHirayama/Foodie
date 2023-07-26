@@ -80,6 +80,7 @@ function SignupFormModal() {
 				</ul>
 				<div>
 					<input
+						className='signup-form-input'
 						type="text"
 						value={firstName}
 						onChange={(e) => setFirstName(e.target.value)}
@@ -89,6 +90,7 @@ function SignupFormModal() {
 				</div>
 				<div>
 					<input
+						className='signup-form-input'
 						type="text"
 						value={lastName}
 						onChange={(e) => setLastName(e.target.value)}
@@ -98,6 +100,7 @@ function SignupFormModal() {
 				</div>
 				<div>
 					<input
+						className='signup-form-input'
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
@@ -107,6 +110,7 @@ function SignupFormModal() {
 				</div>
 				<div>
 					<input
+						className='signup-form-input'
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -124,6 +128,7 @@ function SignupFormModal() {
 				</div> */}
 				<div>
 					<input
+						className='signup-form-input'
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
@@ -133,6 +138,7 @@ function SignupFormModal() {
 				</div>
 				<div>
 					<input
+						className='signup-form-input'
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
@@ -140,8 +146,8 @@ function SignupFormModal() {
 						placeholder='Confirm Password'
 					/>
 				</div>
-				<div>
-					<label>Upload a profile picture</label>
+				<div className='signup-profilePic'>
+					<label>Upload a profile picture (Optional)</label>
 					<input
 						className='profile-image-input'
 						type='file'

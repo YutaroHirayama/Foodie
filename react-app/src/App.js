@@ -9,6 +9,7 @@ import LandingPage from './components/LandingPage/landingPage';
 import ProfilePage from './components/ProfilePage/profilePage';
 import BusinessPage from "./components/Business/businessPage";
 import ResultPage from "./components/Results/resultsPage";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 import Footer from "./components/Footer/footer";
 
 function App() {
@@ -45,6 +46,9 @@ function App() {
             </Route>
             <Route exact path="/search/:keywords">
               <ResultPage user={sessionUser}/>
+            </Route>
+            <Route path='*'>
+              <ErrorPage />
             </Route>
           </Switch>
           <Route path='/'>
