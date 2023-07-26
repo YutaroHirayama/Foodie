@@ -1,4 +1,4 @@
-.modal-ref {
+#modal-ref {
   position: fixed;
   z-index: 3;
 }
