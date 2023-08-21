@@ -1,4 +1,6 @@
-
+import './profilePage.css';
+import OpenModalButton from '../OpenModalButton';
+import BusinessCard from '../Results/businessCard';
 
 const togglePage = ({type}) => {
 
