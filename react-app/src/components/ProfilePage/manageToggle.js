@@ -25,5 +25,19 @@ const togglePage = ({type}) => {
         </div>
       </div>
     )
+  } else if (type === 'reviews') {
+    return (
+      <div className='profile-page-reviews'>
+        <h1>Manage your Reviews</h1>
+        <div className='profile-page-reviews-grid'>
+          {reviews && reviews.map(review => (
+            <div className='single-owned-review-card'>
+              <Review key={review.id} review={review} type='private'/>
+            </div>
+          ))}
+          {!reviews.length && <h2>Start reviewing your favorite businesses!</h2>}
+        </div>
+      </div>
+    )
   }
 }
