@@ -55,3 +55,5 @@ const togglePage = ({type}) => {
     )
   }
 }
+
+export default togglePage;
