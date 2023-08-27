@@ -39,5 +39,19 @@ const togglePage = ({type}) => {
         </div>
       </div>
     )
+  } else if (type === 'bookmarks') {
+    return (
+      <div className='profile-page-bookmarks'>
+        <h1>Manage your Bookmarks</h1>
+        <div className='profile-page-bookmark-grid'>
+          {bookmarks && bookmarks.map((business, idx) => (
+            <div className='owned-business-card'>
+              <BusinessCard key={idx} business={business} idx={idx+1} type='bookmark'/>
+            </div>
+          ))}
+          {!bookmarks.length && <h2>Start adding bookmarks!</h2>}
+        </div>
+      </div>
+    )
   }
 }
