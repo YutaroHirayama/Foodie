@@ -3,6 +3,20 @@ import OpenModalButton from '../OpenModalButton';
 import BusinessCard from '../Results/businessCard';
 
 const togglePage = ({type}) => {
+  const user = useSelector(state => state.session.user)
+  const reviews = useSelector(state => state.session.user?.reviews)
+  const businessesOwned = useSelector(state => state.session.user?.businessesOwned)
+  const bookmarks = useSelector(state => state.session.user?.bookmarks)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchReviewsThunk())
+    dispatch(fetchBusinessesThunk())
+    // dispatch(fetchBookmarksThunk())
+  },[dispatch])
+
+  if(!user) return <h1>Log in or Sign up to view profile.</h1>;
+
 
   if(type === 'businesses') {
     return (
