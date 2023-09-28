@@ -51,6 +51,7 @@ const CreateBusinessModal = ({user}) => {
     formData.append('image2', image2);
     formData.append('image3', image3);
 
+    
     const res = await dispatch(createBusinessThunk(formData))
     if(res?.errors) {
       setErrors(res.errors)
