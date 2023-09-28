@@ -29,7 +29,6 @@ const CreateBusinessModal = ({user}) => {
   const { closeModal } = useModal();
   const history = useHistory();
 
-  
   const formSubmit = async (e) => {
     e.preventDefault();
 
