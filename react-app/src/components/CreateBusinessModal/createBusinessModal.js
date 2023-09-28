@@ -24,7 +24,6 @@ const CreateBusinessModal = ({user}) => {
   const [image3, setImage3] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
-
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
   const { closeModal } = useModal();
